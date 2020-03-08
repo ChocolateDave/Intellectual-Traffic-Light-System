@@ -20,7 +20,7 @@ Actions = {
 
 #  Observation area
 # The area is describe using four of its boundaries: [L, R, D, U]
-Area = [-55, 175, -30, 148]
+Area = [-55, 65, -30, 78]
 
 # Frameskip (in frames)
 Frameskip = 75
@@ -42,6 +42,11 @@ Edges = [
     "JSND","JSNE","JSNU","JSNX",
     "JSSD","JSSE","JSSU","JSSX"
     ]
+Entrance = [
+    "CAEE", "CAWE", "JSNE", "JSSE"
+]
+Sumobinary = "sumo-gui"
+Sumopath = "./sumo/ITLS.sumo.cfg"
 TLid = "ITLS"
 
 # Conversion factors of vehicles

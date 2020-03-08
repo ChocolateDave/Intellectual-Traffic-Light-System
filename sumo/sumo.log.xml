@@ -1,0 +1,18 @@
+***Starting server on port 49679 ***
+Loading net-file from './sumo/ITLS.net.xml'... done (15ms).
+Loading done.
+Simulation started with time: 0.00
+Error: tcpip::Socket::recvAndCheck @ recv: Socket reset by peer
+Quitting (on error).
+Performance: 
+ Duration: 25383ms
+ Real time factor: 2.37167
+ UPS: 700.114250
+Vehicles: 
+ Inserted: 113 (Loaded: 138)
+ Running: 103
+ Waiting: 25
+Persons: 
+ Inserted: 324
+ Running: 12
+

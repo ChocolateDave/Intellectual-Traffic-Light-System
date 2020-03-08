@@ -31,7 +31,7 @@ class Traffic_Light_Control(gym.Env):
         self.total_time = Total_time
         self.shape = [Area[1]-Area[0], Area[3]-Area[2]]
 
-        self.observation_space = (frameskip, self.shape[0], self.shape[1])
+        self.observation_space = (Frameskip, self.shape[0], self.shape[1])
         self.action_space = len(Actions)
         if Reward_range:
             self.reward_range = Reward_range
@@ -52,7 +52,6 @@ class Traffic_Light_Control(gym.Env):
         filling the scenario. """
         while traci.simulation.getTime() <= Warm_up_time:
             traci.simulationStep()
-        return
 
     def getState(self):
         """Imitate input observation acquired through api 
@@ -72,7 +71,7 @@ class Traffic_Light_Control(gym.Env):
             return np.round((x-np.min(x)) / (np.max(x)-np.min(x)) *
                             (range_list[1]-range_list[0]) + range_list[0])
 
-        state = np.zeros(self.observation_space)
+        state = np.zeros(self.shape)
         for edge in Edges:
             current_veh = traci.edge.getLastStepVehicleIDs(edge)
             for veh in current_veh:
@@ -83,8 +82,37 @@ class Traffic_Light_Control(gym.Env):
                         y = round(pos[0] + 30)
                         if x in range(state.shape[0]) and y in range(state.shape[1]):
                             state[x][y] += Conversions[vehtype]
+        
         return state
 
+    def isEpisode(self):
+        """Justify if a scenario is finished
+        
+        Return:
+            done (bool)
+        """
+        if traci.simulation.getTime() >= Total_time:
+            print('********Scenario Finished!********')
+            self.scenario.close()
+            return True
+        return False
+
+    def getReward(self):
+        """ Get reward value after every action was taken.
+        The reward function is by default designed as a 
+        combination of queue length and travel time.
+
+        Return:
+            reward (float): the reward value of action.
+        """
+        ql, tt = 0.0, 0.0
+        for edge in Entrance:
+            ql += traci.edge.getLastStepHaltingNumber(edge)
+            tt += traci.edge.getTraveltime(edge)
+        reward = -.4 * ql - .1 * tt 
+        return reward
+
+    # Main fuctions of gym
     def step(self, action):
         assert isinstance(action, int), "TypeError"
         assert action in range(len(Actions)), "IndexInvalid!"
@@ -132,35 +160,27 @@ class Traffic_Light_Control(gym.Env):
             traci.trafficlight.setRedYellowGreenState(TLid, fp)
             for i in range(Frameskip):
                 traci.simulationStep()
+                reward += self.getReward()
                 if i % 5 == 0:
                     state = self.getState()
                 state_list.append(state)
             observation = np.stack(state_list)
-            done = self.is_episode()
+            done = self.isEpisode()
             return observation, reward, done, {}
     
-    def is_episode(self):
-        """Justify if a scenario is finished
-        
-        Return:
-            done (bool)
-        """
-        if traci.simulation.getTime() >= Total_time:
-            print('********Scenario Finished!********')
-            self.scenario.close()
-            return True
-        return False
-
-    def reset(self, path, sumoBinary="sumo", mode='training', seed=None):
-        assert isinstance(sumoBinary, str), "Sumo binary error!"
-        assert isinstance(seed, int), "Invalid simulation seed!"
+    def reset(self, mode='training', seed=None):
+        assert isinstance(Sumobinary, str), "Sumo binary error!"
         assert mode in ('training', 'evaluation'), "Unsupported mode!"
 
         if seed:
+            assert isinstance(seed, int), "Invalid simulation seed!"
             self.seed = seed
-            sumoCmd = [sumoBinary, '-c', path, '--start',
+            sumoCmd = [Sumobinary, '-c', Sumopath, '--start',
                        '--seed', seed, '--quit-on-end']
         else:
-            sumoCmd = [sumoBinary, '-c', path, '--start', '--random']
-        traci.start(sumoCmd, lable=mode)
+            sumoCmd = [Sumobinary, '-c', Sumopath, '--start', '--random','--quit-on-end']
+        traci.start(sumoCmd, label=mode)
         self.scenario = traci.getConnection(mode)
+        self.warmUp()
+        observation = self.getState()
+        return observation
