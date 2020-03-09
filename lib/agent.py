@@ -1,5 +1,5 @@
 """
-DQN Agent handles training process
+DQN Agent that handles training process
 """
 import copy
 import numpy as np

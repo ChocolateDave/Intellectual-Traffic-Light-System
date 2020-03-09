@@ -106,7 +106,7 @@ class Traffic_Light_Control(gym.Env):
             reward (float): the reward value of action.
         """
         ql, tt = 0.0, 0.0
-        for edge in Entrance:
+        for edge in Entrances:
             ql += traci.edge.getLastStepHaltingNumber(edge)
             tt += traci.edge.getTraveltime(edge)
         reward = -.4 * ql - .1 * tt 
@@ -134,7 +134,7 @@ class Traffic_Light_Control(gym.Env):
             """
             assert len(phase_o) == len(phase_d), "Phase expression error!"
             yellow_phase, red_phase = '', ''
-            for i in range(len(phase_1)):
+            for i in range(len(phase_o)):
                 if phase_o[i] != phase_d[i]:
                     if phase_o[i] == 'G':
                         yellow_phase += 'y'
@@ -147,26 +147,26 @@ class Traffic_Light_Control(gym.Env):
                     red_phase += phase_o[i]
             return yellow_phase, red_phase
             
-            # Current phase
-            cp = traci.trafficlight.getRedYellowGreenState(TLid)
-            if cp != fp:
-                yp, rp = phase_transition(cp, fp)
-                traci.trafficlight.setRedYellowGreenState(TLid,yp)
-                for _ in range(15):
-                    traci.simulationStep()
-                traci.trafficlight.setRedYellowGreenState(TLid, rp)
-                for _ in range(10):
-                    traci.simulationStep()
-            traci.trafficlight.setRedYellowGreenState(TLid, fp)
-            for i in range(Frameskip):
+        # Current phase
+        cp = traci.trafficlight.getRedYellowGreenState(TLid)
+        if cp != fp:
+            yp, rp = phase_transition(cp, fp)
+            traci.trafficlight.setRedYellowGreenState(TLid,yp)
+            for _ in range(15):
                 traci.simulationStep()
-                reward += self.getReward()
-                if i % 5 == 0:
-                    state = self.getState()
+            traci.trafficlight.setRedYellowGreenState(TLid, rp)
+            for _ in range(10):
+                traci.simulationStep()
+        traci.trafficlight.setRedYellowGreenState(TLid, fp)
+        for i in range(Frameskip):
+            traci.simulationStep()
+            if i % 5 == 0:
+                state = self.getState()
                 state_list.append(state)
-            observation = np.stack(state_list)
-            done = self.isEpisode()
-            return observation, reward, done, {}
+                reward += self.getReward()
+        observation = np.stack(state_list)
+        done = self.isEpisode()
+        return observation, reward, done, {}
     
     def reset(self, mode='training', seed=None):
         assert isinstance(Sumobinary, str), "Sumo binary error!"
@@ -184,3 +184,18 @@ class Traffic_Light_Control(gym.Env):
         self.warmUp()
         observation = self.getState()
         return observation
+
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+    env =  Traffic_Light_Control()
+    observation = env.reset()
+    plt.ion()
+    for _ in range(18000):
+        plt.cla()
+        if np.ndim(observation) != 2:
+            observation = observation[0]
+        plt.imshow(observation, cmap='gray', origin='lower')
+        action = np.random.randint(0, len(Actions))
+        observation,_,_,_ = env.step(action)
+        plt.pause(0.1)
+    plt.ioff()
