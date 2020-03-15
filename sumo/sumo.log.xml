@@ -1,109 +1,36 @@
-***Starting server on port 60878 ***
-Loading net-file from './sumo/ITLS.net.xml' ... done (17ms).
+***Starting server on port 60303 ***
+Loading net-file from './sumo/ITLS.net.xml'... done (9ms).
 Loading done.
-Simulation started with time: 0.00
-Warning: Vehicle 'SN_LP.0' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=26.00.
-Warning: Vehicle 'NW_NMV.0' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=28.00.
-Warning: Vehicle 'EN_P.1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=86.60.
-Warning: Vehicle 'WN_NMV.0' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=92.80.
-Warning: Vehicle 'ES_P.2' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=100.20.
-Warning: Vehicle 'SN_P.5' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=133.20.
-Warning: Vehicle 'NS_P.5' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=161.00.
-Warning: Vehicle 'EW_P.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=163.40.
-Warning: Vehicle 'WE_P.18' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=175.20.
-Warning: Vehicle 'EW_NMV.1' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=181.20.
-Warning: Vehicle 'NW_NMV.2' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=216.00.
-Warning: Vehicle 'EW_P.18' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=223.40.
-Warning: Vehicle 'EW_NMV.6' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=224.60.
-Warning: Vehicle 'WN_MP.0' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=226.40.
-Warning: Vehicle 'WE_NMV.8' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=240.00.
-Warning: Vehicle 'EW_NMV.8' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=241.20.
-Warning: Vehicle 'NE_P.10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=267.20.
-Warning: Vehicle 'NE_P.10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=269.80.
-Warning: Vehicle 'NS_P.24' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=276.80.
-Warning: Vehicle 'NE_P.13' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=290.80.
-Warning: Vehicle 'NE_T.2' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=290.80.
-Warning: Vehicle 'WE_P.39' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=294.60.
-Warning: Vehicle 'SW_P.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=295.80.
-Warning: Vehicle 'EN_P.16' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=331.60.
-Warning: Vehicle 'SW_NMV.4' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=370.80.
-Warning: Vehicle 'SN_P.9' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=374.00.
-Warning: Vehicle 'SN_NMV.4' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=378.80.
-Warning: Vehicle 'SN_NMV.4' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=379.60.
-Warning: Vehicle 'NE_NMV.4' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=389.00.
-Warning: Vehicle 'SN_P.9' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=392.40.
-Warning: Vehicle 'NE_P.15' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=401.60.
-Warning: Vehicle 'NE_MP.2' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=406.20.
-Warning: Teleporting vehicle 'NE_NMV.5'; collision with vehicle 'NW_LP.1', lane=':gneJ24_0_2', gap=-11.29', latGap=-0.90, time=409.00 stage=move.
-Warning: Vehicle 'NE_NMV.5' ends teleporting on edge 'JSNE', time 409.00.
-Warning: Vehicle 'NE_MP.2' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=410.20.
-Warning: Vehicle 'NW_P.4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=423.40.
-Warning: Vehicle 'NE_P.18' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=443.40.
-Warning: Vehicle 'WN_NMV.3' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=465.80.
-Warning: Vehicle 'NE_P.19' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=493.40.
-Warning: Vehicle 'NS_P.38' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=493.40.
-Warning: Vehicle 'EW_P.57' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=504.20.
-Warning: Vehicle 'ES_P.34' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=508.20.
-Warning: Vehicle 'NE_P.22' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=512.80.
-Warning: Vehicle 'NS_P.43' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=522.20.
-Warning: Vehicle 'NE_P.24' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=526.00.
-Warning: Vehicle 'NS_T.4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=526.00.
-Warning: Vehicle 'ES_P.36' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=528.00.
-Warning: Vehicle 'EW_P.62' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=530.20.
-Warning: Vehicle 'ES_P.37' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=538.00.
-Warning: Teleporting vehicle 'ES_P.37'; collision with vehicle 'EW_P.62', lane=':gneJ20_0_3', gap=-3.46', latGap=-0.01, time=541.20 stage=laneChange.
-Warning: Vehicle 'ES_P.37' ends teleporting on edge 'CAEE', time 541.20.
-Warning: Vehicle 'NE_P.22' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=570.20.
-Warning: Vehicle 'NS_P.41' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=576.00.
-Warning: Vehicle 'EW_P.68' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=584.80.
-Warning: Vehicle 'NE_P.27' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=586.40.
-Warning: Vehicle 'SN_P.33' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=623.00.
-Warning: Person 'WE_PED.0' is jammed on edge ':ITLS_w3', time=639.00.
-Warning: Vehicle 'NE_MP.4' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=662.80.
-Warning: Vehicle 'NS_P.61' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=662.80.
-Warning: Vehicle 'NE_MP.4' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=668.60.
-Warning: Vehicle 'NS_LT.6' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=674.40.
-Warning: Vehicle 'NE_P.28' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=675.40.
-Warning: Vehicle 'WN_P.18' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=725.20.
-Warning: Vehicle 'NS_NMV.70' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=728.80.
-Warning: Vehicle 'WS_NMV.1' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=732.00.
-Warning: Vehicle 'EW_P.54' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=732.40.
-Warning: Teleporting vehicle 'ES_P.29'; waited too long (wrong lane), lane='CAEE_3', time=733.80.
-Warning: Vehicle 'ES_P.29' ends teleporting on edge 'JSSX', time 733.80.
-Warning: Vehicle 'EW_NMV.20' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=746.20.
-Warning: Vehicle 'ES_P.40' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=746.40.
-Warning: Vehicle 'ES_P.41' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=746.40.
-Warning: Vehicle 'EW_P.71' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=746.40.
-Warning: Vehicle 'ES_P.46' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=766.00.
-Warning: Vehicle 'EW_LP.3' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=766.00.
-Warning: Vehicle 'WE_P.84' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=766.60.
-Warning: Vehicle 'EW_P.78' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=766.80.
-Warning: Vehicle 'NE_P.32' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=768.20.
-Warning: Vehicle 'NS_MT.7' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=768.20.
-Warning: Vehicle 'SW_NMV.8' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=777.20.
-Warning: Vehicle 'SN_LT.6' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=780.20.
-Warning: Vehicle 'EW_MP.7' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=785.00.
-Warning: Vehicle 'EW_LT.3' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=827.60.
-Warning: Vehicle 'EW_NMV.34' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=827.60.
-Warning: Vehicle 'NE_P.31' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=828.60.
-Warning: Vehicle 'EW_P.81' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=830.80.
-Error: send failed: Socket reset by peer
+Simulation version 1.3.1 started with time: 0.00
+Warning: Vehicle 'SE_P.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=74.00.
+Warning: Vehicle 'NE_T.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=80.20.
+Warning: Vehicle 'NS_NMV.2' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=87.00.
+Warning: Vehicle 'NS_NMV.5' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=95.60.
+Warning: Vehicle 'EW_P.5' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=111.80.
+Warning: Vehicle 'EW_P.6' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=113.00.
+Warning: Vehicle 'EW_P.8' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=114.40.
+Warning: Vehicle 'ES_P.4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=115.00.
+Warning: Vehicle 'EW_NMV.1' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=134.60.
+Warning: Vehicle 'NE_T.1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=138.60.
+Warning: Vehicle 'ES_T.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=147.80.
+Warning: Vehicle 'EN_P.3' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=148.60.
+Warning: Vehicle 'NS_P.14' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=148.60.
+Warning: Vehicle 'SN_NMV.3' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=157.20.
+Warning: Vehicle 'SN_P.8' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=170.20.
+Warning: Vehicle 'WN_P.14' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=171.00.
+Warning: Teleporting vehicle 'NE_NMV.2'; collision with vehicle 'NS_MP.1', lane=':gneJ24_0_2', gap=-1.22', latGap=-0.78, time=174.80 stage=move.
+Warning: Vehicle 'NE_NMV.2' ends teleporting on edge 'JSNE', time 174.80.
+Warning: Vehicle 'WN_P.15' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=183.20.
+Warning: Vehicle 'EW_P.12' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=198.40.
+Warning: Vehicle 'EW_NMV.14' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=212.40.
+Warning: Teleporting vehicle 'NS_NMV.20'; collision with vehicle 'NS_NMV.21', lane=':gneJ24_0_0', gap=-1.25', latGap=-0.18, time=229.80 stage=laneChange.
+Warning: Vehicle 'NS_NMV.20' ends teleporting on edge 'JSNE', time 232.20.
+Warning: Vehicle 'EN_P.12' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=248.80.
+Warning: Vehicle 'NW_NMV.2' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=255.80.
+Warning: Vehicle 'NS_P.21' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=260.20.
+Warning: Vehicle 'NE_MT.1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=263.00.
+Warning: Vehicle 'SW_P.3' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=330.20.
+Error: tcpip::Socket::recvAndCheck @ recv: Socket reset by peer
 Quitting (on error).
-Simulation ended at time: 839.60
-Performance: 
- Duration: 81010ms
- Real time factor: 10.3642
- UPS: 12178.224911
- UPS-Persons: 1952.598445
-Vehicles: 
- Inserted: 1149 (Loaded: 1183)
- Running: 339
- Waiting: 34
-Teleports: 3 (Collisions: 2, Wrong Lane: 1)
-Persons: 
- Inserted: 324
- Running: 61
- Jammed: 1
-
-DijkstraRouter answered 26658 queries and explored 17.12 edges on average.
-DijkstraRouter spent 106ms answering queries (0.00ms on average).
+DijkstraRouter answered 1064 queries and explored 14.32 edges on average.
+DijkstraRouter spent 10ms answering queries (0.01ms on average).

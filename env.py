@@ -1,40 +1,45 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import traci
-from sumolib import checkBinary
-from settings import *
-from lib import seeding
-import numpy as np
-import gym
-import os
-import sys
+import os, sys
+# Check sumo env
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:
     sys.exit("please declare environment variable 'SUMO_HOME'")
+from lib import seeding
+from sumolib import checkBinary
+import gym
+import numpy as np
+import traci
 
 
-class Traffic_Light_Control(gym.Env):
+class TrafficLight_v0(gym.Env):
     r"""The sumo interactive environment based on openai gym. By default, 
     the reward range for RL training is set to [-inf,+inf]. It can be changed 
     accordingly. """
 
-    def __init__(self):
-        super(Traffic_Light_Control, self).__init__()
-        if isinstance(Frameskip, int):
-            self.frameskip = Frameskip
+    def __init__(self, config):
+        super(TrafficLight_v0, self).__init__()
+        if isinstance(config.frameskip, int):
+            self.frameskip = config.frameskip
         else:
-            self.frameskip = np.random.randint(Frameskip[0], Frameskip[1])
-        self.warm_up_time = Warm_up_time
-        self.total_time = Total_time
-        self.shape = [Area[1]-Area[0], Area[3]-Area[2]]
-
-        self.observation_space = (Frameskip, self.shape[0], self.shape[1])
-        self.action_space = len(Actions)
-        if Reward_range:
-            self.reward_range = Reward_range
+            self.frameskip = np.random.randint(config.frameskip[0], frameskip[1])
+        self.warm_up_time = config.warm_up_dur
+        self.total_time = config.total_dur
+        self.shape = [config.width, config.height]
+        self.actions = config.actions
+        self.observation_space = (self.frameskip, config.width, config.height)
+        self.action_space = len(config.actions)
+        if config.reward_range:
+            self.reward_range = config.reward_range
+        # Sumo params
+        self.binary = config.sumo_binary
+        self.cfg = config.sumo_config
+        self.edges = config.edges
+        self.ents = config.ent_lanes
+        self.convs = config.conversions
+        self.id = config.TLid
 
     # Seeding
     def seed(self, seed=None):
@@ -50,20 +55,20 @@ class Traffic_Light_Control(gym.Env):
         """ Before training, we need to make sure there's enough vehicles 
         on the given lanes. Hence, a warm up sequence is required for 
         filling the scenario. """
-        while traci.simulation.getTime() <= Warm_up_time:
+        while traci.simulation.getTime() <= self.warm_up_time:
             traci.simulationStep()
 
     def getState(self):
         """Imitate input observation acquired through api 
-        of obejctive tracing network (e.g. YOLO)
-        
+        of obejct tracing network. (e.g. YOLO)
+
         Returns:
             state (object): an array describe current traffic state.
         """
 
         def scale(x, range_list):
             """Normalize conversion factors to specific range.
-            
+
             Returns:
                 x (object): array or list after normalization.
             """
@@ -72,26 +77,25 @@ class Traffic_Light_Control(gym.Env):
                             (range_list[1]-range_list[0]) + range_list[0])
 
         state = np.zeros(self.shape)
-        for edge in Edges:
+        for edge in self.edges:
             current_veh = traci.edge.getLastStepVehicleIDs(edge)
             for veh in current_veh:
                 pos = traci.vehicle.getPosition(veh)
-                for vehtype in Conversions.keys():
+                for vehtype in self.convs.keys():
                     if vehtype in veh:
                         x = round(pos[1] + 55)
                         y = round(pos[0] + 30)
                         if x in range(state.shape[0]) and y in range(state.shape[1]):
-                            state[x][y] += Conversions[vehtype]
-        
+                            state[x][y] += self.convs[vehtype]
         return state
 
     def isEpisode(self):
         """Justify if a scenario is finished
-        
+
         Return:
             done (bool)
         """
-        if traci.simulation.getTime() >= Total_time:
+        if traci.simulation.getTime() >= self.total_time:
             print('********Scenario Finished!********')
             self.scenario.close()
             return True
@@ -106,25 +110,24 @@ class Traffic_Light_Control(gym.Env):
             reward (float): the reward value of action.
         """
         ql, tt = 0.0, 0.0
-        for edge in Entrances:
+        for edge in self.ents:
             ql += traci.edge.getLastStepHaltingNumber(edge)
             tt += traci.edge.getTraveltime(edge)
-        reward = -.4 * ql - .1 * tt 
+        reward = -.4 * ql - .1 * tt
         return reward
 
     # Main fuctions of gym
     def step(self, action):
         assert isinstance(action, int), "TypeError"
-        assert action in range(len(Actions)), "IndexInvalid!"
+        assert action in range(len(self.actions)), "IndexInvalid!"
         reward = 0.0
         state_list = []
         # Future phase
-        fp = list(Actions.values())[action]
-
+        fp = list(self.actions.values())[action]
         def phase_transition(phase_o, phase_d):
             """A transition phase is required between different phases. 
-            
-            Args:
+
+            Params:
                 phase_o (string): current phase of traffic light controller.
                 phase_d (string): future phase of traffic light controller.
 
@@ -146,19 +149,20 @@ class Traffic_Light_Control(gym.Env):
                     yellow_phase += phase_o[i]
                     red_phase += phase_o[i]
             return yellow_phase, red_phase
-            
         # Current phase
-        cp = traci.trafficlight.getRedYellowGreenState(TLid)
-        if cp != fp:
-            yp, rp = phase_transition(cp, fp)
-            traci.trafficlight.setRedYellowGreenState(TLid,yp)
-            for _ in range(15):
-                traci.simulationStep()
-            traci.trafficlight.setRedYellowGreenState(TLid, rp)
-            for _ in range(10):
-                traci.simulationStep()
-        traci.trafficlight.setRedYellowGreenState(TLid, fp)
-        for i in range(Frameskip):
+        if fp:
+            # Ignore None action for no change.
+            cp = traci.trafficlight.getRedYellowGreenState(self.id)
+            if cp != fp:
+                yp, rp = phase_transition(cp, fp)
+                traci.trafficlight.setRedYellowGreenState(self.id, yp)
+                for _ in range(15):
+                    traci.simulationStep()
+                traci.trafficlight.setRedYellowGreenState(self.id, rp)
+                for _ in range(10):
+                    traci.simulationStep()
+            traci.trafficlight.setRedYellowGreenState(self.id, fp)
+        for i in range(self.frameskip):
             traci.simulationStep()
             if i % 5 == 0:
                 state = self.getState()
@@ -167,35 +171,37 @@ class Traffic_Light_Control(gym.Env):
         observation = np.stack(state_list)
         done = self.isEpisode()
         return observation, reward, done, {}
-    
+
     def reset(self, mode='training', seed=None):
-        assert isinstance(Sumobinary, str), "Sumo binary error!"
+        assert isinstance(self.binary, str), "Sumo binary error!"
         assert mode in ('training', 'evaluation'), "Unsupported mode!"
 
         if seed:
             assert isinstance(seed, int), "Invalid simulation seed!"
             self.seed = seed
-            sumoCmd = [Sumobinary, '-c', Sumopath, '--start',
+            sumoCmd = [self.binary, '-c', self.cfg, '--start',
                        '--seed', seed, '--quit-on-end']
         else:
-            sumoCmd = [Sumobinary, '-c', Sumopath, '--start', '--random','--quit-on-end']
+            sumoCmd = [self.binary, '-c', self.cfg,
+                       '--start', '--random', '--quit-on-end']
         traci.start(sumoCmd, label=mode)
         self.scenario = traci.getConnection(mode)
         self.warmUp()
-        observation = self.getState()
-        return observation
+        state, reward, action, info = self.step(0)
+        return state, reward, action, info
+
 
 if __name__ == "__main__":
+    import config
     import matplotlib.pyplot as plt
-    env =  Traffic_Light_Control()
-    observation = env.reset()
+    config = config.SumoConfigs
+    env = TrafficLight_v0(config)
+    obs, rew, act, _ = env.reset()
     plt.ion()
     for _ in range(18000):
         plt.cla()
-        if np.ndim(observation) != 2:
-            observation = observation[0]
-        plt.imshow(observation, cmap='gray', origin='lower')
-        action = np.random.randint(0, len(Actions))
-        observation,_,_,_ = env.step(action)
+        plt.imshow(obs[0], cmap='gray', origin='lower')
+        action = np.random.randint(0, len(config.actions))
+        obs, _, _, _ = env.step(action)
         plt.pause(0.1)
     plt.ioff()
