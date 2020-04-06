@@ -1,0 +1,23 @@
+***Starting server on port 59740 ***
+Loading net-file from './project/ITLS.net.xml'... done (13ms).
+Loading done.
+Simulation version 1.3.1 started with time: 0.00
+Warning: Vehicle 'NS_NMV.3' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=60.40.
+Warning: Vehicle 'SW_MT.0' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=61.20.
+Warning: Vehicle 'ES_MP.0' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=87.40.
+Warning: Vehicle 'ES_LP.0' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=90.60.
+Warning: Vehicle 'NS_P.1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=123.60.
+Warning: Vehicle 'NS_P.2' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=123.60.
+Warning: Vehicle 'NS_P.4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=141.00.
+Warning: Vehicle 'WE_NMV.4' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=144.40.
+Warning: Vehicle 'WE_P.10' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=155.20.
+Warning: Vehicle 'WE_NMV.6' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=157.00.
+Warning: Vehicle 'EW_NMV.4' performs emergency braking with decel=-7.00 wished=3.00 severity=1.00, time=164.00.
+Warning: Vehicle 'EN_MT.1' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=169.20.
+Warning: Vehicle 'ES_P.2' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=169.60.
+Warning: Vehicle 'EW_NMV.3' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=181.00.
+Warning: Vehicle 'EN_NMV.1' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=183.60.
+Error: tcpip::Socket::recvAndCheck @ recv: Socket reset by peer
+Quitting (on error).
+DijkstraRouter answered 10 queries and explored 3.00 edges on average.
+DijkstraRouter spent 0ms answering queries (0.00ms on average).

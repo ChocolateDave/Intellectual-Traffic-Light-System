@@ -95,7 +95,7 @@ class SumoConfigs(EnvConfigs):
         sumo_binary = "sumo-gui"
     else:
         sumo_binary = "sumo"
-    sumo_config = "./sumo/ITLS.sumo.cfg"
+    sumo_config = "./project/ITLS.sumo.cfg"
     TLid = "ITLS"
 
 # Aggregate DQN params.

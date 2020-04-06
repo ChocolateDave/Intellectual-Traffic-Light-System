@@ -23,6 +23,7 @@ def class_vars(classobj):
     """
     return {k: v for k, v in getmembers(classobj)
                     if not k.startswith('__') and not callable(k) }
+
 class BaseModel(object):
     r"""Abstract object representing a model"""
     def __init__(self, config):
@@ -192,7 +193,7 @@ class DQNAgent(BaseModel):
         with tf.variable_scope('network_sync'):
             t_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='target_net')
             p_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='pred_net')
-            self.sync = tf.assign(t, p) for t, p in zip(t_param, p_param)
+            self.sync = [tf.assign(t, p) for t, p in zip(t_param, p_param)]
         # --------------- network optimizer ----------------
         with tf.variable_scope('optimizer'):
             if self.prioritized:
@@ -221,7 +222,6 @@ class DQNAgent(BaseModel):
             self.writer = tf.summary.FileWriter('./logs/%s' % self.model_dir, self.sess.graph)
         # -------------- Initialize network --------------
         tf.initialize_all_variables().run()
-        self._saver = tf.train.Saver(self.)
 
     def observe(self, state, reward, action, state_, terminal):
         """Interact with the environment and observe state,
@@ -339,34 +339,6 @@ class DQNAgent(BaseModel):
                     self
             self.step += 1
 
-
-        """# Update target network with certain step.
-        if self.step %  == 0:
-            self.sess.run(self.target_replace_op)
-        
-        # Sample batches from experience buffer when exceed preset threshold.
-        sample_index = np.random.choice(min(self.memory_counter, self.memory_size), \
-                                                                        size=self.batch_size)
-        samples = self.memory[sample_index, : ]
-
-        _, cost = self.sess.run(
-            [self.optimizer, self.loss],
-            feed_dict={
-                self.s: samples[:,  : self.state_size],
-                self.a: samples[:, self.state_size],
-                self.r: samples[:, self.state_size + 1],
-                self.s_: samples[:, -self.state_size : ]
-            }
-        )
-
-        # Update epsilon.
-        self.epsilon = max(self.epsilon_final, self.epsilon_start - frame / self.epsilon_frames)
-        self.step += 1
-
-        # Save network when reach checkpoint.
-        if self.step % self.ckpt == 0:
-            self.save_model(step=self.step)"""
-
     def play(self):
         """Benchmark function for testing training effects"""
         pass
@@ -403,6 +375,7 @@ class DQNAgent(BaseModel):
         return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding='VALID')
 
 if __name__ == "__main__":
+    from config import SumoConfigs
     from env import TrafficLight_v0
-    env = TrafficLight_v0()
+    env = TrafficLight_v0(SumoConfigs)
     agent = DQNAgent(env)
