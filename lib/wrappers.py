@@ -4,7 +4,7 @@ import numpy as np
 from collections import deque
 import gym
 from gym import spaces
-import cv2
+# import cv2
 
 
 class NoopResetEnv(gym.Wrapper):

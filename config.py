@@ -8,6 +8,7 @@
 # Agent configs
 # Configs of reinforcement learning agent, which has significant effcts on 
 # the final result of the training process. Treat them with cautions.
+
 class AgentConfigs(object):
     # memory
     memory_size = 100000
@@ -20,6 +21,7 @@ class AgentConfigs(object):
     # training hyperparams
     batch_size = 64
     data_format = 'NHWC'
+    gamma = 0.99
     decay_rate = 0.99
     learn_initial = 100000
     lr = 0.01
@@ -34,6 +36,7 @@ class AgentConfigs(object):
     double = False
     prioritized = False
     owm = False
+
 
 # Environment configs
 # Basic configurations of environments that realate to how the environment 

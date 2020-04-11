@@ -11,9 +11,11 @@ class ReplayBuffer(object):
         :sample - sample batches for training.
     """
     def __init__(self, input_shape, n_actions, memory_size, discrete=False):
-        self.mem_cntr = 0 
+        #memo counter
+        self.mem_cntr = 0
+        #exp size
         self.mem_size = memory_size
-        self.discrete = discrete
+        # self.discrete = discrete
         if isinstance(input_shape, int):
             self.state_memory = np.zeros([self.mem_size, input_shape])
             self.next_state_memory =  np.zeros([self.mem_size, input_shape])
@@ -21,11 +23,12 @@ class ReplayBuffer(object):
             state_shape=[self.mem_size]
             for size in input_shape:
                 state_shape.append(size)
-            self.state_memory = np.zeros(i_shape)
+            self.state_memory = np.zeros(input_shape)
             self.next_state_memory = np.zeros(state_shape)
         dtype = np.int8 if self.discrete else np.float32
         self.action_memory = np.zeros([self.mem_size, n_actions])
         self.reward_memory = np.zeros(self.mem_size)
+        #whether finish
         self.terminal_memory =  np.zeros(self.mem_size, dtype=np.float32)
 
     def add(self, s, a, r, s_, done):
@@ -42,19 +45,19 @@ class ReplayBuffer(object):
         self.next_state_memory[index] = s_
         self.reward_memory[index] = r
         self.terminal_memory[index] =  1 - int(done)  # if not done, continue.
-        if self.discrete:
-            # use one-hot encode for discrete action space.
-            actions = np.zeros(self.action_memory.shape[1])
-            actions[a] = 1.0
-            self.action_memory[index] = actions
-        else:
-            self.action_memory[index] = actions
+        # if self.discrete:
+        #     # use one-hot encode for discrete action space.
+        #     actions = np.zeros(self.action_memory.shape[1])
+        #     actions[a] = 1
+        #     self.action_memory[index] = actions
+        # else:
+        self.action_memory[index] = a
         self.mem_cntr += 1
 
     def sample(self, batch_size):
         """Sampler for batch gradient algorithm.
         Param:
-            batch_size (int): the size of batch set.
+            batch_size (int): the sfdeize of batch set.
         Return:
             states (tensor): current or previous states.
             acions (tensor): action values.

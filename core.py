@@ -7,6 +7,8 @@ import collections
 import copy
 import numpy as np
 import os,sys
+import memory
+from config import DQNConfigs
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -14,13 +16,13 @@ sys.path.append("./lib")
 sys.path.append("./common")
 
 import env as Env
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 
-from lib import agent, action, experience, parameters, saver, tracker, wrappers
+from agent import DQNAgent
 import env as Env
 
 # Global Variable:
-params = parameters.Constants
+
 PRIO_REPLAY_ALPHA = 0.6
 BETA_START = 0.4
 BETA_FRAMES = 100000
@@ -288,19 +290,33 @@ class DeepNetwork:
 #     return actions
 
 def learn(frameskip,device='CUDA'):
-    env = Env.SumoEnv(frameskip=frameskip,device=device)
+    env = Env.TrafficLight_v0(DQNConfigs)
     # env = wrappers.wrap_dqn(env, reward_clipping=False)
     state_size = env.observation_space
     action_size = env.action_space
     net = DeepNetwork(n_actions=action_size,n_features=state_size)
-    # Training initialization
-    selector = action.EpsilonGreedyActionSelector(epsilon=params['epsilon_start'])
+    # Initialize Agent
+    agent =DQNAgent(DQNConfigs,env)   # it has been have an exp source in agent!
     #take care of params! I have defined some params in class instructor but some had been in lib!
-    epsilon_tracker = tracker.EpsilonTracker(selector, params)
-    tgt_net = agent.TargetNet(net)
-    agents = agent.DQNAgent(net, selector, device=device)
+
     #experice retrieve
-    exp_source = experience.ExperienceSourceFirstLast(env, agents, gamma=params['gamma'], steps_count=1)
+    # exp_source = experience.ExperienceSourceFirstLast(env, agents, gamma=params['gamma'], steps_count=1)
+    s, _,_, _ = env.reset()
+
+    while True:
+        a = agent.predict(s)
+        s_,r,t = env.step(a)
+        agent.observe(s,r,a,s_,t)
+        agent.train()
+
+
+
+
+
+
+
+
+
 
 
 
@@ -308,11 +324,9 @@ def learn(frameskip,device='CUDA'):
 
     pass
 
-# if __name__ == '__main__':
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument("--name", default='network_checkpoint', type=str, dest='name', help='train period name')
-#     parser.add_argument("--resume", default = "checkpoint.pth", type = str, dest='path', help= 'path to latest checkpoint')
-#     parser.add_argument("--skip", default=180, type=int, dest='frameskip', help='frameskip of env')
-#     parser.add_argument("--cuda", default=False, action="store_true", help="Enable cuda")
-#     args = parser.parse_args()
-#     Train(args.cuda, args.name, args.path, args.frameskip)
+if __name__ == '__main__':
+    env = Env.TrafficLight_v0(DQNConfigs)
+    # env = wrappers.wrap_dqn(env, reward_clipping=False)
+    # Initialize Agent
+    agent = DQNAgent(DQNConfigs, env)  # it has been have an exp source in agent!
+    agent.train()

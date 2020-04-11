@@ -6,6 +6,8 @@ import numpy as np
 import tensorflow as tf
 import time
 # Not use tensorflow 2.0
+from past.builtins import xrange
+
 if int(tf.__version__[0]) == 2:
     import tensorflow.compat.v1 as tf
     tf.disable_v2_behavior()
@@ -13,6 +15,7 @@ from copy import deepcopy
 from datetime import datetime
 from inspect import getmembers
 from memory import ReplayBuffer
+
 
 def class_vars(classobj):
     r"""Recursively retrieve class members and their values.
@@ -90,12 +93,14 @@ class DQNAgent(BaseModel):
     Modified based on Morvan_Zhou's naive dqn neural network. 
     https://github.com/MorvanZhou/Reinforcement-learning-with-tensorflow/blob/master/contents/5_Deep_Q_Network/DQN_modified.py
     """
-    def __init__(self, config, environment, sess):
+    def __init__(self, config, environment):
         super(DQNAgent, self).__init__(config)
-        self.sess = sess
+        self.config=config
+        self.gamma = config.decay_rate
+        self.sess = tf.Session()
         self.env = environment
         self.state_size, self.action_size = env.observation_space, env.action_space
-        self.memory = ReplayBuffer(self.state_size, self.action_size, Memory_size)
+        # self.memory = ReplayBuffer(self.state_size, self.action_size, Memory_size)
 
         with tf.variable_scope('step'):
             self.step_op = tf.Variable(0, trainable=False, name='step')
@@ -120,7 +125,7 @@ class DQNAgent(BaseModel):
                 self.s = tf.placeholder(tf.float32, [None, self.state_size[1],self.state_size[2],self.state_size[0]], \
                      name='state')  # input_size = [batch, width, height, channels], which is different from torch.
                 self.r = tf.placeholder(tf.float32, [None, ], name='reward')
-                self.a = tf.placeholder(tf.int32, [None, self.action_size], name = 'action')
+                self.a = tf.placeholder(tf.int32, [None, ], name = 'action')
                 self.s_ = tf.placeholder(tf.float32,[None, self.state_size[1], self.state_size[2],self.state_size[0]],\
                      name='next_state')
                 # Preserve for OWM module:
@@ -140,25 +145,25 @@ class DQNAgent(BaseModel):
                 w_conv3 = self.weight_variable([2, 2, 64, 64])
                 b_conv3 = self.bias_variable([64])
                 h_conv3 = tf.nn.relu(self.conv2d(h_conv2, w_conv3, 1) + b_conv3)
-                h_conv3_flattend = tf.layers.flatten(h_conv3)
+                h_conv3_flattend = tf.reshape(h_conv3,[-1,1920])
             with tf.name_scope('hidden_fc'):
                 if self.dueling:
                     # Preserve for dueling q-learning
                     pass
                 else:
-                    w_fc1 = self.weight_variable([h_conv3_flattend.shape[1], 512])
+                    w_fc1 = self.weight_variable([1920, 512])
                     b_fc1 = self.bias_variable([512])
                     h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
-                    w_fc2 = self.weight_variable([512, n_actions])
-                    b_fc2 = self.bias_variable([n_actions])
+                    w_fc2 = self.weight_variable([512, self.action_size])
+                    b_fc2 = self.bias_variable([self.action_size])
                     self.q_pred = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q_pred')
             self.q_action = tf.argmax(self.q_pred, dimension=1)
         # Summary writer unit
         q_summary=[]
-        avg_q = tf.reduce_mean(self.q, 0)
+        avg_q = tf.reduce_mean(self.q_pred, 0)
         for idx in xrange(self.action_size):
             q_summary.append(tf.summary.histogram('q/%s' % idx, avg_q[idx]))
-        self.q_summary = tf.summary.merge(q_summar, 'q_summary')
+        self.q_summary = tf.summary.merge(q_summary, 'q_summary')
         # ---------------- build target network ----------------
         with tf.variable_scope('target_net'):
             with tf.name_scope('hidden_1'):
@@ -174,21 +179,23 @@ class DQNAgent(BaseModel):
                 w_conv3 = self.weight_variable([2, 2, 64, 64])
                 b_conv3 = self.bias_variable([64])
                 h_conv3 = tf.nn.relu(self.conv2d(h_conv2, w_conv3, 1) + b_conv3)
-                h_conv3_flattend = tf.layers.flatten(h_conv3)
+                h_conv3_flattend = tf.reshape(h_conv3,[-1,1920])
             with tf.name_scope('hidden_fc'):
-                if self.dueling:
+                if self.config.dueling:
                     # Preserve for dueling q-learning
                     pass
                 else:
-                    w_fc1 = self.weight_variable([h_conv3_flattend.shape[1], 512])
+                    w_fc1 = self.weight_variable([1920, 512])
                     b_fc1 = self.bias_variable([512])
                     h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
-                    w_fc2 = self.weight_variable([512, n_actions])
-                    b_fc2 = self.bias_variable([n_actions])
+                    w_fc2 = self.weight_variable([512, self.action_size])
+                    b_fc2 = self.bias_variable([self.action_size])
                     self.q_target = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q_target')
         if self.double:
             self.q_target_idx = tf.placeholder(tf.int32, [None, None], 'target_output_idx')
             self.q_target_with_idx = tf.gather_nd(self.q_target, self.q_target_idx)
+
+
         # --------------- network synchronization --------------
         with tf.variable_scope('network_sync'):
             t_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='target_net')
@@ -196,16 +203,19 @@ class DQNAgent(BaseModel):
             self.sync = [tf.assign(t, p) for t, p in zip(t_param, p_param)]
         # --------------- network optimizer ----------------
         with tf.variable_scope('optimizer'):
-            if self.prioritized:
+            if self.config.prioritized:
                 # preserved for prioritized replay buffer
                 pass
-            q_target = self.r + self.gamma * tf.reduce_max(self.q_next, axis=1, name='q_max_s_')
+            q_target = self.r + self.config.gamma * tf.reduce_max(self.q_pred, axis=1, name='q_max_s_')
             self.q_target = tf.stop_gradient(q_target)
-            a_indices = tf.stack([tf.range(n_actions, dtype=tf.int8), self.a], axis=1)
+
+            print(self.q_target.shape)
+            a_indices = tf.stack([tf.range(tf.shape(self.a)[0], dtype=tf.int32), self.a],axis=1)
+
+ #a_indices = tf.stack([tf.range(tf.shape(tf_a)[0], dtype=tf.int32), tf_a], axis=1)
             self.q_pred_wrt_a = tf.gather_nd(params=self.q_pred, indices=a_indices)
-            self.loss = tf.reduce_mean(tf.squred_difference(self.q_target, self.q_pred_wrt_am, name='TD_error'))
-            self.optimizer = tf.train.AdamOptimizer(self.lr).minimize(self.loss)
-        # --------------  summary writer --------------
+            self.loss = tf.reduce_mean(tf.squared_difference(self.q_target, self.q_pred_wrt_a, name='TD_error'))
+            self.optimizer = tf.train.AdamOptimizer(self.config.lr).minimize(self.loss)
         with tf.variable_scope('summary'):
             # Plot variables
             scalar_summary_tags =['average reward', 'average loss']
@@ -214,14 +224,15 @@ class DQNAgent(BaseModel):
                 self.summary_placeholders[tag] = tf.placeholder(tf.float32, None, name=tag.replace(' ', '_'))
                 self.summary_ops[tag] = tf.summary.scalar("%s" % tag, self.summary_placeholders[tag])
             # Histogram variables
-            histogram_summar_tags = ['episode.reward', 'epsiode.actions']
-            for tag in histogram_summar_tags:
-                self.summary_placeholders[tag] = tf.placeholder(tf.float32, None, name=tag.replace(' ', '_'))
-                self.summary_ops[tag] = tf.summary.histogram("%s" % tag, self.summary_placeholders[tag])
+            # histogram_summar_tags = ['episode.reward', 'epsiode.actions']
+            # for tag in histogram_summar_tags:
+            #     self.summary_placeholders[tag] = tf.placeholder(tf.float32, None, name=tag.replace(' ', '_'))
+            #     self.summary_ops[tag] = tf.summary.histogram("%s" % tag, self.action_size,self.summary_placeholders[tag])
             # Initialize summary writer
             self.writer = tf.summary.FileWriter('./logs/%s' % self.model_dir, self.sess.graph)
         # -------------- Initialize network --------------
-        tf.initialize_all_variables().run()
+        # tf.initialize_all_variables().run(session=self.sess)
+        self.sess.run(tf.global_variables_initializer())
 
     def observe(self, state, reward, action, state_, terminal):
         """Interact with the environment and observe state,
@@ -232,9 +243,9 @@ class DQNAgent(BaseModel):
             action (arrary): current action.
             terminal (boolean): if or not the scenario is done.
         """
-        if self.reward_range and isinstance(self.reward_range, list):
-            reward = np.clip(reward, a_min=min(self.reward_range),
-                                             a_max=max(self.reward_range))
+        if self.config.reward_range and isinstance(self.config.reward_range, list):
+            reward = np.clip(reward, a_min=min(self.config.reward_range),
+                                             a_max=max(self.config.reward_range))
         
         self.memory.add(state, reward, action, state_, terminal)
         if self.step > self.learn_initial:
@@ -249,8 +260,8 @@ class DQNAgent(BaseModel):
         :Return
             action (int): optimal action.
         """
-        epsilon = eval_ep or max(self.epsilon_final, 
-                            self.epsilon_start - self.step / self.epsilon_frames)
+        epsilon = eval_ep or max(self.config.epsilon_final,
+                            self.config.epsilon_start - self.step / self.config.epsilon_frames)
         if np.random.random() < epsilon:
             action = np.random.randint(0, self.action_size)
         else:
@@ -271,7 +282,7 @@ class DQNAgent(BaseModel):
         :Return
             action (int): action to take.
         """
-        if np.random.uniform() < self.epsilon:
+        if np.random.uniform() < self.config.epsilon:
             action = np.argmax(score)
         else:
             action = np.random.randint(0, tf.shape(self.a)[0])
@@ -280,7 +291,7 @@ class DQNAgent(BaseModel):
     def q_learning(self):
         """Main function of q-learning algorithm."""
         s, a, r, s_, done = self.memory.sample()
-        if self.double:
+        if self.config.double:
             # Use double dqn
             pass
         else:
@@ -320,7 +331,7 @@ class DQNAgent(BaseModel):
             actions.append(action)
             total_reward += reward
             # 5. initial training
-            if self.step >= self.learn_initial:
+            if self.step >= self.config.learn_initial:
                 if terminal:
                     avg_reward = total_reward / self.step
                     avg_loss = self.total_loss / self.step
@@ -333,9 +344,9 @@ class DQNAgent(BaseModel):
                     print('\n', datetime.now(), ' avg_r: %.4f, avg_l: %.6f, avg_ep_r: %.4f, max_ep_r: %.4f, min_ep_r: %.4f, # episodes: %d' \
                                         % (avg_reward, avg_loss, avg_q, avg_ep_reward, max_ep_reward, min_ep_reward, ep_num))
                     
-                if (self.step - self.learn_initial) % self.checkpoint == 0:
+                if (self.step - self.config.learn_initial) % self.config.checkpoint == 0:
                     self.save_model(self.step + 1)
-                if self.step > self.learn_initial:
+                if self.step > self.config.learn_initial:
                     self
             self.step += 1
 
@@ -375,7 +386,7 @@ class DQNAgent(BaseModel):
         return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding='VALID')
 
 if __name__ == "__main__":
-    from config import SumoConfigs
+    from config import DQNConfigs,SumoConfigs
     from env import TrafficLight_v0
     env = TrafficLight_v0(SumoConfigs)
-    agent = DQNAgent(env)
+    agent = DQNAgent(DQNConfigs,env)
