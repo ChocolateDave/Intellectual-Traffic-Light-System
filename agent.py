@@ -108,6 +108,7 @@ class DQNAgent(BaseModel):
             self.step_assign_op = self.step_op.assign(self.step_input)
         
         self.build_nn()
+        # self.sync = []
     
     def build_nn(self):
         """Building the neural network for training.
@@ -164,6 +165,7 @@ class DQNAgent(BaseModel):
         for idx in xrange(self.action_size):
             q_summary.append(tf.summary.histogram('q/%s' % idx, avg_q[idx]))
         self.q_summary = tf.summary.merge(q_summary, 'q_summary')
+
         # ---------------- build target network ----------------
         with tf.variable_scope('target_net'):
             with tf.name_scope('hidden_1'):
@@ -197,10 +199,10 @@ class DQNAgent(BaseModel):
 
 
         # --------------- network synchronization --------------
-        with tf.variable_scope('network_sync'):
-            t_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='target_net')
-            p_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='pred_net')
-            self.sync = [tf.assign(t, p) for t, p in zip(t_param, p_param)]
+        # with tf.variable_scope('network_sync'):
+        #     t_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='target_net')
+        #     p_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='pred_net')
+        #     self.sync = [tf.assign(t, p) for t, p in zip(t_param, p_param)]
         # --------------- network optimizer ----------------
         with tf.variable_scope('optimizer'):
             if self.config.prioritized:
@@ -232,7 +234,15 @@ class DQNAgent(BaseModel):
             self.writer = tf.summary.FileWriter('./logs/%s' % self.model_dir, self.sess.graph)
         # -------------- Initialize network --------------
         # tf.initialize_all_variables().run(session=self.sess)
+        self.avg_q = avg_q
         self.sess.run(tf.global_variables_initializer())
+
+    def sync_net(self):
+        with tf.variable_scope('network_sync'):
+            t_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='target_net')
+            p_param = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='pred_net')
+            sync = [tf.assign(t, p) for t, p in zip(t_param, p_param)]
+            self.sess.run(sync)
 
     def observe(self, state, reward, action, state_, terminal):
         """Interact with the environment and observe state,
@@ -248,10 +258,13 @@ class DQNAgent(BaseModel):
                                              a_max=max(self.config.reward_range))
         
         self.memory.add(state, reward, action, state_, terminal)
-        if self.step > self.learn_initial:
+        if self.step > self.config.learn_initial:
             self.q_learning()
-            if self.step % self.sync_tau == 0:
-                self.sync()
+            if self.step % self.config.sync_tau == 0:
+                self.sync_net()
+
+
+
 
     def predict(self, state_, eval_ep = None):
         """Predict the optimal action given a certain state input.
@@ -308,8 +321,9 @@ class DQNAgent(BaseModel):
         ep_reward, actions = [], []
 
         state, reward, action, terminal = self.env.reset()
+
         while True:
-            if self.step == self.learn_initial:
+            if self.step == self.config.learn_initial:
                 ep_num, self.update_count, ep_reward = 0,0,0
                 total_reward, self.total_loss = 0., 0.
                 ep_reward, actions = [], []
@@ -333,6 +347,7 @@ class DQNAgent(BaseModel):
             # 5. initial training
             if self.step >= self.config.learn_initial:
                 if terminal:
+                    avg_q = self.avg_q
                     avg_reward = total_reward / self.step
                     avg_loss = self.total_loss / self.step
                     try:
@@ -347,8 +362,9 @@ class DQNAgent(BaseModel):
                 if (self.step - self.config.learn_initial) % self.config.checkpoint == 0:
                     self.save_model(self.step + 1)
                 if self.step > self.config.learn_initial:
-                    self
+                    pass
             self.step += 1
+
 
     def play(self):
         """Benchmark function for testing training effects"""
@@ -385,8 +401,10 @@ class DQNAgent(BaseModel):
         """
         return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding='VALID')
 
+
 if __name__ == "__main__":
     from config import DQNConfigs,SumoConfigs
     from env import TrafficLight_v0
     env = TrafficLight_v0(SumoConfigs)
     agent = DQNAgent(DQNConfigs,env)
+    agent.train()

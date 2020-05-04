@@ -66,7 +66,7 @@ class ReplayBuffer(object):
             terminals (bool): indicators of env status.
         """
         maxmem = min(self.mem_cntr, self.mem_size)
-        batch = np.random.choice(max_mem, batch_size)
+        batch = np.random.choice(maxmem, batch_size)
         states = self.state_memory[batch]
         states_ = self.next_state_memory[batch]
         rewards = self.reward_memory[batch]
