@@ -1,7 +1,7 @@
-from * import agent
+from * import brain
+from * import config
 from * import env
 from * import memory
 from * import seeding
-from * import settings
 
-__all__ = ["agent","env", "memory", "seeding", "settings"]
+__all__ = ["brain", "config", "env", "memory", "seeding"]

@@ -119,12 +119,15 @@ class TrafficLight_v0(gym.Env):
 
     # Main fuctions of gym
     def step(self, action):
-        assert isinstance(action, int), "TypeError"
+        if isinstance(action, np.array):
+            # encode one-hot vector
+            action = np.argmax(action)
         assert action in range(len(self.actions)), "IndexInvalid!"
         reward = 0.0
         state_list = []
         # Future phase
         fp = list(self.actions.values())[action]
+
         def phase_transition(phase_o, phase_d):
             """A transition phase is required between different phases. 
 
@@ -150,6 +153,7 @@ class TrafficLight_v0(gym.Env):
                     yellow_phase += phase_o[i]
                     red_phase += phase_o[i]
             return yellow_phase, red_phase
+       
         # Current phase
         if fp:
             # Ignore None action for no change.
@@ -188,8 +192,8 @@ class TrafficLight_v0(gym.Env):
         traci.start(sumoCmd, label=mode)
         self.scenario = traci.getConnection(mode)
         self.warmUp()
-        state, reward, action, info = self.step(0)
-        return state, reward, action, info
+        state, _, _, _ = self.step(0)
+        return state
 
 
 if __name__ == "__main__":
@@ -197,7 +201,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     config = config.SumoConfigs
     env = TrafficLight_v0(config)
-    obs, rew, act, _ = env.reset()
+    obs = env.reset()
     plt.ion()
     for _ in range(18000):
         plt.cla()

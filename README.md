@@ -29,11 +29,11 @@ All rights of this project are reserved by college of Transportation Engineering
 │   ├── ITLS.sumo.cfg
 │   ├── sumo.log.xml
 │   └── view.settings.xml
-├── agent.py        // Reinforcement learning agent
+├── brain.py        // Reinforcement learning agent
 ├── config.py       // Configurations
-├── core.py          // Main function for training and evaluation 
-├── env.py           // Reinforcement learning environment
-└── memory.py   //  Reinforcement learning memory buffer
+├── core.py         // Main function for training and evaluation 
+├── env.py          // Reinforcement learning environment
+└── memory.py       //  Reinforcement learning memory buffer
 ```
 
 ## Project configuration

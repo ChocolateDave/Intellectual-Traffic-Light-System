@@ -16,13 +16,13 @@ class AgentConfigs(object):
     epsilon_start= 1.0
     epsilon_end= 0.1
     epsilon_frame= 100000
+    epsilon_decay = (epsilon_start - epsilon_end)/epsilon_frame
     # network saver
     checkpoint = 1000
     # training hyperparams
     batch_size = 64
     data_format = 'NHWC'
     gamma = 0.99
-    decay_rate = 0.99
     learn_initial = 100000
     lr = 0.01
     sync_tau = 1000

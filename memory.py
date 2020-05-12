@@ -10,7 +10,7 @@ class ReplayBuffer(object):
         :store_trasition - store transition tuple after every step.
         :sample - sample batches for training.
     """
-    def __init__(self, input_shape, n_actions, memory_size, discrete=False):
+    def __init__(self, input_shape, n_actions, memory_size):
         #memo counter
         self.mem_cntr = 0
         #exp size
@@ -25,10 +25,9 @@ class ReplayBuffer(object):
                 state_shape.append(size)
             self.state_memory = np.zeros(input_shape)
             self.next_state_memory = np.zeros(state_shape)
-        dtype = np.int8 if self.discrete else np.float32
         self.action_memory = np.zeros([self.mem_size, n_actions])
         self.reward_memory = np.zeros(self.mem_size)
-        #whether finish
+        #whether a task is finished
         self.terminal_memory =  np.zeros(self.mem_size, dtype=np.float32)
 
     def add(self, s, a, r, s_, done):
@@ -45,12 +44,6 @@ class ReplayBuffer(object):
         self.next_state_memory[index] = s_
         self.reward_memory[index] = r
         self.terminal_memory[index] =  1 - int(done)  # if not done, continue.
-        # if self.discrete:
-        #     # use one-hot encode for discrete action space.
-        #     actions = np.zeros(self.action_memory.shape[1])
-        #     actions[a] = 1
-        #     self.action_memory[index] = actions
-        # else:
         self.action_memory[index] = a
         self.mem_cntr += 1
 
