@@ -119,7 +119,7 @@ class TrafficLight_v0(gym.Env):
 
     # Main fuctions of gym
     def step(self, action):
-        if isinstance(action, np.array):
+        if isinstance(action, np.ndarray):
             # encode one-hot vector
             action = np.argmax(action)
         assert action in range(len(self.actions)), "IndexInvalid!"
