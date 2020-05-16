@@ -101,10 +101,12 @@ class Brain(BaseAgent):
     def __init__(self, config, env):
         super(Brain, self).__init__(config)
         self.config=config
+        self.owm = config.owm
         self.memory = ReplayBuffer()
         self.timestep = 0
         self.actions = env.action_size
         self.epsilon=config.epsilon_start
+        self.owm_alphas = config.owm_alphas
 
 
         with tf.name_scope('placeholders'):
@@ -125,43 +127,70 @@ class Brain(BaseAgent):
             owm(bool): whether to use orthogonal weight modification module.
         """
         # 神经网络 Neural Network
-        self.x_list, self.h_list = [], []
-        self.x_list.append(tf.reduce_mean(self.s, 0, keep_dims=True))
-        with tf.name_scope('hidden_1'):
+        with tf.name_scope('hidden_conv1'):
             w_conv1 = self.weight_variable([5, 5, self.state_size[0], 32])
             b_conv1 = self.bias_variable([32])
             h_conv1 = tf.nn.relu(self.conv2d(self.s, w_conv1, 4)+b_conv1)
             h_poo1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[
                                     1, 2, 2, 1], padding="SAME")
-        self.x_list.append(tf.reduce_mean(h_pool1, 0, keep_dims=True))
-        with tf.name_scope('hidden_2'):
+        with tf.name_scope('hidden_conv2'):
             w_conv2 = self.weight_variable([3, 3, 32, 64])
             b_conv2 = self.bias_variable([64])
             h_conv2 = tf.nn.relu(self.conv2d(h_poo1, w_conv2, 2) + b_conv2)
-        self. x_list.append(tf.reduce_mean(h_conv2, 0, keep_dims=True))
-        with tf.name_scope('hidden_3'):
+        with tf.name_scope('hidden_conv3'):
             w_conv3 = self.weight_variable([2, 2, 64, 64])
             b_conv3 = self.bias_variable([64])
             h_conv3 = tf.nn.relu(self.conv2d(h_conv2, w_conv3, 1) + b_conv3)
             h_conv3_flattend = tf.reshape(h_conv3, [-1, 1920])
-        self.x_list.append(tf.reduce_mean(h_conv3, 0, keep_dims=True))
 
-        self.h_list.append(tf.reduce_mean(h_conv3_flattend, 0, keep_dims=True))
+        # 全连接层 fully connected layer
         with tf.name_scope('hidden_fc'):
             w_fc1 = self.weight_variable([1920, 512])
             b_fc1 = self.bias_variable([512])
             h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
-        self.h_list.append(tf.reduce_mean(h_fc1, 0, keep_dims=True))
-        with tf.name_scope('hidden_output')
-        w_fc2 = self.weight_variable([512, self.action_size])
-        b_fc2 = self.bias_variable([self.action_size])
-        self.q = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q')
-
+        if self.owm:
+            # 为全连接层配置正交矩阵 P matrix for fully connected layer.
+            with tf.name_scope('P_matrix'):
+                # 初始化P矩阵为同权重第一维度大小的单位矩阵 initialize p mat to identity
+                self.P1 = tf.Variable(tf.eye(int(1920)))
+                # 求输入矩阵的平均值 mean of inputs
+                x_mu = tf.reduce_mean(h_conv3_flattend, 0, keep_dims=True)
+                # 计算P矩阵更新值 calculate P update
+                k = tf.matmul(self.P1, tf.transpose(x_mu))
+                delta_P1 = tf.divide(tf.matmul(k, tf.transpose(k)), self.owm_alphas[0][0] + tf.matmul(x_mu, k))
+                # 动态更新P矩阵 apply update to P
+                self.update_p1 = tf.assign_sub(self.P1, delta_P1)
+        # 输出层 output layer
+        with tf.name_scope('hidden_output'):
+            w_fc2 = self.weight_variable([512, self.action_size])
+            b_fc2 = self.bias_variable([self.action_size])
+            self.q = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q')
+        if self.owm:
+            # 为输出层更新配置正交矩阵 P matrix for output layer.
+            with tf.name_scope('P_matrix'):
+                self.P2 = tf.Variable(tf.eye(int(512)))
+                x_mu = tf.reduce_mean(h_fc1, 0, keep_dims=True)
+                k = tf.matmul(self.P2, tf.transpose(x_mu))
+                delta_P2 = tf.divide(tf.matmul(k, tf.transpose(k)), self.owm_alphas[0][1] + tf.matmul(x_mu, k))
+                self.update_p2 = tf.assign_sub(self.P2, delta_P2)
+            
         # 训练调节器 Optimiser
-        q_action = tf.reduce_mean(tf.mul(self.q, self.a), reduction_indices = 1)
-        self.q_target = tf.placeholder(tf.float32, [None,])
-        self.cost = tf.reduce_mean(tf.square(self.q_target - q_action))
-        self.trainStep = tf.train.AdamOptimizer(self.lr).minimize(self.cost)
+        with tf.name_scope('optimiser'):
+            q_action = tf.reduce_mean(tf.mul(self.q, self.a), reduction_indices = 1)
+            self.q_target = tf.placeholder(tf.float32, [None,])
+            self.cost = tf.reduce_mean(tf.square(self.q_target - q_action))
+            if self.owm:
+                # 初始化训练调控器 Initialize optimiser.
+                optimiser = tf.train.AdamOptimizer(self.lr)
+                # 通过BP算法计算梯度值 calculates ΔW by BP method.
+                grads = optimiser.compute_gradients(self.cost, var_list=[w_fc1, w_fc2])
+                # 依据OWM算法修改梯度值 modify ΔW with p matrix.
+                with tf.name_scope('OWM'):
+                    grads_fc = [self.owm(self.P1, grads[0])]
+                    grads_output = [self.owm(self.P2, grads[1])]
+                self.trainStep = optimiser.apply_gradients([grads_fc[0], grads_output[0]])
+            else:
+                self.trainStep = tf.train.AdamOptimizer(self.lr).minimize(self.cost)
     
     def train(self):
         r"""智能体训练主函数
@@ -180,7 +209,7 @@ class Brain(BaseAgent):
             else:
                 q_target.append(r_batch[i] + self.gamma * np.max(q_batch))
         
-        #第三步：BP算法训练网络 Step3: train neural network by BP method
+        #第三步：训练网络 Step3: train neural network
         self.trainStep.run(feeddict={
             self.q_target:q_target,
             self.a: a_batch,
@@ -253,3 +282,16 @@ class Brain(BaseAgent):
             convolution layer placeholder.
         """
         return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding='VALID')
+
+    def owm(self, P, g_v, lr=1.0):
+        """With given gradients by BP method, return modified gradients with p matrices.
+        Params:
+            P (tensor): p matrix.
+            g_v (tuple): (gradient, variable) pairs.
+            lr (float32): predefied learning rate.
+        Return:
+            g_ (tensor): modified gradients.
+            g_v[1] (tensor): variable names.
+        """
+        g_ = lr*tf.matmul(P, g_v[0])
+        return g_, g_v[1]

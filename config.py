@@ -35,7 +35,9 @@ class AgentConfigs(object):
     dueling =  False
     double = False
     prioritized = False
+    # owm
     owm = False
+    owm_alphas = [[0.001,0.6]]
 
 
 # Environment configs
