@@ -8,8 +8,8 @@ Facility: Tongji University
 import sys
 sys.path.append("project/")
 from brain import Brain
-from config import DQNConfigs
-import env as env
+from config import DQNConfigs,SumoConfigs
+import env as Env
 import numpy as np 
 
 def main():

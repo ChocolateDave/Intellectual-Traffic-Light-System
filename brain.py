@@ -6,7 +6,8 @@ Author: Juanwu Lu
 Facility: Tongji University
 """
 from inspect import getmembers
-
+import datetime
+import os
 import numpy as np
 import tensorflow as tf
 
@@ -102,20 +103,22 @@ class Brain(BaseAgent):
         super(Brain, self).__init__(config)
         self.config=config
         self.owm = config.owm
-        self.memory = ReplayBuffer()
+        self.memory = ReplayBuffer(env.observation_space,env.action_size,config.memory_size)
         self.timestep = 0
         self.actions = env.action_size
         self.epsilon=config.epsilon_start
         self.owm_alphas = config.owm_alphas
+        self.state_size = env.observation_space
+
 
 
         with tf.name_scope('placeholders'):
             with tf.name_scope('IO'):
                 # observation_space = [batch, width, height, channels], which is different from torch.
-                self.s = tf.placeholder(tf.float32, [None, env.observation_space], name='state')
+                self.s = tf.placeholder(tf.float32, [None, self.state_size], name='state')
                 self.r = tf.placeholder(tf.float32, [None, ], name='reward')
                 self.a = tf.placeholder(tf.int32, [None, env.action_size], name='action')
-                self.s_ = tf.placeholder(tf.float32, [None, env.observation_space], name='next_state')
+                self.s_ = tf.placeholder(tf.float32, [None, self.state_size], name='next_state')
 
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
@@ -128,7 +131,7 @@ class Brain(BaseAgent):
         """
         # 神经网络 Neural Network
         with tf.name_scope('hidden_conv1'):
-            w_conv1 = self.weight_variable([5, 5, self.state_size[0], 32])
+            w_conv1 = self.weight_variable([5, 5, self.config.frameskip, 32])
             b_conv1 = self.bias_variable([32])
             h_conv1 = tf.nn.relu(self.conv2d(self.s, w_conv1, 4)+b_conv1)
             h_poo1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[

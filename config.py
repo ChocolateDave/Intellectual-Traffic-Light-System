@@ -104,10 +104,11 @@ class SumoConfigs(EnvConfigs):
     TLid = "ITLS"
 
 # Aggregate DQN params.
-class DQNConfigs(AgentConfigs, EnvConfigs):
+class DQNConfigs(AgentConfigs, SumoConfigs):
     backend = 'tf'
     env_type = 'detailed'
     model = 'DQN'
+
 
 # Configs calling function.
 def get_config():

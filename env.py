@@ -25,13 +25,13 @@ class TrafficLight_v0(gym.Env):
         if isinstance(config.frameskip, int):
             self.frameskip = config.frameskip
         else:
-            self.frameskip = np.random.randint(config.frameskip[0], frameskip[1])
+            self.frameskip = np.random.randint(config.frameskip[0], config.frameskip[1])
         self.warm_up_time = config.warm_up_dur
         self.total_time = config.total_dur
         self.shape = [config.width, config.height]
         self.actions = config.actions
-        self.observation_space = (self.frameskip, config.width, config.height)
-        self.action_space = len(config.actions)
+        self.observation_space = config.width*config.height*self.frameskip
+        self.action_size = len(config.actions)
         if config.reward_range:
             self.reward_range = config.reward_range
         # Sumo params
