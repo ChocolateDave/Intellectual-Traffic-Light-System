@@ -23,7 +23,7 @@ class ReplayBuffer(object):
             state_shape=[self.mem_size]
             for size in input_shape:
                 state_shape.append(size)
-            self.state_memory = np.zeros(input_shape)
+            self.state_memory = np.zeros(state_shape)
             self.next_state_memory = np.zeros(state_shape)
         self.action_memory = np.zeros([self.mem_size, n_actions])
         self.reward_memory = np.zeros(self.mem_size)

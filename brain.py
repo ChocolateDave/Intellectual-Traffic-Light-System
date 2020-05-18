@@ -102,23 +102,19 @@ class Brain(BaseAgent):
     def __init__(self, config, env):
         super(Brain, self).__init__(config)
         self.config=config
-        self.owm = config.owm
-        self.memory = ReplayBuffer(env.observation_space,env.action_size,config.memory_size)
         self.timestep = 0
-        self.actions = env.action_size
-        self.epsilon=config.epsilon_start
-        self.owm_alphas = config.owm_alphas
         self.state_size = env.observation_space
-
-
+        self.action_size = env.action_size
+        self.epsilon=config.epsilon_start
+        self.memory = ReplayBuffer(self.state_size, self.action_size, config.memory_size)
 
         with tf.name_scope('placeholders'):
             with tf.name_scope('IO'):
                 # observation_space = [batch, width, height, channels], which is different from torch.
-                self.s = tf.placeholder(tf.float32, [None, self.state_size], name='state')
+                self.s = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='state')
                 self.r = tf.placeholder(tf.float32, [None, ], name='reward')
-                self.a = tf.placeholder(tf.int32, [None, env.action_size], name='action')
-                self.s_ = tf.placeholder(tf.float32, [None, self.state_size], name='next_state')
+                self.a = tf.placeholder(tf.int32, [None, self.action_size], name='action')
+                self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='next_state')
 
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
@@ -151,7 +147,7 @@ class Brain(BaseAgent):
             w_fc1 = self.weight_variable([1920, 512])
             b_fc1 = self.bias_variable([512])
             h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
-        if self.owm:
+        if owm:
             # 为全连接层配置正交矩阵 P matrix for fully connected layer.
             with tf.name_scope('P_matrix'):
                 # 初始化P矩阵为同权重第一维度大小的单位矩阵 initialize p mat to identity
@@ -160,7 +156,7 @@ class Brain(BaseAgent):
                 x_mu = tf.reduce_mean(h_conv3_flattend, 0, keep_dims=True)
                 # 计算P矩阵更新值 calculate P update
                 k = tf.matmul(self.P1, tf.transpose(x_mu))
-                delta_P1 = tf.divide(tf.matmul(k, tf.transpose(k)), self.owm_alphas[0][0] + tf.matmul(x_mu, k))
+                delta_P1 = tf.divide(tf.matmul(k, tf.transpose(k)), self.config.owm_alphas[0][0] + tf.matmul(x_mu, k))
                 # 动态更新P矩阵 apply update to P
                 self.update_p1 = tf.assign_sub(self.P1, delta_P1)
         # 输出层 output layer
@@ -168,13 +164,13 @@ class Brain(BaseAgent):
             w_fc2 = self.weight_variable([512, self.action_size])
             b_fc2 = self.bias_variable([self.action_size])
             self.q = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q')
-        if self.owm:
+        if owm:
             # 为输出层更新配置正交矩阵 P matrix for output layer.
             with tf.name_scope('P_matrix'):
                 self.P2 = tf.Variable(tf.eye(int(512)))
                 x_mu = tf.reduce_mean(h_fc1, 0, keep_dims=True)
                 k = tf.matmul(self.P2, tf.transpose(x_mu))
-                delta_P2 = tf.divide(tf.matmul(k, tf.transpose(k)), self.owm_alphas[0][1] + tf.matmul(x_mu, k))
+                delta_P2 = tf.divide(tf.matmul(k, tf.transpose(k)), self.config.owm_alphas[0][1] + tf.matmul(x_mu, k))
                 self.update_p2 = tf.assign_sub(self.P2, delta_P2)
             
         # 训练调节器 Optimiser
@@ -182,7 +178,7 @@ class Brain(BaseAgent):
             q_action = tf.reduce_mean(tf.mul(self.q, self.a), reduction_indices = 1)
             self.q_target = tf.placeholder(tf.float32, [None,])
             self.cost = tf.reduce_mean(tf.square(self.q_target - q_action))
-            if self.owm:
+            if owm:
                 # 初始化训练调控器 Initialize optimiser.
                 optimiser = tf.train.AdamOptimizer(self.lr)
                 # 通过BP算法计算梯度值 calculates ΔW by BP method.
@@ -243,10 +239,10 @@ class Brain(BaseAgent):
         Main function to determine action by ε-greedy algorithm.
         """
         q = self.q.eval(feed_dict={self.s: [self.currentState]})[0]
-        action = np.zeros(self.actions)
+        action = np.zeros(self.action_size)
         action_indx = 0
         if np.random.random() <= self.epsilon:
-            action_indx = np.random.randint(self.actions)
+            action_indx = np.random.randint(self.action_size)
             action[action_indx] = 1
         else:
             action_indx = np.argmax(q)

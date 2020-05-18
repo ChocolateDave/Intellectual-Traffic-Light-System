@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 import os, sys
 # Check sumo env
-# if 'SUMO_HOME' in os.environ:
-#     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
-#     sys.path.append(tools)
-# else:
-#     sys.exit("please declare environment variable 'SUMO_HOME'")
+if 'SUMO_HOME' in os.environ:
+     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
+     sys.path.append(tools)
+else:
+     sys.exit("please declare environment variable 'SUMO_HOME'")
 import numpy as np
 
 import seeding
-# from sumolib import checkBinary
 import gym
 import traci
 
@@ -28,9 +27,8 @@ class TrafficLight_v0(gym.Env):
             self.frameskip = np.random.randint(config.frameskip[0], config.frameskip[1])
         self.warm_up_time = config.warm_up_dur
         self.total_time = config.total_dur
-        self.shape = [config.width, config.height]
         self.actions = config.actions
-        self.observation_space = config.width*config.height*self.frameskip
+        self.observation_space = [config.width, config.height, int(self.frameskip/5)]
         self.action_size = len(config.actions)
         if config.reward_range:
             self.reward_range = config.reward_range
@@ -77,7 +75,7 @@ class TrafficLight_v0(gym.Env):
             return np.round((x-np.min(x)) / (np.max(x)-np.min(x)) *
                             (range_list[1]-range_list[0]) + range_list[0])
 
-        state = np.zeros(self.shape)
+        state = np.zeros([self.observation_space[0],self.observation_space[1]])
         for edge in self.edges:
             current_veh = traci.edge.getLastStepVehicleIDs(edge)
             for veh in current_veh:

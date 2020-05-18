@@ -11,11 +11,11 @@
 
 class AgentConfigs(object):
     # memory
-    memory_size = 100000
+    memory_size = 10000
     # epsilon-greedy hyperparams
     epsilon_start= 1.0
     epsilon_end= 0.1
-    epsilon_frame= 100000
+    epsilon_frame= 10000
     epsilon_decay = (epsilon_start - epsilon_end)/epsilon_frame
     # network saver
     checkpoint = 1000
@@ -45,7 +45,7 @@ class AgentConfigs(object):
 # would interact with the agent. Do pay attention to the meaning of each param.
 class EnvConfigs(object):
     env_name = 'ITLS-v0'
-    frameskip = 75
+    frameskip = 25
     reward_range = None
     warm_up_dur = 60
     total_dur = 3600
