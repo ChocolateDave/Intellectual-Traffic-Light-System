@@ -17,8 +17,9 @@ class ReplayBuffer(object):
         self.mem_size = memory_size
         # self.discrete = discrete
         if isinstance(input_shape, int):
+            #print(self.mem_size,input_shape)
             self.state_memory = np.zeros([self.mem_size, input_shape])
-            self.next_state_memory =  np.zeros([self.mem_size, input_shape])
+            self.next_state_memory = np.zeros([self.mem_size, input_shape])
         else:
             state_shape=[self.mem_size]
             for size in input_shape:

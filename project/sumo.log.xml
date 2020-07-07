@@ -1,16 +1,1 @@
-***Starting server on port 56127 ***
-Loading net-file from './project/ITLS.net.xml'... done (12ms).
-Loading done.
-Simulation version 1.3.1 started with time: 0.00
-Warning: Vehicle 'EW_NMV.0' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=18.60.
-Warning: Vehicle 'NS_NMV.3' performs emergency braking with decel=-10.00 wished=7.00 severity=1.00, time=64.20.
-Warning: Vehicle 'EN_P.4' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=121.60.
-Warning: Vehicle 'NS_P.12' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=127.40.
-Warning: Vehicle 'NS_P.13' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=134.40.
-Warning: Vehicle 'NE_MP.1' performs emergency braking with decel=-7.00 wished=4.00 severity=1.00, time=148.20.
-Warning: Vehicle 'SN_P.5' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=165.60.
-Warning: Vehicle 'NS_P.17' performs emergency braking with decel=-9.00 wished=4.50 severity=1.00, time=195.60.
-Error: tcpip::Socket::recvAndCheck @ recv: Socket reset by peer
-Quitting (on error).
-DijkstraRouter answered 11 queries and explored 3.18 edges on average.
-DijkstraRouter spent 1ms answering queries (0.09ms on average).
+*

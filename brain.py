@@ -99,25 +99,31 @@ class Brain(BaseAgent):
     r"""强化学习单元中枢主单元，基于原始DQN增设OWM单元等定制化内容
     The DRL network for Traffic light control system. """
 
-    def __init__(self, config, env):
+    def __init__(self, config, env,sess):
         super(Brain, self).__init__(config)
         self.config=config
         self.timestep = 0
         self.state_size = env.observation_space
         self.action_size = env.action_size
         self.epsilon=config.epsilon_start
+        # create memory pool
         self.memory = ReplayBuffer(self.state_size, self.action_size, config.memory_size)
+        self.sess = sess
+
 
         with tf.name_scope('placeholders'):
             with tf.name_scope('IO'):
                 # observation_space = [batch, width, height, channels], which is different from torch.
+                # env.observation_space:[120, 108, 5] input_size = 120x108x5
                 self.s = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='state')
                 self.r = tf.placeholder(tf.float32, [None, ], name='reward')
-                self.a = tf.placeholder(tf.int32, [None, self.action_size], name='action')
+                self.a = tf.placeholder(tf.float32, [None, self.action_size], name='action')
                 self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='next_state')
 
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
+
+        sess.run(tf.initialize_all_variables())
 
     def build_nn(self, owm=False):
         r"""神经网络主函数，客制化定义OWM模组
@@ -125,9 +131,9 @@ class Brain(BaseAgent):
         Params:
             owm(bool): whether to use orthogonal weight modification module.
         """
-        # 神经网络 Neural Network
         with tf.name_scope('hidden_conv1'):
-            w_conv1 = self.weight_variable([5, 5, self.config.frameskip, 32])
+            w_conv1 = self.weight_variable([5, 5, self.state_size[2], 32])#shape=(5, 5, 5, 32)
+            print(w_conv1)
             b_conv1 = self.bias_variable([32])
             h_conv1 = tf.nn.relu(self.conv2d(self.s, w_conv1, 4)+b_conv1)
             h_poo1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[
@@ -140,11 +146,11 @@ class Brain(BaseAgent):
             w_conv3 = self.weight_variable([2, 2, 64, 64])
             b_conv3 = self.bias_variable([64])
             h_conv3 = tf.nn.relu(self.conv2d(h_conv2, w_conv3, 1) + b_conv3)
-            h_conv3_flattend = tf.reshape(h_conv3, [-1, 1920])
+            h_conv3_flattend = tf.reshape(h_conv3, [-1, 3584])
 
         # 全连接层 fully connected layer
         with tf.name_scope('hidden_fc'):
-            w_fc1 = self.weight_variable([1920, 512])
+            w_fc1 = self.weight_variable([3584, 512])
             b_fc1 = self.bias_variable([512])
             h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
         if owm:
@@ -172,10 +178,11 @@ class Brain(BaseAgent):
                 k = tf.matmul(self.P2, tf.transpose(x_mu))
                 delta_P2 = tf.divide(tf.matmul(k, tf.transpose(k)), self.config.owm_alphas[0][1] + tf.matmul(x_mu, k))
                 self.update_p2 = tf.assign_sub(self.P2, delta_P2)
-            
+
         # 训练调节器 Optimiser
         with tf.name_scope('optimiser'):
-            q_action = tf.reduce_mean(tf.mul(self.q, self.a), reduction_indices = 1)
+            #print(type(self.q),type(self.a))
+            q_action = tf.reduce_sum(tf.multiply(self.q, self.a), reduction_indices = 1)
             self.q_target = tf.placeholder(tf.float32, [None,])
             self.cost = tf.reduce_mean(tf.square(self.q_target - q_action))
             if owm:
@@ -197,7 +204,8 @@ class Brain(BaseAgent):
         """
         # 第一步：随机从经验池中调取批训练数据  Step1: randomly obtain minibatch from replay buffer
         s_batch, a_batch, r_batch, ns_batch, terminals = self.memory.sample(self.config.batch_size)
-        
+        self.sess.run(tf.initialize_all_variables())
+
         #第二步：计算目标Q值 Step2: calculate target Q value
         q_target = []
         q_batch = self.q.eval(feed_dict={self.s:ns_batch})
@@ -207,7 +215,8 @@ class Brain(BaseAgent):
                 q_target.append(r_batch[i])
             else:
                 q_target.append(r_batch[i] + self.gamma * np.max(q_batch))
-        
+
+
         #第三步：训练网络 Step3: train neural network
         self.trainStep.run(feeddict={
             self.q_target:q_target,
@@ -238,7 +247,13 @@ class Brain(BaseAgent):
         r"""智能体动作决策函数，采用贪心算法
         Main function to determine action by ε-greedy algorithm.
         """
-        q = self.q.eval(feed_dict={self.s: [self.currentState]})[0]
+        print(self.currentState.shape)
+        print(self.s)
+        #test = np.array()
+        # test.append(self.currentState)
+        # print(test.shape)
+        state = np.reshape(self.currentState,(-1, 120, 108, 5))
+        q = self.q.eval(feed_dict={self.s: state},session=self.sess)[0]
         action = np.zeros(self.action_size)
         action_indx = 0
         if np.random.random() <= self.epsilon:
@@ -258,8 +273,10 @@ class Brain(BaseAgent):
         Return:
             weight (tf.Variable)
         """
-        w_initializer = tf.random_normal_initializer(.1, .3)
-        return tf.Variable(w_initializer(shape))
+        # w_initializer = tf.random_normal_initializer(.1, .3)
+        # return tf.Variable(w_initializer(shape))
+        w_initializer = tf.truncated_normal(shape, stddev = 0.01)
+        return tf.Variable(w_initializer)
 
     def bias_variable(self, shape):
         """Initialize layer bias with given shape.
@@ -268,8 +285,8 @@ class Brain(BaseAgent):
         Return:
             bias (tf.Variable)
         """
-        b_initializer = tf.constant_initializer(.1)
-        return tf.Variable(b_initializer(shape))
+        b_initializer = tf.constant(0.01, shape = shape)
+        return tf.Variable(b_initializer)
 
     def conv2d(self, x, w, s):
         """A simplified version of tf.nn.conv2d.
@@ -280,7 +297,15 @@ class Brain(BaseAgent):
         Return:
             convolution layer placeholder.
         """
-        return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding='VALID')
+        ''''
+        如果padding=’SAME’,则输出的卷积后图像大小与输入的大小一样。
+        如果padding=‘VALID’,则输出的卷积后图像大小为N=(imgSize-kSize)/Strides,这里imgSize为原来图像的宽或者高，kSize为卷积核大小，Strides为卷积步长。
+        '''
+        return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding="SAME")
+
+    def max_pool_2x2(self,x):
+
+        return tf.nn.max_pool(x, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = "SAME")
 
     def owm(self, P, g_v, lr=1.0):
         """With given gradients by BP method, return modified gradients with p matrices.

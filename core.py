@@ -10,6 +10,7 @@ sys.path.append("project/")
 from brain import Brain
 from config import DQNConfigs,SumoConfigs
 import env as Env
+import tensorflow as tf
 import numpy as np 
 
 def main():
@@ -18,13 +19,19 @@ def main():
     """
     # 第一步：初始化系统 Step1: initialize system.
     env = Env.TrafficLight_v0(DQNConfigs)
-    brain = Brain(DQNConfigs, env)
-    obs, _, _, _ = env.reset()
+    print(env.observation_space)
+    #create Session
+    sess = tf.Session()
+    #sess.run(tf.global_variables_initializer())
+    #sess.run(tf.initialize_all_variables())
+    brain = Brain(DQNConfigs, env,sess)
+    obs = env.reset()
     brain.currentState = obs
     # 第二步：实时交互与训练 Step2: play and train.
     while True:
         action = brain.get_action()
-        state, reward, terminal = env.step(action)
+        state, reward, terminal,_ = env.step(action)
+        print(state.shape)
         brain.interact(state, action, reward, terminal)
 
 if __name__ == '__main__':
