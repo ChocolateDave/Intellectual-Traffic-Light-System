@@ -19,7 +19,6 @@ def main():
     """
     # 第一步：初始化系统 Step1: initialize system.
     env = Env.TrafficLight_v0(DQNConfigs)
-    print(env.observation_space)
     #create Session
     sess = tf.Session()
     #sess.run(tf.global_variables_initializer())
@@ -31,7 +30,6 @@ def main():
     while True:
         action = brain.get_action()
         state, reward, terminal,_ = env.step(action)
-        print(state.shape)
         brain.interact(state, action, reward, terminal)
 
 if __name__ == '__main__':

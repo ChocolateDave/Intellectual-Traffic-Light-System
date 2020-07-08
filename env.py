@@ -172,6 +172,7 @@ class TrafficLight_v0(gym.Env):
                 state_list.append(state)
                 reward += self.getReward()
         observation = np.stack(state_list)
+        observation = np.reshape(observation, self.observation_space)
         done = self.isEpisode()
         return observation, reward, done, {}
 
