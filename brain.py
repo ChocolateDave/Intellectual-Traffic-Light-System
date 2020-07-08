@@ -133,7 +133,6 @@ class Brain(BaseAgent):
         """
         with tf.name_scope('hidden_conv1'):
             w_conv1 = self.weight_variable([5, 5, self.state_size[2], 32])#shape=(5, 5, 5, 32)
-            print(w_conv1)
             b_conv1 = self.bias_variable([32])
             h_conv1 = tf.nn.relu(self.conv2d(self.s, w_conv1, 4)+b_conv1)
             h_poo1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[
@@ -247,8 +246,6 @@ class Brain(BaseAgent):
         r"""智能体动作决策函数，采用贪心算法
         Main function to determine action by ε-greedy algorithm.
         """
-        print(self.currentState.shape)
-        print(self.s)
         #test = np.array()
         # test.append(self.currentState)
         # print(test.shape)
