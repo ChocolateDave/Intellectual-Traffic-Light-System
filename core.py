@@ -30,6 +30,9 @@ def main():
     while True:
         action = brain.get_action()
         state, reward, terminal,_ = env.step(action)
+        if terminal:
+            obs = env.reset()
+            brain.currentState = obs
         brain.interact(state, action, reward, terminal)
 
 if __name__ == '__main__':

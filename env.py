@@ -96,7 +96,8 @@ class TrafficLight_v0(gym.Env):
         """
         if traci.simulation.getTime() >= self.total_time:
             print('********Scenario Finished!********')
-            self.scenario.close()
+            #self.scenario.close()
+            traci.close()
             return True
         return False
 

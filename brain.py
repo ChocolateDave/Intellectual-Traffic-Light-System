@@ -50,6 +50,7 @@ class BaseAgent(object):
         :Params
             step (int): the training step.
         """
+
         print(datetime.now(), ": Saving checkpoints...")
         model_name = type(self).__name__
 
@@ -123,10 +124,16 @@ class Brain(BaseAgent):
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
 
+        #初始化以上所有变量
         sess.run(tf.initialize_all_variables())
 
+        print("save model graph...")
+        writer = tf.summary.FileWriter('./logs', sess.graph)
+        writer.close()
+
+
     def build_nn(self, owm=False):
-        r"""神经网络主函数，客制化定义OWM模组
+        r"""神经网络主函数，客制化定义OWM模组.LeNet-5网络结构
         Main function for building neural network.
         Params:
             owm(bool): whether to use orthogonal weight modification module.
@@ -156,7 +163,7 @@ class Brain(BaseAgent):
             # 为全连接层配置正交矩阵 P matrix for fully connected layer.
             with tf.name_scope('P_matrix'):
                 # 初始化P矩阵为同权重第一维度大小的单位矩阵 initialize p mat to identity
-                self.P1 = tf.Variable(tf.eye(int(1920)))
+                self.P1 = tf.Variable(tf.eye(int(3584)))
                 # 求输入矩阵的平均值 mean of inputs
                 x_mu = tf.reduce_mean(h_conv3_flattend, 0, keep_dims=True)
                 # 计算P矩阵更新值 calculate P update
@@ -168,7 +175,7 @@ class Brain(BaseAgent):
         with tf.name_scope('hidden_output'):
             w_fc2 = self.weight_variable([512, self.action_size])
             b_fc2 = self.bias_variable([self.action_size])
-            self.q = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q')
+            self.q = tf.nn.bias_add(tf.matmul(h_fc1, w_fc2), b_fc2, name='q')#每个动作的q值
         if owm:
             # 为输出层更新配置正交矩阵 P matrix for output layer.
             with tf.name_scope('P_matrix'):
@@ -181,21 +188,25 @@ class Brain(BaseAgent):
         # 训练调节器 Optimiser
         with tf.name_scope('optimiser'):
             #print(type(self.q),type(self.a))
+            #q_action:real data q_target:prediction data
+
             q_action = tf.reduce_sum(tf.multiply(self.q, self.a), reduction_indices = 1)
             self.q_target = tf.placeholder(tf.float32, [None,])
-            self.cost = tf.reduce_mean(tf.square(self.q_target - q_action))
+            #cost==loss
+            self.loss = tf.reduce_mean(tf.square(self.q_target - q_action))
             if owm:
                 # 初始化训练调控器 Initialize optimiser.
                 optimiser = tf.train.AdamOptimizer(self.lr)
                 # 通过BP算法计算梯度值 calculates ΔW by BP method.
-                grads = optimiser.compute_gradients(self.cost, var_list=[w_fc1, w_fc2])
+                grads = optimiser.compute_gradients(self.loss, var_list=[w_fc1, w_fc2])
                 # 依据OWM算法修改梯度值 modify ΔW with p matrix.
                 with tf.name_scope('OWM'):
                     grads_fc = [self.owm(self.P1, grads[0])]
                     grads_output = [self.owm(self.P2, grads[1])]
                 self.trainStep = optimiser.apply_gradients([grads_fc[0], grads_output[0]])
             else:
-                self.trainStep = tf.train.AdamOptimizer(self.lr).minimize(self.cost)
+                self.trainStep = tf.train.AdamOptimizer(self.lr).minimize(self.loss)
+
     
     def train(self):
         r"""智能体训练主函数
@@ -203,7 +214,6 @@ class Brain(BaseAgent):
         """
         # 第一步：随机从经验池中调取批训练数据  Step1: randomly obtain minibatch from replay buffer
         s_batch, a_batch, r_batch, ns_batch, terminals = self.memory.sample(self.config.batch_size)
-        self.sess.run(tf.initialize_all_variables())
 
         #第二步：计算目标Q值 Step2: calculate target Q value
         q_target = []
@@ -236,11 +246,13 @@ class Brain(BaseAgent):
             reward(tensor): reward value.
             terminal(bool): indicate whether a task is finished.
         """
+
         self.memory.add(self.currentState, action, reward, state, terminal)
         if self.timestep > self.config.learn_initial:
             self.train()
         self.currentState = state
         self.timestep += 1
+
 
     def get_action(self):
         r"""智能体动作决策函数，采用贪心算法
