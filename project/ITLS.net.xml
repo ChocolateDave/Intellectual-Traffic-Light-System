@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 03/07/20 16:35:53 by Eclipse SUMO netedit Version 1.3.1
+<!-- generated on 07/15/20 15:52:08 by Eclipse SUMO netedit Version 1.6.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
-        <sumo-net-file value="F:\Projects\NUIETP\ITLS\ITLS.net.xml"/>
+        <sumo-net-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.net.xml"/>
     </input>
 
     <output>
-        <output-file value="F:\Projects\NUIETP\ITLS\ITLS.net.xml"/>
+        <output-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.net.xml"/>
     </output>
 
     <processing>
+        <geometry.min-radius.fix.railways value="false"/>
         <geometry.max-grade.fix value="false"/>
         <offset.disable-normalization value="true"/>
-        <opposites.guess.fix-lengths value="true"/>
         <lefthand value="false"/>
     </processing>
 
@@ -30,10 +30,14 @@
         <walkingareas value="false"/>
     </pedestrian>
 
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
 </configuration>
 -->
 
-<net version="1.3" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+<net version="1.6" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
 
     <location netOffset="0.00,0.00" convBoundary="-281.08,-271.80,308.61,282.48" origBoundary="-10000000000.00,-10000000000.00,10000000000.00,10000000000.00" projParameter="!"/>
 
@@ -44,7 +48,7 @@
         <lane id=":ITLS_1_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="67.77" width="4.00" shape="34.42,27.57 23.21,10.33 16.87,-2.95 11.07,-15.73 1.46,-31.48"/>
     </edge>
     <edge id=":ITLS_2" function="internal">
-        <lane id=":ITLS_2_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="31.51" width="3.50" shape="36.03,26.38 33.07,13.28 32.35,-4.78"/>
+        <lane id=":ITLS_2_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="64.89" width="3.50" shape="36.03,26.38 33.07,13.28 32.19,-8.94 33.53,-30.72 35.73,-37.78"/>
     </edge>
     <edge id=":ITLS_3" function="internal">
         <lane id=":ITLS_3_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="10.73" length="10.51" width="3.75" shape="38.82,24.32 33.57,19.12 30.63,18.07"/>
@@ -54,19 +58,19 @@
         <lane id=":ITLS_4_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="67.54" width="3.75" shape="41.48,22.36 30.27,5.21 23.88,-7.95 18.00,-20.63 8.36,-36.35"/>
     </edge>
     <edge id=":ITLS_6" function="internal">
-        <lane id=":ITLS_6_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.87" length="9.49" width="3.75" shape="44.13,20.40 41.60,11.25"/>
+        <lane id=":ITLS_6_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.87" length="47.02" width="3.75" shape="44.13,20.40 41.32,10.23 40.80,-5.54 42.55,-20.92 44.67,-25.69"/>
     </edge>
     <edge id=":ITLS_33" function="internal">
         <lane id=":ITLS_33_0" index="0" allow="motorcycle moped bicycle" speed="8.90" length="4.04" width="3.75" shape="21.40,23.77 17.99,25.93"/>
     </edge>
     <edge id=":ITLS_34" function="internal">
-        <lane id=":ITLS_34_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="38.34" width="3.50" shape="32.35,-4.78 32.19,-8.94 33.53,-30.72 37.21,-42.52"/>
+        <lane id=":ITLS_34_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="4.96" width="3.50" shape="35.73,-37.78 37.21,-42.52"/>
     </edge>
     <edge id=":ITLS_35" function="internal">
         <lane id=":ITLS_35_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="10.73" length="17.12" width="3.75" shape="30.63,18.07 27.85,17.07 21.67,18.18 15.03,22.45"/>
     </edge>
     <edge id=":ITLS_36" function="internal">
-        <lane id=":ITLS_36_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.87" length="42.13" width="3.75" shape="41.60,11.25 41.32,10.23 40.80,-5.54 42.55,-20.92 46.53,-29.89"/>
+        <lane id=":ITLS_36_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.87" length="4.60" width="3.75" shape="44.67,-25.69 46.53,-29.89"/>
     </edge>
     <edge id=":ITLS_7" function="internal">
         <lane id=":ITLS_7_0" index="0" allow="motorcycle moped bicycle" speed="10.81" length="22.50" width="4.00" shape="61.25,-9.96 55.24,-4.41 52.15,1.19 51.99,6.85 52.98,8.89"/>
@@ -75,37 +79,37 @@
         <lane id=":ITLS_8_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="56.21" width="3.75" shape="61.25,-9.96 17.99,25.93"/>
     </edge>
     <edge id=":ITLS_9" function="internal">
-        <lane id=":ITLS_9_0" index="0" allow="motorcycle moped bicycle" speed="16.48" length="28.84" width="4.00" shape="61.25,-9.96 50.03,-10.38 33.21,-15.59"/>
+        <lane id=":ITLS_9_0" index="0" allow="motorcycle moped bicycle" speed="16.48" length="60.21" width="4.00" shape="61.25,-9.96 50.03,-10.38 30.96,-16.29 12.09,-24.41 5.03,-29.11"/>
     </edge>
     <edge id=":ITLS_10" function="internal">
         <lane id=":ITLS_10_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="12.08" length="14.84" width="3.75" shape="58.76,-13.33 51.25,-6.35 49.09,-2.31"/>
     </edge>
     <edge id=":ITLS_11" function="internal">
-        <lane id=":ITLS_11_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="56.90" width="3.75" shape="56.98,-15.75 43.84,-5.25 35.55,2.79 27.50,11.10 15.03,22.45"/>
-        <lane id=":ITLS_11_1" index="1" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="56.90" width="3.25" shape="56.98,-15.75 12.76,19.78"/>
-        <lane id=":ITLS_11_2" index="2" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="56.90" width="3.25" shape="55.19,-18.16 10.66,17.30"/>
-        <lane id=":ITLS_11_3" index="3" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="56.90" width="3.25" shape="53.41,-20.57 8.55,14.83"/>
+        <lane id=":ITLS_11_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="56.90" width="3.75" shape="56.98,-15.75 43.84,-5.25 35.55,2.79 27.50,11.10 15.03,22.45"/>
+        <lane id=":ITLS_11_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="56.90" width="3.25" shape="56.98,-15.75 12.76,19.78"/>
+        <lane id=":ITLS_11_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="56.90" width="3.25" shape="55.19,-18.16 10.66,17.30"/>
+        <lane id=":ITLS_11_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="56.90" width="3.25" shape="53.41,-20.57 8.55,14.83"/>
     </edge>
     <edge id=":ITLS_15" function="internal">
-        <lane id=":ITLS_15_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.15" length="18.82" width="3.75" shape="51.63,-22.99 39.25,-16.68 34.32,-16.58"/>
+        <lane id=":ITLS_15_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.15" length="50.51" width="3.75" shape="51.63,-22.99 39.25,-16.68 27.41,-16.44 16.09,-22.28 8.00,-31.20"/>
     </edge>
     <edge id=":ITLS_16" function="internal">
-        <lane id=":ITLS_16_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.38" length="13.04" width="3.75" shape="49.85,-25.40 38.93,-19.93 38.11,-19.93"/>
+        <lane id=":ITLS_16_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.38" length="45.01" width="3.75" shape="49.85,-25.40 38.93,-19.93 28.37,-19.93 18.18,-25.40 11.05,-33.35"/>
     </edge>
     <edge id=":ITLS_37" function="internal">
         <lane id=":ITLS_37_0" index="0" allow="motorcycle moped bicycle" speed="10.81" length="4.07" width="4.00" shape="52.98,8.89 54.76,12.55"/>
     </edge>
     <edge id=":ITLS_38" function="internal">
-        <lane id=":ITLS_38_0" index="0" allow="motorcycle moped bicycle" speed="16.48" length="35.66" width="4.00" shape="33.21,-15.59 30.96,-16.29 12.09,-24.41 1.46,-31.48"/>
+        <lane id=":ITLS_38_0" index="0" allow="motorcycle moped bicycle" speed="16.48" length="4.29" width="4.00" shape="5.03,-29.11 1.46,-31.48"/>
     </edge>
     <edge id=":ITLS_39" function="internal">
         <lane id=":ITLS_39_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="12.08" length="18.90" width="3.75" shape="49.09,-2.31 47.45,0.76 47.36,7.99 50.98,15.34"/>
     </edge>
     <edge id=":ITLS_40" function="internal">
-        <lane id=":ITLS_40_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.15" length="35.72" width="3.75" shape="34.32,-16.58 27.41,-16.44 16.09,-22.28 5.30,-34.19"/>
+        <lane id=":ITLS_40_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.15" length="4.03" width="3.75" shape="8.00,-31.20 5.30,-34.19"/>
     </edge>
     <edge id=":ITLS_41" function="internal">
-        <lane id=":ITLS_41_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.38" length="36.00" width="3.75" shape="38.11,-19.93 28.37,-19.93 18.18,-25.40 8.36,-36.35"/>
+        <lane id=":ITLS_41_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.38" length="4.03" width="3.75" shape="11.05,-33.35 8.36,-36.35"/>
     </edge>
     <edge id=":ITLS_17" function="internal">
         <lane id=":ITLS_17_0" index="0" allow="motorcycle moped bicycle" speed="8.94" length="14.64" width="3.50" shape="21.17,-45.37 24.72,-41.56 28.58,-39.82 32.74,-40.14 33.64,-40.61"/>
@@ -114,7 +118,7 @@
         <lane id=":ITLS_18_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="66.96" width="4.00" shape="21.17,-45.37 54.76,12.55"/>
     </edge>
     <edge id=":ITLS_19" function="internal">
-        <lane id=":ITLS_19_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="29.68" width="3.75" shape="19.54,-44.22 22.30,-30.91 22.76,-14.82"/>
+        <lane id=":ITLS_19_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="66.19" width="3.75" shape="19.54,-44.22 22.30,-30.91 22.95,-8.34 21.50,13.83 19.32,21.33"/>
     </edge>
     <edge id=":ITLS_20" function="internal">
         <lane id=":ITLS_20_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="10.69" length="9.92" width="3.75" shape="16.82,-42.31 21.79,-37.07 24.28,-36.02"/>
@@ -124,19 +128,19 @@
         <lane id=":ITLS_21_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="67.13" width="3.75" shape="14.37,-40.58 25.25,-23.29 31.72,-10.25 37.91,2.17 47.97,17.57"/>
     </edge>
     <edge id=":ITLS_23" function="internal">
-        <lane id=":ITLS_23_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="15.88" length="7.87" width="3.25" shape="11.92,-38.85 13.73,-31.19"/>
+        <lane id=":ITLS_23_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.88" length="50.36" width="3.25" shape="11.92,-38.85 14.44,-28.16 14.54,-11.31 12.49,5.18 10.26,10.65"/>
     </edge>
     <edge id=":ITLS_42" function="internal">
         <lane id=":ITLS_42_0" index="0" allow="motorcycle moped bicycle" speed="8.94" length="4.04" width="3.50" shape="33.64,-40.61 37.21,-42.52"/>
     </edge>
     <edge id=":ITLS_43" function="internal">
-        <lane id=":ITLS_43_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="41.31" width="3.75" shape="22.76,-14.82 22.95,-8.34 21.50,13.83 17.99,25.93"/>
+        <lane id=":ITLS_43_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="4.80" width="3.75" shape="19.32,21.33 17.99,25.93"/>
     </edge>
     <edge id=":ITLS_44" function="internal">
         <lane id=":ITLS_44_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="10.69" length="16.76" width="3.75" shape="24.28,-36.02 27.29,-34.76 33.31,-35.38 39.85,-38.94"/>
     </edge>
     <edge id=":ITLS_45" function="internal">
-        <lane id=":ITLS_45_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="15.88" length="47.00" width="3.25" shape="13.73,-31.19 14.44,-28.16 14.54,-11.31 12.49,5.18 8.55,14.83"/>
+        <lane id=":ITLS_45_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.88" length="4.51" width="3.25" shape="10.26,10.65 8.55,14.83"/>
     </edge>
     <edge id=":ITLS_24" function="internal">
         <lane id=":ITLS_24_0" index="0" allow="motorcycle moped bicycle" speed="12.64" length="30.17" width="4.00" shape="-5.38,-1.57 1.60,-9.00 5.06,-16.47 5.01,-23.96 3.19,-27.81"/>
@@ -145,7 +149,7 @@
         <lane id=":ITLS_25_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="59.08" width="3.50" shape="-5.38,-1.57 37.21,-42.52"/>
     </edge>
     <edge id=":ITLS_26" function="internal">
-        <lane id=":ITLS_26_0" index="0" allow="motorcycle moped bicycle" speed="16.02" length="29.80" width="4.00" shape="-5.38,-1.57 6.06,-2.74 24.08,0.51"/>
+        <lane id=":ITLS_26_0" index="0" allow="motorcycle moped bicycle" speed="16.02" length="58.57" width="4.00" shape="-5.38,-1.57 6.06,-2.74 25.18,0.71 44.06,6.54 50.94,10.40"/>
     </edge>
     <edge id=":ITLS_27" function="internal">
         <lane id=":ITLS_27_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.75" length="17.02" width="3.75" shape="-2.66,1.62 5.62,-7.23 7.66,-11.68"/>
@@ -157,19 +161,19 @@
         <lane id=":ITLS_28_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="58.33" width="3.75" shape="3.16,8.48 46.53,-29.89"/>
     </edge>
     <edge id=":ITLS_32" function="internal">
-        <lane id=":ITLS_32_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.31" length="17.35" width="3.75" shape="5.11,10.77 16.51,3.79 20.47,3.35"/>
+        <lane id=":ITLS_32_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.31" length="46.23" width="3.75" shape="5.11,10.77 16.51,3.79 27.45,2.59 37.94,7.19 45.16,14.67"/>
     </edge>
     <edge id=":ITLS_46" function="internal">
         <lane id=":ITLS_46_0" index="0" allow="motorcycle moped bicycle" speed="12.64" length="4.06" width="4.00" shape="3.19,-27.81 1.46,-31.48"/>
     </edge>
     <edge id=":ITLS_47" function="internal">
-        <lane id=":ITLS_47_0" index="0" allow="motorcycle moped bicycle" speed="16.02" length="33.16" width="4.00" shape="24.08,0.51 25.18,0.71 44.06,6.54 54.76,12.55"/>
+        <lane id=":ITLS_47_0" index="0" allow="motorcycle moped bicycle" speed="16.02" length="4.39" width="4.00" shape="50.94,10.40 54.76,12.55"/>
     </edge>
     <edge id=":ITLS_48" function="internal">
         <lane id=":ITLS_48_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.75" length="23.92" width="3.75" shape="7.66,-11.68 9.71,-16.15 9.60,-25.13 5.30,-34.19"/>
     </edge>
     <edge id=":ITLS_49" function="internal">
-        <lane id=":ITLS_49_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.31" length="32.91" width="3.75" shape="20.47,3.35 27.45,2.59 37.94,7.19 47.97,17.57"/>
+        <lane id=":ITLS_49_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.31" length="4.03" width="3.75" shape="45.16,14.67 47.97,17.57"/>
     </edge>
     <edge id=":ITLS_c0" function="crossing" crossingEdges="JSNX JSNE">
         <lane id=":ITLS_c0_0" index="0" allow="pedestrian" speed="1.00" length="28.28" width="4.00" shape="55.18,9.76 32.43,26.56"/>
@@ -247,9 +251,9 @@
     <edge id=":gneJ24_0" function="internal">
         <lane id=":gneJ24_0_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="35.50" width="2.00" shape="100.65,114.48 78.44,86.98"/>
         <lane id=":gneJ24_0_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="35.50" width="2.00" shape="100.65,114.48 80.05,85.79"/>
-        <lane id=":gneJ24_0_2" index="2" disallow="pedestrian rail_fast" speed="11.11" length="35.50" width="3.30" shape="104.42,111.90 82.84,83.72"/>
-        <lane id=":gneJ24_0_3" index="3" disallow="pedestrian rail_fast" speed="11.11" length="35.50" width="3.30" shape="107.31,109.93 85.49,81.76"/>
-        <lane id=":gneJ24_0_4" index="4" disallow="pedestrian rail_fast" speed="11.11" length="35.50" width="3.30" shape="107.31,109.93 88.14,79.80"/>
+        <lane id=":gneJ24_0_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="35.50" width="3.30" shape="104.42,111.90 82.84,83.72"/>
+        <lane id=":gneJ24_0_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="35.50" width="3.30" shape="107.31,109.93 85.49,81.76"/>
+        <lane id=":gneJ24_0_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="35.50" width="3.30" shape="107.31,109.93 88.14,79.80"/>
     </edge>
     <edge id=":gneJ24_5" function="internal">
         <lane id=":gneJ24_5_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="36.02" width="3.50" shape="98.68,72.03 119.76,101.43"/>
@@ -439,51 +443,56 @@
     </edge>
 
     <tlLogic id="ITLS" type="static" programID="0" offset="0">
-        <phase duration="24" state="rrrrrrrgGggGGGGrrrrrrrrrgGggGGGGrGrGr"/>
-        <phase duration="5"  state="rrrrrrrgGggGGGGrrrrrrrrrgGggGGGGrrrrr"/>
-        <phase duration="5"  state="rrrrrrryyyyyyyyrrrrrrrrryyyyyyyyrrrrr"/>
-        <phase duration="6"  state="rrrrrrrrrrrrrrrGGrrrrrrrrrrrrrrrGrrrr"/>
-        <phase duration="5"  state="rrrrrrrrrrrrrrryyrrrrrrrrrrrrrrryrrrr"/>
-        <phase duration="24" state="gGggGGgrrrrrrrrrrgGggGGgrrrrrrrrrrGrG"/>
-        <phase duration="5"  state="gGggGGgrrrrrrrrrrgGggGGgrrrrrrrrrrrrr"/>
-        <phase duration="5"  state="yyyyyygrrrrrrrrrryyyyyygrrrrrrrrrrrrr"/>
-        <phase duration="6"  state="rrrrrrGrrrrrrrrrrrrrrrrGrrrrrrrrrrrrr"/>
-        <phase duration="5"  state="rrrrrryrrrrrrrrrrrrrrrryrrrrrrrrrrrrr"/>
+        <phase duration="35" state="grrgrrrgGrgGGGGrrgrrgrrrgGrgGGGGrGrGr"/>
+        <phase duration="3"  state="grrgrrrgyrgyyyyrrgrrgrrrgyrgyyyyryryr"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="25" state="grrgrrrgrGgrrrrGGgrrgrrrgrGgrrrrGrrrr"/>
+        <phase duration="3"  state="grrgrrrgrygrrrryygrrgrrrgrygrrrryrrrr"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="21" state="grGgrrGgrrgrrrrrrgrGgrrGgrrgrrrrrrrrr"/>
+        <phase duration="3"  state="grGgrrGgrrgrrrrrrgrygrrygrrgrrrrrrrrr"/>
+        <phase duration="2"  state="grGgrrGgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="25" state="gGGgGGGgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="3"  state="gGygGGygrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="2"  state="gGrgGGrgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
+        <phase duration="44" state="gGrgGGrgrrgrrrrrrgGrgGGrgrrgrrrrrrGrG"/>
+        <phase duration="3"  state="gyrgyyrgrrgrrrrrrgyrgyyrgrrgrrrrrryry"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrrgrrgrrrgrrgrrrrrrrrr"/>
     </tlLogic>
 
     <junction id="ITLS" type="traffic_light" x="30.62" y="-7.45" incLanes="JSNE_0 JSNE_1 JSNE_2 JSNE_3 JSNE_4 JSNE_5 JSNE_6 JSNE_7 CAEE_0 CAEE_1 CAEE_2 CAEE_3 CAEE_4 CAEE_5 CAEE_6 CAEE_7 CAEE_8 CAEE_9 JSSE_0 JSSE_1 JSSE_2 JSSE_3 JSSE_4 JSSE_5 JSSE_6 JSSE_7 CAWE_0 CAWE_1 CAWE_2 CAWE_3 CAWE_4 CAWE_5 CAWE_6 CAWE_7 CAWE_8 :ITLS_w1_0 :ITLS_w2_0 :ITLS_w3_0 :ITLS_w0_0" intLanes=":ITLS_33_0 :ITLS_1_0 :ITLS_34_0 :ITLS_35_0 :ITLS_4_0 :ITLS_4_1 :ITLS_36_0 :ITLS_37_0 :ITLS_8_0 :ITLS_38_0 :ITLS_39_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_40_0 :ITLS_41_0 :ITLS_42_0 :ITLS_18_0 :ITLS_43_0 :ITLS_44_0 :ITLS_21_0 :ITLS_21_1 :ITLS_45_0 :ITLS_46_0 :ITLS_25_0 :ITLS_47_0 :ITLS_48_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_49_0 :ITLS_c0_0 :ITLS_c1_0 :ITLS_c2_0 :ITLS_c3_0" shape="31.69,29.59 58.30,9.94 56.92,7.40 56.47,4.81 56.98,2.17 58.42,-0.51 60.81,-3.25 64.14,-6.04 34.98,-45.53 32.89,-44.26 30.90,-43.62 29.01,-43.61 27.22,-44.22 25.53,-45.46 23.95,-47.33 -2.14,-28.95 0.13,-24.83 1.12,-20.71 0.82,-16.61 -0.76,-12.52 -3.62,-8.44 -7.76,-4.38 20.37,28.73 22.50,27.21 24.54,26.35 26.48,26.16 28.31,26.64 30.05,27.78" radius="8.00" fringe="inner">
-        <request index="0"  response="1001000000000000000000000000100000000" foes="1001000000000000010000000000100000000" cont="1"/>
-        <request index="1"  response="0101111111111000000000111101100000000" foes="0101111111111100010000111101100001000" cont="0"/>
+        <request index="0"  response="1001000000000000010000000000100000000" foes="1001000000000000010000000000100000000" cont="1"/>
+        <request index="1"  response="0101111111111100010000111101100000000" foes="0101111111111100010000111101100001000" cont="0"/>
         <request index="2"  response="0011111110110011101111111101100110000" foes="0011111110110011101111111101100111000" cont="1"/>
-        <request index="3"  response="1001000000000000000000111100100000110" foes="1001000000000100010000111100100000110" cont="1"/>
-        <request index="4"  response="0101111111110000000011111101100000000" foes="0101111111110100010011111101100000100" cont="0"/>
-        <request index="5"  response="0101111111110000000011111101100000000" foes="0101111111110100010011111101100000100" cont="0"/>
+        <request index="3"  response="1001000000000100010000111100100000110" foes="1001000000000100010000111100100000110" cont="1"/>
+        <request index="4"  response="0101111111110100010011111101100000000" foes="0101111111110100010011111101100000100" cont="0"/>
+        <request index="5"  response="0101111111110100010011111101100000000" foes="0101111111110100010011111101100000100" cont="0"/>
         <request index="6"  response="0011111110100011101011111101100000000" foes="0011111110100011101011111101100000000" cont="1"/>
-        <request index="7"  response="0011000000000000000000000000000000000" foes="0011000000100000001000000000000000000" cont="1"/>
-        <request index="8"  response="1010000000000000010000000000001001101" foes="1010100000100011011000000010001111111" cont="0"/>
+        <request index="7"  response="0011000000100000000000000000000000000" foes="0011000000100000001000000000000000000" cont="1"/>
+        <request index="8"  response="1010100000100000010000000000001001101" foes="1010100000100011011000000010001111111" cont="0"/>
         <request index="9"  response="0110011111011100010000111100001000100" foes="0110011111011111011000111110001110110" cont="1"/>
-        <request index="10" response="0011000000000000000000000001100000000" foes="0011100000100011001000000001100000000" cont="1"/>
-        <request index="11" response="1010000000000100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
-        <request index="12" response="1010000000000100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
-        <request index="13" response="1010000000000100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
-        <request index="14" response="1010000000000100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
+        <request index="10" response="0011100000100000000000000001100000000" foes="0011100000100011001000000001100000000" cont="1"/>
+        <request index="11" response="1010100000100100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
+        <request index="12" response="1010100000100100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
+        <request index="13" response="1010100000100100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
+        <request index="14" response="1010100000100100010000000000001001100" foes="1010100000100111011000000001001111110" cont="0"/>
         <request index="15" response="0110011111010100010000000000001000100" foes="0110011111010111011000000000001110100" cont="1"/>
         <request index="16" response="0110011111010100010000000000001000100" foes="0110011111010111011000000000001110100" cont="1"/>
-        <request index="17" response="0110000000010000000000000000000000000" foes="0110000000010000000000000000000000100" cont="1"/>
-        <request index="18" response="0101011110110000000011111111110000000" foes="0101011110110000100011111111111000100" cont="0"/>
+        <request index="17" response="0110000000010000000000000000000000100" foes="0110000000010000000000000000000000100" cont="1"/>
+        <request index="18" response="0101011110110000000011111111111000100" foes="0101011110110000100011111111111000100" cont="0"/>
         <request index="19" response="1100111110110011000011111101100111011" foes="1100111110110011100011111101100111011" cont="1"/>
-        <request index="20" response="0110011110010000011000000000000000000" foes="0110011110010000011000000000001000100" cont="1"/>
-        <request index="21" response="0101111110110000000011111111100000000" foes="0101111110110000010011111111101000100" cont="0"/>
-        <request index="22" response="0101111110110000000011111111100000000" foes="0101111110110000010011111111101000100" cont="0"/>
+        <request index="20" response="0110011110010000011000000000001000100" foes="0110011110010000011000000000001000100" cont="1"/>
+        <request index="21" response="0101111110110000000011111111101000100" foes="0101111110110000010011111111101000100" cont="0"/>
+        <request index="22" response="0101111110110000000011111111101000100" foes="0101111110110000010011111111101000100" cont="0"/>
         <request index="23" response="1100111110110000000011111101000111010" foes="1100111110110000000011111101000111010" cont="1"/>
-        <request index="24" response="1100000000000000000000000000000000000" foes="1100000000000000000000000001000000010" cont="1"/>
-        <request index="25" response="1010000000000100110100000000000000100" foes="1010000001000111111111000001000110110" cont="0"/>
+        <request index="24" response="1100000000000000000000000001000000000" foes="1100000000000000000000000001000000010" cont="1"/>
+        <request index="25" response="1010000000000100110111000001000000100" foes="1010000001000111111111000001000110110" cont="0"/>
         <request index="26" response="1001011110000100010000111110111000100" foes="1001011111000111011000111110111110110" cont="1"/>
-        <request index="27" response="1100000000110000000000000000000000000" foes="1100000000110000000011000001000110010" cont="1"/>
-        <request index="28" response="1010000000000100110000000000001000100" foes="1010000000100111111011000001001110110" cont="0"/>
-        <request index="29" response="1010000000000100110000000000001000100" foes="1010000000100111111011000001001110110" cont="0"/>
-        <request index="30" response="1010000000000100110000000000001000100" foes="1010000000100111111011000001001110110" cont="0"/>
-        <request index="31" response="1010000000000100110000000000001000100" foes="1010000000100111111011000001001110110" cont="0"/>
+        <request index="27" response="1100000000110000000011000001000000000" foes="1100000000110000000011000001000110010" cont="1"/>
+        <request index="28" response="1010000000000100110011000001001000100" foes="1010000000100111111011000001001110110" cont="0"/>
+        <request index="29" response="1010000000000100110011000001001000100" foes="1010000000100111111011000001001110110" cont="0"/>
+        <request index="30" response="1010000000000100110011000001001000100" foes="1010000000100111111011000001001110110" cont="0"/>
+        <request index="31" response="1010000000000100110011000001001000100" foes="1010000000100111111011000001001110110" cont="0"/>
         <request index="32" response="1001000000000100010000111110101000100" foes="1001000000000111010000111110101110110" cont="1"/>
         <request index="33" response="0000000000000000000000000000000000000" foes="0000100000100011001000000010011111111" cont="0"/>
         <request index="34" response="0000000000000000000000000000000000000" foes="0000011110010000100111111111111000100" cont="0"/>
@@ -543,22 +552,22 @@
     <junction id="gneJ27" type="dead_end" x="-141.28" y="-267.93" incLanes="JSSD_0 JSSD_1 JSSD_2 JSSD_3 JSSD_4 JSSD_5" intLanes="" shape="-139.62,-268.97 -127.14,-276.77 -154.94,-259.40"/>
 
     <junction id=":ITLS_33_0" type="internal" x="21.40" y="23.77" incLanes=":ITLS_0_0" intLanes=":ITLS_8_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_19_0 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
-    <junction id=":ITLS_34_0" type="internal" x="32.35" y="-4.78" incLanes=":ITLS_2_0 JSSE_1 JSSE_4 JSSE_5" intLanes=":ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_34_0" type="internal" x="35.73" y="-37.78" incLanes=":ITLS_2_0" intLanes=":ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
     <junction id=":ITLS_35_0" type="internal" x="30.63" y="18.07" incLanes=":ITLS_3_0 JSNE_1" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_8_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_19_0 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
-    <junction id=":ITLS_36_0" type="internal" x="41.60" y="11.25" incLanes=":ITLS_6_0 JSSE_1 JSSE_4 JSSE_5" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_36_0" type="internal" x="44.67" y="-25.69" incLanes=":ITLS_6_0" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
     <junction id=":ITLS_37_0" type="internal" x="52.98" y="8.89" incLanes=":ITLS_7_0" intLanes=":ITLS_18_0 :ITLS_21_0 :ITLS_21_1 :ITLS_26_0 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
-    <junction id=":ITLS_38_0" type="internal" x="33.21" y="-15.59" incLanes=":ITLS_9_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5 CAWE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_38_0" type="internal" x="5.03" y="-29.11" incLanes=":ITLS_9_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
     <junction id=":ITLS_39_0" type="internal" x="49.09" y="-2.31" incLanes=":ITLS_10_0 CAEE_1" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_18_0 :ITLS_21_0 :ITLS_21_1 :ITLS_26_0 :ITLS_32_0 :ITLS_c0_0 :ITLS_c1_0"/>
-    <junction id=":ITLS_40_0" type="internal" x="34.32" y="-16.58" incLanes=":ITLS_15_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5 CAWE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
-    <junction id=":ITLS_41_0" type="internal" x="38.11" y="-19.93" incLanes=":ITLS_16_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5 CAWE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_40_0" type="internal" x="8.00" y="-31.20" incLanes=":ITLS_15_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_41_0" type="internal" x="11.05" y="-33.35" incLanes=":ITLS_16_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
     <junction id=":ITLS_42_0" type="internal" x="33.64" y="-40.61" incLanes=":ITLS_17_0" intLanes=":ITLS_2_0 :ITLS_6_0 :ITLS_25_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
-    <junction id=":ITLS_43_0" type="internal" x="22.76" y="-14.82" incLanes=":ITLS_19_0 JSNE_1 JSNE_4 JSNE_5" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_43_0" type="internal" x="19.32" y="21.33" incLanes=":ITLS_19_0" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c2_0 :ITLS_c3_0"/>
     <junction id=":ITLS_44_0" type="internal" x="24.28" y="-36.02" incLanes=":ITLS_20_0 JSSE_1" intLanes=":ITLS_2_0 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_25_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
-    <junction id=":ITLS_45_0" type="internal" x="13.73" y="-31.19" incLanes=":ITLS_23_0 JSNE_1 JSNE_4 JSNE_5" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_45_0" type="internal" x="10.26" y="10.65" incLanes=":ITLS_23_0" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_c2_0 :ITLS_c3_0"/>
     <junction id=":ITLS_46_0" type="internal" x="3.19" y="-27.81" incLanes=":ITLS_24_0" intLanes=":ITLS_1_0 :ITLS_4_0 :ITLS_4_1 :ITLS_9_0 :ITLS_15_0 :ITLS_16_0 :ITLS_c2_0 :ITLS_c3_0"/>
-    <junction id=":ITLS_47_0" type="internal" x="24.08" y="0.51" incLanes=":ITLS_26_0 CAEE_1 CAEE_3 CAEE_4 CAEE_5 CAEE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_47_0" type="internal" x="50.94" y="10.40" incLanes=":ITLS_26_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c0_0 :ITLS_c3_0"/>
     <junction id=":ITLS_48_0" type="internal" x="7.66" y="-11.68" incLanes=":ITLS_27_0 CAWE_1" intLanes=":ITLS_1_0 :ITLS_4_0 :ITLS_4_1 :ITLS_9_0 :ITLS_15_0 :ITLS_16_0 :ITLS_25_0 :ITLS_26_0 :ITLS_c2_0 :ITLS_c3_0"/>
-    <junction id=":ITLS_49_0" type="internal" x="20.47" y="3.35" incLanes=":ITLS_32_0 CAEE_1 CAEE_3 CAEE_4 CAEE_5 CAEE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_49_0" type="internal" x="45.16" y="14.67" incLanes=":ITLS_32_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
 
     <connection from="CAEE" to="JSNX" fromLane="1" toLane="1" via=":ITLS_7_0" tl="ITLS" linkIndex="7" dir="r" state="o"/>
     <connection from="CAEE" to="CAWX" fromLane="1" toLane="1" via=":ITLS_8_0" tl="ITLS" linkIndex="8" dir="s" state="o"/>

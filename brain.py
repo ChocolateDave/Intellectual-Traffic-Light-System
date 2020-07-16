@@ -35,46 +35,15 @@ class BaseAgent(object):
     r"""深度强化学习的抽象控制主单元
     Abstract object representing a model"""
 
-    def __init__(self, config):
+    def __init__(self, config,sess):
         self._saver = None
         self.config = config
+        self.sess = sess
 
         self._attrs = class_vars(config)
         for attr in self._attrs:
             name = attr if not attr.startswith('__') else attr[1:]
             setattr(self, name, getattr(self.config, attr))
-
-    def save_model(self, step=None):
-        """Save model params at certain step N.
-
-        :Params
-            step (int): the training step.
-        """
-
-        print(datetime.now(), ": Saving checkpoints...")
-        model_name = type(self).__name__
-
-        if not os.path.exists(self.checkpoint_dir):
-            os.makedirs(self.checkpoint_dir)
-        self.saver.save(self.sess, self.checkpoint_dir, global_step=step)
-
-    def load_model(self):
-        """Load pre-trained model for training or evaluation.
-
-        :Return
-            loaded (bool): workflow indicator
-        """
-        print(datetime.now(), ": Loading checkpoints...")
-        ckpt = tf.train.get_checkpoint_state(self.checkpoint_dir)
-        if ckpt and ckpt.model_checkpoint_path:
-            ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
-            file_name = os.path.join(self.checkpoint_dir, ckpt_name)
-            self.saver.restore(self.sess, file_name)
-            print("# Load SUCCESS: %s" % file_name)
-            return True
-        else:
-            print(datetime.now(), ": Load FAILED!: %s" % self.checkpoint_dir)
-            return False
 
     @property
     def checkpoint_dir(self):
@@ -101,7 +70,7 @@ class Brain(BaseAgent):
     The DRL network for Traffic light control system. """
 
     def __init__(self, config, env,sess):
-        super(Brain, self).__init__(config)
+        super(Brain, self).__init__(config,sess)
         self.config=config
         self.timestep = 0
         self.state_size = env.observation_space
@@ -109,28 +78,40 @@ class Brain(BaseAgent):
         self.epsilon=config.epsilon_start
         # create memory pool
         self.memory = ReplayBuffer(self.state_size, self.action_size, config.memory_size)
-        self.sess = sess
-
 
         with tf.name_scope('placeholders'):
-            with tf.name_scope('IO'):
-                # observation_space = [batch, width, height, channels], which is different from torch.
-                # env.observation_space:[120, 108, 5] input_size = 120x108x5
-                self.s = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='state')
+            # with tf.name_scope('IO'):
+            #     # observation_space = [batch, width, height, channels], which is different from torch.
+            #     # env.observation_space:[120, 108, 5] input_size = 120x108x5
+            #     self.s = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='state')
+            #     self.r = tf.placeholder(tf.float32, [None, ], name='reward')
+            #     self.a = tf.placeholder(tf.float32, [None, self.action_size], name='action')
+            #     self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='next_state')
+            with tf.name_scope('s'):
+                self.s = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]],
+                                        name='state')
+            with tf.name_scope('r'):
                 self.r = tf.placeholder(tf.float32, [None, ], name='reward')
+
+            with tf.name_scope('a'):
                 self.a = tf.placeholder(tf.float32, [None, self.action_size], name='action')
-                self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]], name='next_state')
+
+            with tf.name_scope('_s'):
+                self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]],
+                                         name='next_state')
 
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
 
+        #把所有要显示的参数聚集在一起
+        self.summ = tf.summary.merge_all()
         #初始化以上所有变量
         sess.run(tf.initialize_all_variables())
 
         print("save model graph...")
-        writer = tf.summary.FileWriter('./logs', sess.graph)
-        writer.close()
-
+        #指定一个文件用来保存图
+        self.writer = tf.summary.FileWriter('./logs', self.sess.graph)
+        #self.load_model()
 
     def build_nn(self, owm=False):
         r"""神经网络主函数，客制化定义OWM模组.LeNet-5网络结构
@@ -144,6 +125,7 @@ class Brain(BaseAgent):
             h_conv1 = tf.nn.relu(self.conv2d(self.s, w_conv1, 4)+b_conv1)
             h_poo1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[
                                     1, 2, 2, 1], padding="SAME")
+
         with tf.name_scope('hidden_conv2'):
             w_conv2 = self.weight_variable([3, 3, 32, 64])
             b_conv2 = self.bias_variable([64])
@@ -193,7 +175,11 @@ class Brain(BaseAgent):
             q_action = tf.reduce_sum(tf.multiply(self.q, self.a), reduction_indices = 1)
             self.q_target = tf.placeholder(tf.float32, [None,])
             #cost==loss
-            self.loss = tf.reduce_mean(tf.square(self.q_target - q_action))
+            with tf.name_scope('loss'):
+                self.loss = tf.reduce_mean(tf.square(self.q_target - q_action),name="loss")
+                # 指标变化：随着网络的迭代，loss值的变化
+                tf.summary.scalar('loss', self.loss)
+            #self.loss = tf.reduce_mean(tf.square(self.q_target - q_action))
             if owm:
                 # 初始化训练调控器 Initialize optimiser.
                 optimiser = tf.train.AdamOptimizer(self.lr)
@@ -218,12 +204,12 @@ class Brain(BaseAgent):
         #第二步：计算目标Q值 Step2: calculate target Q value
         q_target = []
         q_batch = self.q.eval(feed_dict={self.s:ns_batch})
-        for i in range(0, self.batchsize):
+        for i in range(0, self.config.batchsize):
             terminal = terminals[i]
             if terminal:
                 q_target.append(r_batch[i])
             else:
-                q_target.append(r_batch[i] + self.gamma * np.max(q_batch))
+                q_target.append(r_batch[i] + self.config.gamma * np.max(q_batch))
 
 
         #第三步：训练网络 Step3: train neural network
@@ -236,6 +222,7 @@ class Brain(BaseAgent):
         # 保存训练结果 Save network with certain frequency.
         if self.timestep %  self.config.checkpoint == 0:
             self.save_model(step=self.timestep)
+
     
     def interact(self, state, action, reward, terminal):
         r"""智能体与环境交互的决策主函数，存储记忆并决定是否自我训练
@@ -328,3 +315,38 @@ class Brain(BaseAgent):
         """
         g_ = lr*tf.matmul(P, g_v[0])
         return g_, g_v[1]
+
+    def save_model(self, step):
+        """Save model params at certain step N.
+
+        :Params
+            step (int): the training step.
+        """
+
+        print(datetime.now(), ": Saving checkpoints...")
+        model_name = type(self).__name__
+
+        if not os.path.exists(self.checkpoint_dir):
+            os.makedirs(self.checkpoint_dir)
+        self.saver.save(self.sess, self.checkpoint_dir, global_step=step)
+        s = self.sess.run(self.summ)
+        self.writer.add_summary(s, step)
+
+    def load_model(self):
+        """Load pre-trained model for training or evaluation.
+
+        :Return
+            loaded (bool): workflow indicator
+        """
+        print(datetime.time(), ": Loading checkpoints...")
+        ckpt = tf.train.get_checkpoint_state(self.checkpoint_dir)
+        print(self.checkpoint_dir)
+        if ckpt and ckpt.model_checkpoint_path:
+            ckpt_name = os.path.basename(ckpt.model_checkpoint_path)
+            file_name = os.path.join(self.checkpoint_dir, ckpt_name)
+            self.saver.restore(self.sess, file_name)
+            print("# Load SUCCESS: %s" % file_name)
+            return True
+        else:
+            print(datetime.time(), ": Load FAILED!: %s" % self.checkpoint_dir)
+            return False
