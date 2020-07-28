@@ -13,6 +13,7 @@ import env as Env
 import tensorflow as tf
 import numpy as np 
 
+
 def main():
     r"""智能信号灯系统主控函数
     Master control function for ITLS.
@@ -34,6 +35,9 @@ def main():
             obs = env.reset()
             brain.currentState = obs
         brain.interact(state, action, reward, terminal)
+
+        #loss = sess.run([brain.loss],feed_dict={brain.a:action})
+        #print(reward,brain.loss,brain.timestep)
 
 if __name__ == '__main__':
     main()

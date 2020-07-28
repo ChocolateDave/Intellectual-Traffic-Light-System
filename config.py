@@ -18,12 +18,12 @@ class AgentConfigs(object):
     epsilon_frame= 10000
     epsilon_decay = (epsilon_start - epsilon_end)/epsilon_frame
     # network saver
-    checkpoint = 1000
+    checkpoint = 1
     # training hyperparams
     batch_size = 64
     data_format = 'NHWC'
     gamma = 0.99
-    learn_initial = 100000
+    learn_initial = 10
     lr = 0.01
     sync_tau = 1000
     use_gpu = True
@@ -38,6 +38,11 @@ class AgentConfigs(object):
     # owm
     owm = False
     owm_alphas = [[0.001,0.6]]
+    #record
+    SUMMARIES = 'summaries/'
+    SAVER = 'output/'
+    SAVED_FILE_NAME = '.ckpt'
+
 
 
 # Environment configs

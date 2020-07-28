@@ -18,7 +18,14 @@ if int(tf.__version__[0]) == 2:
     import tensorflow.compat.v1 as tf
     tf.disable_v2_behavior()
 
+with tf.name_scope('Performance'):
+    LOSS_PH = tf.placeholder(tf.float32, shape=None, name='loss_summary')
+    LOSS_SUMMARY = tf.summary.scalar('loss', LOSS_PH)
+    REWARD_PH = tf.placeholder(tf.float32, shape=None, name='reward_summary')
+    REWARD_SUMMARY = tf.summary.scalar('reward', REWARD_PH)
 
+# 把所有要显示的参数聚集在一起
+PERFORMANCE_SUMMARIES = tf.summary.merge([LOSS_SUMMARY, REWARD_SUMMARY])
 def class_vars(classobj):
     r"""从配置类中循环调用相关参数
     Recursively retrieve class members and their values.
@@ -103,14 +110,15 @@ class Brain(BaseAgent):
         with tf.name_scope('nnet'):
             self.build_nn(owm=config.owm)
 
-        #把所有要显示的参数聚集在一起
-        self.summ = tf.summary.merge_all()
         #初始化以上所有变量
         sess.run(tf.initialize_all_variables())
 
         print("save model graph...")
         #指定一个文件用来保存图
-        self.writer = tf.summary.FileWriter('./logs', self.sess.graph)
+        self.writer = tf.summary.FileWriter('logs/')
+
+        # self.writer.add_graph(self.sess.graph)
+
         #self.load_model()
 
     def build_nn(self, owm=False):
@@ -176,13 +184,10 @@ class Brain(BaseAgent):
             self.q_target = tf.placeholder(tf.float32, [None,])
             #cost==loss
             with tf.name_scope('loss'):
-                self.loss = tf.reduce_mean(tf.square(self.q_target - q_action),name="loss")
-                # 指标变化：随着网络的迭代，loss值的变化
-                tf.summary.scalar('loss', self.loss)
-            #self.loss = tf.reduce_mean(tf.square(self.q_target - q_action))
+                self.loss = tf.reduce_mean(tf.square(self.q_target - q_action))
             if owm:
                 # 初始化训练调控器 Initialize optimiser.
-                optimiser = tf.train.AdamOptimizer(self.lr)
+                optimiser = tf.train.AdamOptimizer(self.config.lr)
                 # 通过BP算法计算梯度值 calculates ΔW by BP method.
                 grads = optimiser.compute_gradients(self.loss, var_list=[w_fc1, w_fc2])
                 # 依据OWM算法修改梯度值 modify ΔW with p matrix.
@@ -191,10 +196,10 @@ class Brain(BaseAgent):
                     grads_output = [self.owm(self.P2, grads[1])]
                 self.trainStep = optimiser.apply_gradients([grads_fc[0], grads_output[0]])
             else:
-                self.trainStep = tf.train.AdamOptimizer(self.lr).minimize(self.loss)
+                self.trainStep = tf.train.AdamOptimizer(self.config.lr).minimize(self.loss)
 
     
-    def train(self):
+    def train(self,reward):
         r"""智能体训练主函数
         Main function for training the agent.
         """
@@ -203,8 +208,9 @@ class Brain(BaseAgent):
 
         #第二步：计算目标Q值 Step2: calculate target Q value
         q_target = []
-        q_batch = self.q.eval(feed_dict={self.s:ns_batch})
-        for i in range(0, self.config.batchsize):
+        q_batch = self.q.eval(feed_dict={self.s:ns_batch},session=self.sess)
+
+        for i in range(0, self.config.batch_size):
             terminal = terminals[i]
             if terminal:
                 q_target.append(r_batch[i])
@@ -213,15 +219,25 @@ class Brain(BaseAgent):
 
 
         #第三步：训练网络 Step3: train neural network
-        self.trainStep.run(feeddict={
+        self.trainStep.run(feed_dict={
             self.q_target:q_target,
             self.a: a_batch,
             self.s: s_batch
-        })
+        },session=self.sess)
+
+        #求loss
+        LOSS = self.loss.eval(feed_dict={self.a: a_batch,self.q:q_batch,self.s:s_batch,self.q_target:q_target},session=self.sess)
+        #求reward
+        REWARD = reward
 
         # 保存训练结果 Save network with certain frequency.
         if self.timestep %  self.config.checkpoint == 0:
-            self.save_model(step=self.timestep)
+            summ = self.sess.run(PERFORMANCE_SUMMARIES,
+                            feed_dict={LOSS_PH: LOSS,
+                                       REWARD_PH: REWARD})
+            self.writer.add_summary(summ, self.timestep)
+            print("save checkpoint ... ")
+
 
     
     def interact(self, state, action, reward, terminal):
@@ -233,13 +249,13 @@ class Brain(BaseAgent):
             reward(tensor): reward value.
             terminal(bool): indicate whether a task is finished.
         """
-
         self.memory.add(self.currentState, action, reward, state, terminal)
+        # if self.timestep == self.config.learn_initial:
+        #     self.saver.restore(self.sess, self.config.SAVER + 'model_' + str(self.timestep) + self.config.SAVED_FILE_NAME)
         if self.timestep > self.config.learn_initial:
-            self.train()
+            self.train(reward)
         self.currentState = state
         self.timestep += 1
-
 
     def get_action(self):
         r"""智能体动作决策函数，采用贪心算法
