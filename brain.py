@@ -18,14 +18,6 @@ if int(tf.__version__[0]) == 2:
     import tensorflow.compat.v1 as tf
     tf.disable_v2_behavior()
 
-with tf.name_scope('Performance'):
-    LOSS_PH = tf.placeholder(tf.float32, shape=None, name='loss_summary')
-    LOSS_SUMMARY = tf.summary.scalar('loss', LOSS_PH)
-    REWARD_PH = tf.placeholder(tf.float32, shape=None, name='reward_summary')
-    REWARD_SUMMARY = tf.summary.scalar('reward', REWARD_PH)
-
-# 把所有要显示的参数聚集在一起
-PERFORMANCE_SUMMARIES = tf.summary.merge([LOSS_SUMMARY, REWARD_SUMMARY])
 def class_vars(classobj):
     r"""从配置类中循环调用相关参数
     Recursively retrieve class members and their values.
@@ -117,7 +109,7 @@ class Brain(BaseAgent):
         #指定一个文件用来保存图
         self.writer = tf.summary.FileWriter('logs/')
 
-        # self.writer.add_graph(self.sess.graph)
+        self.writer.add_graph(self.sess.graph)
 
         #self.load_model()
 
@@ -230,13 +222,7 @@ class Brain(BaseAgent):
         #求reward
         REWARD = reward
 
-        # 保存训练结果 Save network with certain frequency.
-        if self.timestep %  self.config.checkpoint == 0:
-            summ = self.sess.run(PERFORMANCE_SUMMARIES,
-                            feed_dict={LOSS_PH: LOSS,
-                                       REWARD_PH: REWARD})
-            self.writer.add_summary(summ, self.timestep)
-            print("save checkpoint ... ")
+        return LOSS,REWARD
 
 
     
@@ -250,12 +236,16 @@ class Brain(BaseAgent):
             terminal(bool): indicate whether a task is finished.
         """
         self.memory.add(self.currentState, action, reward, state, terminal)
+        LOSS = 0.0
+        REWARD = 0.0
         # if self.timestep == self.config.learn_initial:
         #     self.saver.restore(self.sess, self.config.SAVER + 'model_' + str(self.timestep) + self.config.SAVED_FILE_NAME)
         if self.timestep > self.config.learn_initial:
-            self.train(reward)
+            LOSS,REWARD = self.train(reward)
         self.currentState = state
         self.timestep += 1
+
+        return LOSS,REWARD
 
     def get_action(self):
         r"""智能体动作决策函数，采用贪心算法
