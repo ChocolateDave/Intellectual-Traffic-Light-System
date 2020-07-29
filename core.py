@@ -12,6 +12,7 @@ from config import DQNConfigs,SumoConfigs
 import env as Env
 import tensorflow as tf
 import numpy as np 
+import os
 
 with tf.name_scope('Performance'):
     LOSS_PH = tf.placeholder(tf.float32, shape=None, name='loss_summary')
@@ -21,6 +22,11 @@ with tf.name_scope('Performance'):
 
 # 把所有要显示的参数聚集在一起
 PERFORMANCE_SUMMARIES = tf.summary.merge([LOSS_SUMMARY, REWARD_SUMMARY])
+
+os.makedirs(DQNConfigs.SAVER, exist_ok=True)
+os.makedirs(DQNConfigs.SUMMARIES, exist_ok=True)
+os.makedirs(DQNConfigs.SAVER, exist_ok=True)
+
 
 def main():
     r"""智能信号灯系统主控函数
@@ -52,6 +58,11 @@ def main():
             brain.writer.add_summary(summ, brain.timestep)
         #loss = sess.run([brain.loss],feed_dict={brain.a:action})
         #print(reward,brain.loss,brain.timestep)
+
+    #save model
+    # save_path = brain.saver.save(sess, brain.config.SAVER + 'model_' + str(brain.config) + brain.config.SAVED_FILE_NAME)
+    # print("Model saved in path: {}".format(save_path))
+
 
 if __name__ == '__main__':
     main()

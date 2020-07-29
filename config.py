@@ -40,6 +40,7 @@ class AgentConfigs(object):
     owm_alphas = [[0.001,0.6]]
     #record
     SUMMARIES = 'summaries/'
+
     SAVER = 'output/'
     SAVED_FILE_NAME = '.ckpt'
 
