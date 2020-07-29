@@ -33,7 +33,7 @@ def main():
     Master control function for ITLS.
     """
     # 第一步：初始化系统 Step1: initialize system.
-    env = Env.TrafficLight_v0(DQNConfigs)
+    env = Env.TrafficLight_v1(DQNConfigs)
     #create Session
     sess = tf.Session()
     #sess.run(tf.global_variables_initializer())
