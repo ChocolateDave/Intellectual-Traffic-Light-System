@@ -16,7 +16,7 @@ import traci
 class TrafficLight_v1(gym.Env):
     r"""The sumo interactive environment based on openai gym. By default, 
     the reward range for RL training is set to [-inf,+inf]. It can be changed 
-    accordingly. """
+    accordingly."""
 
     def __init__(self, config):
         super(TrafficLight_v1, self).__init__()
@@ -24,22 +24,23 @@ class TrafficLight_v1(gym.Env):
             self.frameskip = config.frameskip
         else:
             self.frameskip = np.random.randint(config.frameskip[0], config.frameskip[1])
-        self.warm_up_time = config.warm_up_dur
-        self.total_time = config.total_dur
         self.actions = config.actions
-        self.observation_space = [config.width, config.height, int(self.frameskip/5)]
         self.action_size = len(config.actions)
+        self.downsample = config.downsample
+        self.observation_space = [int(config.width/self.downsample), int(config.height/self.downsample), int(self.frameskip/5)]
         if config.reward_range:
             self.reward_range = config.reward_range
+        self.total_time = config.total_dur
+        self.warm_up_time = config.warm_up_dur
         # Sumo params
         self.binary = config.sumo_binary
         self.cfg = config.sumo_config
+        self.convs = config.conversions
         self.edges = config.edges
         self.ents = config.ent_edges
         self.exts = config.ext_edges
-        self.lnarea = config.lanearea
-        self.convs = config.conversions
         self.id = config.TLid
+        self.lnarea = config.lanearea
 
     # Seeding
     def seed(self, seed=None):
@@ -52,7 +53,7 @@ class TrafficLight_v1(gym.Env):
 
     # Simulation functions
     def warmUp(self):
-        """ Before training, we need to make sure there's enough vehicles 
+        """Before training, we need to make sure there's enough vehicles 
         on the given lanes. Hence, a warm up sequence is required for 
         filling the scenario. """
         while traci.simulation.getTime() <= self.warm_up_time:
@@ -76,21 +77,22 @@ class TrafficLight_v1(gym.Env):
             return np.round((x-np.min(x)) / (np.max(x)-np.min(x)) *
                             (range_list[1]-range_list[0]) + range_list[0])
 
-        state = np.zeros([self.observation_space[0],self.observation_space[1]])
+        state = np.zeros([self.observation_space[0], self.observation_space[1]])
         for edge in self.edges:
             current_veh = traci.edge.getLastStepVehicleIDs(edge)
             for veh in current_veh:
                 pos = traci.vehicle.getPosition(veh)
                 for vehtype in self.convs.keys():
                     if vehtype in veh:
-                        x = round(pos[1] + 55)
-                        y = round(pos[0] + 30)
+                        # x and y have to minus offsets of down and left boundaries, respectively.
+                        x = round((pos[1] + 10)/self.downsample)
+                        y = round((pos[0] + 110)/self.downsample)
                         if x in range(state.shape[0]) and y in range(state.shape[1]):
                             state[x][y] += self.convs[vehtype]
         return state
 
     def isEpisode(self):
-        """Justify if a scenario is finished
+        """Justify if a scenario is finished.
 
         Return:
             done (bool)
@@ -182,6 +184,7 @@ class TrafficLight_v1(gym.Env):
                 for _ in range(10):
                     traci.simulationStep()
             traci.trafficlight.setRedYellowGreenState(self.id, fp)
+        
         # Observe
         for i in range(self.frameskip):
             traci.simulationStep()

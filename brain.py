@@ -99,8 +99,17 @@ class Brain(BaseAgent):
                 self.s_ = tf.placeholder(tf.float32, [None, self.state_size[0], self.state_size[1], self.state_size[2]],
                                          name='next_state')
 
-        with tf.name_scope('nnet'):
+        with tf.name_scope('mainDQN'):
             self.build_nn(owm=config.owm)
+
+        with tf.name_scope('targetDQN'):
+            self.build_nn(owm=config.owm)
+
+        self.MAIN_DQN_VARS = tf.trainable_variables(scope='mainDQN')
+        self.TARGET_DQN_VARS = tf.trainable_variables(scope='targetDQN')
+
+        # update target network
+        self.network_updater = TargetNetworkUpdater(self.MAIN_DQN_VARS, self.TARGET_DQN_VARS)
 
         #初始化以上所有变量
         sess.run(tf.initialize_all_variables())
@@ -134,11 +143,11 @@ class Brain(BaseAgent):
             w_conv3 = self.weight_variable([2, 2, 64, 64])
             b_conv3 = self.bias_variable([64])
             h_conv3 = tf.nn.relu(self.conv2d(h_conv2, w_conv3, 1) + b_conv3)
-            h_conv3_flattend = tf.reshape(h_conv3, [-1, 3584])
+            h_conv3_flattend = tf.reshape(h_conv3, [-1,1280])
 
         # 全连接层 fully connected layer
         with tf.name_scope('hidden_fc'):
-            w_fc1 = self.weight_variable([3584, 512])
+            w_fc1 = self.weight_variable([1280, 512])
             b_fc1 = self.bias_variable([512])
             h_fc1 = tf.nn.relu(tf.matmul(h_conv3_flattend, w_fc1) + b_fc1)
         if owm:
@@ -191,7 +200,7 @@ class Brain(BaseAgent):
                 self.trainStep = tf.train.AdamOptimizer(self.config.lr).minimize(self.loss)
 
     
-    def train(self,reward):
+    def train(self):
         r"""智能体训练主函数
         Main function for training the agent.
         """
@@ -209,7 +218,6 @@ class Brain(BaseAgent):
             else:
                 q_target.append(r_batch[i] + self.config.gamma * np.max(q_batch))
 
-
         #第三步：训练网络 Step3: train neural network
         self.trainStep.run(feed_dict={
             self.q_target:q_target,
@@ -218,11 +226,13 @@ class Brain(BaseAgent):
         },session=self.sess)
 
         #求loss
-        LOSS = self.loss.eval(feed_dict={self.a: a_batch,self.q:q_batch,self.s:s_batch,self.q_target:q_target},session=self.sess)
-        #求reward
-        REWARD = reward
+        loss = self.loss.eval(feed_dict={self.a: a_batch,self.q:q_batch,self.s:s_batch,self.q_target:q_target},session=self.sess)
 
-        return LOSS,REWARD
+        #判断是否需要update 参数
+        if self.timestep % self.config.UPDATE_FRAMES == 0:
+            self.network_updater.update_networks(self.sess)
+
+        return loss
 
 
     
@@ -236,16 +246,24 @@ class Brain(BaseAgent):
             terminal(bool): indicate whether a task is finished.
         """
         self.memory.add(self.currentState, action, reward, state, terminal)
-        LOSS = 0.0
-        REWARD = 0.0
-        # if self.timestep == self.config.learn_initial:
-        #     self.saver.restore(self.sess, self.config.SAVER + 'model_' + str(self.timestep) + self.config.SAVED_FILE_NAME)
         if self.timestep > self.config.learn_initial:
-            LOSS,REWARD = self.train(reward)
+            loss = self.train()
+        else:
+            s = np.expand_dims(state, axis=0)
+            a = np.expand_dims(action, axis=0)
+            q = self.q.eval(feed_dict={self.s:s},session = self.sess)
+            q_target = []
+            if terminal:
+                q_target.append(reward)
+            else:
+                q_target.append(reward + self.config.gamma * np.max(q))
+            loss = self.loss.eval(
+                feed_dict={self.a: a, self.q: q, self.s: s, self.q_target: q_target},
+                session=self.sess)
         self.currentState = state
         self.timestep += 1
 
-        return LOSS,REWARD
+        return loss,reward
 
     def get_action(self):
         r"""智能体动作决策函数，采用贪心算法
@@ -254,7 +272,7 @@ class Brain(BaseAgent):
         #test = np.array()
         # test.append(self.currentState)
         # print(test.shape)
-        state = np.reshape(self.currentState,(-1, 120, 108, 5))
+        state = np.expand_dims(self.currentState,axis=0)
         q = self.q.eval(feed_dict={self.s: state},session=self.sess)[0]
         action = np.zeros(self.action_size)
         action_indx = 0
@@ -267,6 +285,7 @@ class Brain(BaseAgent):
         # 更新ε update epsilon
         self.epsilon = max(self.config.epsilon_end, self.epsilon-self.config.epsilon_decay)
         return action
+
 
     def weight_variable(self, shape):
         """Initialize layer weights with given shape.
@@ -305,6 +324,7 @@ class Brain(BaseAgent):
         '''
         return tf.nn.conv2d(x, w, strides=[1, s, s, 1], padding="SAME")
 
+    @staticmethod
     def max_pool_2x2(self,x):
 
         return tf.nn.max_pool(x, ksize = [1, 2, 2, 1], strides = [1, 2, 2, 1], padding = "SAME")
@@ -356,3 +376,24 @@ class Brain(BaseAgent):
         else:
             print(datetime.time(), ": Load FAILED!: %s" % self.checkpoint_dir)
             return False
+
+class TargetNetworkUpdater:
+    r""" DDQN双网络中target network
+    Implements a Dueling Dual Deep Q-Network based on the frames of the Retro Environment,
+    Updates the variables and the weights of the target network based on the main network
+    """
+    def __init__(self,main_params,target_params):
+        self.main_params = main_params
+        self.target_params = target_params
+
+    def update_target_params(self):
+        update_ops = []
+        for i, var in enumerate(self.main_params):
+            copy_op = self.target_params[i].assign(var.value())
+            update_ops.append(copy_op)
+        return update_ops
+
+    def update_networks(self, sess):
+        update_ops = self.update_target_params()
+        for copy_op in update_ops:
+            sess.run(copy_op)

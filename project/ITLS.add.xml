@@ -1,4 +1,4 @@
-<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+<additional>
 
     <!--West Entrance-->
     <laneAreaDetector id="W.01" lanes="CAWU_1 CAWE_1" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>

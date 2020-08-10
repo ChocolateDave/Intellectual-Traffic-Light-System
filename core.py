@@ -34,12 +34,17 @@ def main():
     """
     # 第一步：初始化系统 Step1: initialize system.
     env = Env.TrafficLight_v1(DQNConfigs)
-    #create Session
+    #create Session ,allocate memory according needs
+    # gpu_config = tf.ConfigProto()
+    # gpu_config.gpu_options.allow_growth = False
+
     sess = tf.Session()
     #sess.run(tf.global_variables_initializer())
     #sess.run(tf.initialize_all_variables())
     brain = Brain(DQNConfigs, env,sess)
+    print("brain done.")
     obs = env.reset()
+    print("env done.")
     brain.currentState = obs
 
     # 第二步：实时交互与训练 Step2: play and train.
@@ -51,11 +56,10 @@ def main():
             brain.currentState = obs
         LOSS,REWARD = brain.interact(state, action, reward, terminal)
         # 保存训练结果 Save network with certain frequency.
-        if brain.timestep % brain.config.checkpoint == 0:
-            summ = brain.sess.run(PERFORMANCE_SUMMARIES,
-                                 feed_dict={LOSS_PH: LOSS,
-                                            REWARD_PH: REWARD})
-            brain.writer.add_summary(summ, brain.timestep)
+        summ = brain.sess.run(PERFORMANCE_SUMMARIES,
+                             feed_dict={LOSS_PH: LOSS,
+                                        REWARD_PH: REWARD})
+        brain.writer.add_summary(summ, brain.timestep)
         #loss = sess.run([brain.loss],feed_dict={brain.a:action})
         #print(reward,brain.loss,brain.timestep)
 
