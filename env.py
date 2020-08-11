@@ -27,7 +27,7 @@ class TrafficLight_v1(gym.Env):
         self.actions = config.actions
         self.action_size = len(config.actions)
         self.downsample = config.downsample
-        self.observation_space = [int(config.width/self.downsample), int(config.height/self.downsample), int(self.frameskip/5)]
+        self.observation_space = [int(config.height/self.downsample), int(config.width/self.downsample), int(self.frameskip/5)]
         if config.reward_range:
             self.reward_range = config.reward_range
         self.total_time = config.total_dur
@@ -85,8 +85,8 @@ class TrafficLight_v1(gym.Env):
                 for vehtype in self.convs.keys():
                     if vehtype in veh:
                         # x and y have to minus offsets of down and left boundaries, respectively.
-                        x = round((pos[1] + 10)/self.downsample)
-                        y = round((pos[0] + 110)/self.downsample)
+                        x = round((pos[1] + 110)/self.downsample)
+                        y = round((pos[0] + 10)/self.downsample)
                         if x in range(state.shape[0]) and y in range(state.shape[1]):
                             state[x][y] += self.convs[vehtype]
         return state
