@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 07/21/20 11:56:00 by Eclipse SUMO netedit Version 1.6.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.deprecated.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.deprecated.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-internal-links value="false"/>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<net version="1.6" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="-281.08,-271.80,308.61,282.48" origBoundary="-10000000000.00,-10000000000.00,10000000000.00,10000000000.00" projParameter="!"/>
+
+    <edge id=":ITLS_0" function="internal">
+        <lane id=":ITLS_0_0" index="0" allow="motorcycle moped bicycle" speed="10.25" length="21.14" width="3.75" shape="38.85,33.93 33.07,27.59 27.66,24.14 22.63,23.59 21.66,24.08"/>
+    </edge>
+    <edge id=":ITLS_1" function="internal">
+        <lane id=":ITLS_1_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="74.07" width="4.00" shape="38.85,33.93 26.08,14.97 18.61,0.02 12.11,-14.04 2.28,-30.30"/>
+    </edge>
+    <edge id=":ITLS_2" function="internal">
+        <lane id=":ITLS_2_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="38.38" width="3.50" shape="40.45,32.73 36.47,18.88 33.44,-4.89"/>
+    </edge>
+    <edge id=":ITLS_3" function="internal">
+        <lane id=":ITLS_3_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="11.85" length="14.54" width="3.75" shape="43.23,30.65 35.87,22.84 32.54,20.99"/>
+    </edge>
+    <edge id=":ITLS_4" function="internal">
+        <lane id=":ITLS_4_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="73.80" width="3.75" shape="43.23,30.65 30.40,11.82 22.74,-2.94 16.05,-16.82 6.11,-33.01"/>
+        <lane id=":ITLS_4_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="73.80" width="3.75" shape="45.87,28.68 33.11,9.83 25.60,-5.00 19.05,-18.95 9.18,-35.16"/>
+    </edge>
+    <edge id=":ITLS_6" function="internal">
+        <lane id=":ITLS_6_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.38" length="13.59" width="3.75" shape="48.51,26.70 44.73,15.76 44.44,13.77"/>
+    </edge>
+    <edge id=":ITLS_34" function="internal">
+        <lane id=":ITLS_34_0" index="0" allow="motorcycle moped bicycle" speed="10.25" length="4.12" width="3.75" shape="21.66,24.08 17.99,25.93"/>
+    </edge>
+    <edge id=":ITLS_35" function="internal">
+        <lane id=":ITLS_35_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="36.13" width="3.50" shape="33.44,-4.89 33.42,-5.04 32.49,-28.45 34.85,-40.77"/>
+    </edge>
+    <edge id=":ITLS_36" function="internal">
+        <lane id=":ITLS_36_0" index="0" disallow="pedestrian motorcycle moped rail_fast" speed="11.85" length="19.02" width="3.75" shape="32.54,20.99 28.71,18.87 21.77,18.74 15.03,22.45"/>
+    </edge>
+    <edge id=":ITLS_37" function="internal">
+        <lane id=":ITLS_37_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.38" length="42.43" width="3.75" shape="44.44,13.77 42.12,-1.75 41.63,-18.75 44.17,-28.14"/>
+    </edge>
+    <edge id=":ITLS_7" function="internal">
+        <lane id=":ITLS_7_0" index="0" allow="motorcycle moped bicycle" speed="11.53" length="26.55" width="4.00" shape="58.78,-8.31 54.04,-3.11 52.54,3.12 54.27,10.38 57.17,15.22"/>
+    </edge>
+    <edge id=":ITLS_8" function="internal">
+        <lane id=":ITLS_8_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="53.26" width="3.75" shape="58.78,-8.31 17.99,25.93"/>
+    </edge>
+    <edge id=":ITLS_9" function="internal">
+        <lane id=":ITLS_9_0" index="0" allow="motorcycle moped bicycle" speed="16.11" length="29.17" width="4.00" shape="58.78,-8.31 48.17,-8.88 30.60,-14.81"/>
+    </edge>
+    <edge id=":ITLS_10" function="internal">
+        <lane id=":ITLS_10_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="12.72" length="11.34" width="3.75" shape="56.29,-11.69 50.04,-5.05 49.43,-2.91"/>
+    </edge>
+    <edge id=":ITLS_11" function="internal">
+        <lane id=":ITLS_11_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="53.96" width="3.75" shape="54.51,-14.10 42.09,-4.11 34.34,3.63 26.80,11.64 15.03,22.45"/>
+        <lane id=":ITLS_11_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="53.96" width="3.25" shape="54.51,-14.10 12.76,19.78"/>
+        <lane id=":ITLS_11_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="53.96" width="3.25" shape="52.73,-16.52 10.66,17.30"/>
+        <lane id=":ITLS_11_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="53.96" width="3.25" shape="50.95,-18.93 8.55,14.83"/>
+    </edge>
+    <edge id=":ITLS_15" function="internal">
+        <lane id=":ITLS_15_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.65" length="18.69" width="3.75" shape="49.17,-21.35 37.88,-15.73 31.80,-15.77"/>
+    </edge>
+    <edge id=":ITLS_16" function="internal">
+        <lane id=":ITLS_16_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.86" length="12.64" width="3.75" shape="47.39,-23.76 37.55,-18.98 35.85,-19.04"/>
+    </edge>
+    <edge id=":ITLS_38" function="internal">
+        <lane id=":ITLS_38_0" index="0" allow="motorcycle moped bicycle" speed="11.53" length="4.02" width="4.00" shape="57.17,15.22 59.24,18.67"/>
+    </edge>
+    <edge id=":ITLS_39" function="internal">
+        <lane id=":ITLS_39_0" index="0" allow="motorcycle moped bicycle" speed="16.11" length="32.41" width="4.00" shape="30.60,-14.81 30.22,-14.94 12.43,-23.18 2.28,-30.30"/>
+    </edge>
+    <edge id=":ITLS_40" function="internal">
+        <lane id=":ITLS_40_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="12.72" length="26.39" width="3.75" shape="49.43,-2.91 47.83,2.70 49.64,11.54 55.48,21.48"/>
+    </edge>
+    <edge id=":ITLS_41" function="internal">
+        <lane id=":ITLS_41_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="14.65" length="32.26" width="3.75" shape="31.80,-15.77 26.94,-15.81 16.35,-21.56 6.11,-33.01"/>
+    </edge>
+    <edge id=":ITLS_42" function="internal">
+        <lane id=":ITLS_42_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.86" length="32.83" width="3.75" shape="35.85,-19.04 27.90,-19.29 18.45,-24.68 9.18,-35.16"/>
+    </edge>
+    <edge id=":ITLS_17" function="internal">
+        <lane id=":ITLS_17_0" index="0" allow="motorcycle moped bicycle" speed="8.08" length="11.00" width="3.50" shape="22.06,-44.24 25.10,-40.83 28.25,-39.12 31.11,-39.10"/>
+    </edge>
+    <edge id=":ITLS_18" function="internal">
+        <lane id=":ITLS_18_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="73.07" width="4.00" shape="22.06,-44.24 59.24,18.67"/>
+    </edge>
+    <edge id=":ITLS_19" function="internal">
+        <lane id=":ITLS_19_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="29.10" width="3.75" shape="20.43,-43.08 23.07,-29.97 23.33,-14.25"/>
+    </edge>
+    <edge id=":ITLS_20" function="internal">
+        <lane id=":ITLS_20_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="9.98" length="10.01" width="3.75" shape="17.71,-41.17 22.17,-36.34 25.28,-34.86"/>
+    </edge>
+    <edge id=":ITLS_21" function="internal">
+        <lane id=":ITLS_21_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="73.24" width="3.75" shape="17.71,-41.17 55.48,21.48"/>
+        <lane id=":ITLS_21_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="73.24" width="3.75" shape="15.26,-39.44 52.48,23.73"/>
+    </edge>
+    <edge id=":ITLS_23" function="internal">
+        <lane id=":ITLS_23_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.72" length="8.08" width="3.25" shape="12.81,-37.72 14.62,-29.84"/>
+    </edge>
+    <edge id=":ITLS_43" function="internal">
+        <lane id=":ITLS_43_0" index="0" allow="motorcycle moped bicycle" speed="8.08" length="4.13" width="3.50" shape="31.11,-39.10 31.50,-39.10 34.85,-40.77"/>
+    </edge>
+    <edge id=":ITLS_44" function="internal">
+        <lane id=":ITLS_44_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="40.81" width="3.75" shape="23.33,-14.25 23.44,-7.81 21.69,13.96 17.99,25.93"/>
+    </edge>
+    <edge id=":ITLS_45" function="internal">
+        <lane id=":ITLS_45_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="9.98" length="13.10" width="3.75" shape="25.28,-34.86 26.96,-34.07 32.06,-34.35 37.49,-37.20"/>
+    </edge>
+    <edge id=":ITLS_46" function="internal">
+        <lane id=":ITLS_46_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.72" length="45.77" width="3.25" shape="14.62,-29.84 15.22,-27.22 15.05,-10.80 12.69,5.30 8.55,14.83"/>
+    </edge>
+    <edge id=":ITLS_24" function="internal">
+        <lane id=":ITLS_24_0" index="0" allow="motorcycle moped bicycle" speed="12.45" length="29.17" width="4.00" shape="-5.26,-1.43 1.76,-8.78 5.35,-16.04 5.53,-23.21 3.97,-26.60"/>
+    </edge>
+    <edge id=":ITLS_25" function="internal">
+        <lane id=":ITLS_25_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="56.18" width="3.50" shape="-5.26,-1.43 34.85,-40.77"/>
+    </edge>
+    <edge id=":ITLS_26" function="internal">
+        <lane id=":ITLS_26_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="27.19" width="4.00" shape="-5.26,-1.43 6.59,-1.43 21.42,2.51"/>
+    </edge>
+    <edge id=":ITLS_27" function="internal">
+        <lane id=":ITLS_27_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.57" length="18.03" width="3.75" shape="-2.54,1.77 5.78,-7.00 8.37,-12.35"/>
+    </edge>
+    <edge id=":ITLS_28" function="internal">
+        <lane id=":ITLS_28_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="55.39" width="3.75" shape="-2.54,1.77 37.49,-37.20"/>
+        <lane id=":ITLS_28_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="55.39" width="3.75" shape="-2.54,1.77 39.72,-34.18"/>
+        <lane id=":ITLS_28_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="55.39" width="3.75" shape="-0.60,4.05 41.94,-31.16"/>
+        <lane id=":ITLS_28_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="55.39" width="3.75" shape="1.34,6.34 44.17,-28.14"/>
+    </edge>
+    <edge id=":ITLS_32" function="internal">
+        <lane id=":ITLS_32_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.89" length="22.06" width="3.75" shape="3.29,8.62 16.32,1.15 23.35,0.97"/>
+    </edge>
+    <edge id=":ITLS_33" function="internal">
+        <lane id=":ITLS_33_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.17" length="15.54" width="3.75" shape="5.23,10.91 16.82,4.39 19.06,4.39"/>
+    </edge>
+    <edge id=":ITLS_47" function="internal">
+        <lane id=":ITLS_47_0" index="0" allow="motorcycle moped bicycle" speed="12.45" length="4.07" width="4.00" shape="3.97,-26.60 2.28,-30.30"/>
+    </edge>
+    <edge id=":ITLS_48" function="internal">
+        <lane id=":ITLS_48_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="41.33" width="4.00" shape="21.42,2.51 27.23,4.05 47.75,11.81 59.24,18.67"/>
+    </edge>
+    <edge id=":ITLS_49" function="internal">
+        <lane id=":ITLS_49_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="13.57" length="21.91" width="3.75" shape="8.37,-12.35 10.00,-15.72 10.11,-24.39 6.11,-33.01"/>
+    </edge>
+    <edge id=":ITLS_50" function="internal">
+        <lane id=":ITLS_50_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.89" length="39.79" width="3.75" shape="23.35,0.97 29.36,0.81 42.41,7.58 55.48,21.48"/>
+    </edge>
+    <edge id=":ITLS_51" function="internal">
+        <lane id=":ITLS_51_0" index="0" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="15.17" length="40.68" width="3.75" shape="19.06,4.39 28.56,4.36 40.45,10.80 52.48,23.73"/>
+    </edge>
+    <edge id=":ITLS_c0" function="crossing" crossingEdges="JSNX JSNE">
+        <lane id=":ITLS_c0_0" index="0" allow="pedestrian" speed="1.00" length="28.49" width="4.00" shape="59.64,15.87 36.84,32.95"/>
+    </edge>
+    <edge id=":ITLS_c1" function="crossing" crossingEdges="CAEX CAEE">
+        <lane id=":ITLS_c1_0" index="0" allow="pedestrian" speed="1.00" length="43.95" width="4.00" shape="32.20,-40.99 58.28,-5.61"/>
+    </edge>
+    <edge id=":ITLS_c2" function="crossing" crossingEdges="JSSX JSSE">
+        <lane id=":ITLS_c2_0" index="0" allow="pedestrian" speed="1.00" length="27.20" width="4.00" shape="1.79,-27.51 24.03,-43.18"/>
+    </edge>
+    <edge id=":ITLS_c3" function="crossing" crossingEdges="CAWX CAWE">
+        <lane id=":ITLS_c3_0" index="0" allow="pedestrian" speed="1.00" length="39.65" width="4.00" shape="20.72,26.07 -4.94,-4.16"/>
+    </edge>
+    <edge id=":ITLS_w0" function="walkingarea">
+        <lane id=":ITLS_w0_0" index="0" allow="pedestrian" speed="1.00" length="12.88" width="4.00" shape="19.20,27.36 20.37,28.73 36.14,35.98 38.04,34.52 34.54,30.44 31.17,27.50 27.96,25.72 24.89,25.11 21.97,25.65"/>
+    </edge>
+    <edge id=":ITLS_w1" function="walkingarea">
+        <lane id=":ITLS_w1_0" index="0" allow="pedestrian" speed="1.00" length="15.47" width="4.00" shape="60.84,17.47 62.76,16.03 61.67,-4.39 59.89,-6.80 56.84,-3.85 55.07,-0.47 54.58,3.36 55.38,7.62 57.47,12.32"/>
+    </edge>
+    <edge id=":ITLS_w2" function="walkingarea">
+        <lane id=":ITLS_w2_0" index="0" allow="pedestrian" speed="1.00" length="6.90" width="4.00" shape="33.81,-42.18 32.62,-43.79 24.84,-46.19 22.88,-44.81 24.56,-42.78 26.30,-41.39 28.09,-40.63 29.94,-40.51 31.85,-41.03"/>
+    </edge>
+    <edge id=":ITLS_w3" function="walkingarea">
+        <lane id=":ITLS_w3_0" index="0" allow="pedestrian" speed="1.00" length="17.49" width="4.00" shape="0.64,-29.15 -1.32,-27.77 -7.64,-4.23 -6.47,-2.86 -1.81,-7.37 1.45,-11.82 3.33,-16.23 3.82,-20.59 2.93,-24.89"/>
+    </edge>
+    <edge id=":gneJ19_w0" function="walkingarea">
+        <lane id=":gneJ19_w0_0" index="0" allow="pedestrian" speed="1.00" length="42.75" width="2.00" shape="313.94,-178.39 314.99,-176.68 291.65,-214.75 292.59,-213.22"/>
+    </edge>
+    <edge id=":gneJ20_0" function="internal">
+        <lane id=":gneJ20_0_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="43.86" width="3.75" shape="177.71,-99.13 167.30,-91.92 160.89,-86.01 154.67,-79.81 144.84,-71.75"/>
+        <lane id=":gneJ20_0_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="174.47,-104.41 164.09,-96.86 158.02,-90.35 152.14,-83.55 142.35,-75.13"/>
+        <lane id=":gneJ20_0_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="172.51,-107.60 162.11,-99.91 156.15,-93.16 150.38,-86.12 140.57,-77.54"/>
+        <lane id=":gneJ20_0_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="170.55,-110.80 160.13,-102.95 154.27,-95.97 148.61,-88.69 138.79,-79.96"/>
+        <lane id=":gneJ20_0_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="170.55,-110.80 159.89,-103.35 153.38,-97.17 147.08,-90.70 137.01,-82.37"/>
+        <lane id=":gneJ20_0_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="170.55,-110.80 135.23,-84.79"/>
+        <lane id=":gneJ20_0_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="43.86" width="3.00" shape="170.55,-110.80 133.45,-87.20"/>
+    </edge>
+    <edge id=":gneJ20_7" function="internal">
+        <lane id=":gneJ20_7_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="45.09" width="3.75" shape="120.86,-104.28 159.26,-129.19"/>
+        <lane id=":gneJ20_7_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="45.09" width="3.75" shape="123.50,-100.70 161.65,-125.30"/>
+        <lane id=":gneJ20_7_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="45.09" width="3.75" shape="125.73,-97.68 163.61,-122.10"/>
+        <lane id=":gneJ20_7_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="45.09" width="3.75" shape="127.95,-94.66 165.58,-118.90"/>
+        <lane id=":gneJ20_7_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="45.09" width="3.75" shape="130.18,-91.64 167.54,-115.71"/>
+    </edge>
+    <edge id=":gneJ20_w0" function="walkingarea">
+        <lane id=":gneJ20_w0_0" index="0" allow="pedestrian" speed="1.00" length="42.35" width="3.00" shape="145.95,-70.24 147.73,-67.83 180.59,-94.44 179.54,-96.14 171.96,-91.25 166.59,-87.30 162.36,-83.76 158.23,-80.09 153.11,-75.76"/>
+    </edge>
+    <edge id=":gneJ20_w1" function="walkingarea">
+        <lane id=":gneJ20_w1_0" index="0" allow="pedestrian" speed="1.00" length="46.01" width="2.00" shape="158.28,-130.79 157.34,-132.32 118.64,-107.29 119.83,-105.68"/>
+    </edge>
+    <edge id=":gneJ22_0" function="internal">
+        <lane id=":gneJ22_0_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="8.10" width="3.25" shape="-78.54,107.93 -84.41,113.56"/>
+        <lane id=":gneJ22_0_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.10" width="3.75" shape="-81.50,104.44 -83.26,106.09 -84.34,107.35 -85.42,108.61 -87.19,110.25"/>
+        <lane id=":gneJ22_0_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.10" width="3.75" shape="-83.76,101.77 -89.60,107.38"/>
+        <lane id=":gneJ22_0_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.10" width="3.75" shape="-85.86,99.29 -92.01,104.51"/>
+        <lane id=":gneJ22_0_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.10" width="3.75" shape="-87.96,96.81 -94.42,101.63"/>
+    </edge>
+    <edge id=":gneJ22_5" function="internal">
+        <lane id=":gneJ22_5_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="8.13" width="3.75" shape="-108.31,85.48 -108.12,85.32 -101.86,80.39"/>
+        <lane id=":gneJ22_5_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.13" width="3.00" shape="-105.47,88.48 -99.15,83.59"/>
+        <lane id=":gneJ22_5_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.13" width="3.00" shape="-103.06,91.35 -97.21,85.88"/>
+        <lane id=":gneJ22_5_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.13" width="3.00" shape="-100.65,94.22 -98.93,92.54 -97.96,91.20 -96.98,89.85 -95.28,88.17"/>
+        <lane id=":gneJ22_5_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.13" width="3.00" shape="-98.23,97.09 -96.58,95.31 -95.78,93.78 -94.99,92.25 -93.34,90.46"/>
+        <lane id=":gneJ22_5_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="8.13" width="3.00" shape="-98.23,97.09 -96.29,95.68 -94.81,94.92 -93.33,94.16 -91.40,92.75"/>
+    </edge>
+    <edge id=":gneJ22_w0" function="walkingarea">
+        <lane id=":gneJ22_w0_0" index="0" allow="pedestrian" speed="1.00" length="8.13" width="1.80" shape="-83.36,114.80 -82.21,116.18 -76.17,110.73 -77.33,109.36"/>
+    </edge>
+    <edge id=":gneJ22_w1" function="walkingarea">
+        <lane id=":gneJ22_w1_0" index="0" allow="pedestrian" speed="1.00" length="7.95" width="1.80" shape="-103.08,78.96 -104.24,77.59 -110.40,82.60 -109.25,83.98"/>
+    </edge>
+    <edge id=":gneJ23_w0" function="walkingarea">
+        <lane id=":gneJ23_w0_0" index="0" allow="pedestrian" speed="1.00" length="42.07" width="1.80" shape="-293.25,245.03 -294.44,243.68 -265.24,276.42 -266.44,275.08"/>
+    </edge>
+    <edge id=":gneJ24_0" function="internal">
+        <lane id=":gneJ24_0_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="60.12" width="2.00" shape="100.65,114.48 64.21,66.99"/>
+        <lane id=":gneJ24_0_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="60.12" width="2.00" shape="100.65,114.48 65.79,65.78"/>
+        <lane id=":gneJ24_0_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="60.12" width="3.30" shape="104.42,111.90 68.55,63.66"/>
+        <lane id=":gneJ24_0_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="60.12" width="3.30" shape="107.31,109.93 71.17,61.66"/>
+        <lane id=":gneJ24_0_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="60.12" width="3.30" shape="107.31,109.93 73.78,59.65"/>
+    </edge>
+    <edge id=":gneJ24_5" function="internal">
+        <lane id=":gneJ24_5_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="60.93" width="3.50" shape="84.04,51.78 119.76,101.43"/>
+        <lane id=":gneJ24_5_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="60.93" width="3.75" shape="80.31,54.64 116.09,103.93"/>
+        <lane id=":gneJ24_5_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="60.93" width="3.75" shape="77.34,56.92 113.00,106.05"/>
+    </edge>
+    <edge id=":gneJ24_w0" function="walkingarea">
+        <lane id=":gneJ24_w0_0" index="0" allow="pedestrian" speed="1.00" length="59.69" width="2.40" shape="63.41,67.60 61.51,69.06 97.02,116.96 99.00,115.61"/>
+    </edge>
+    <edge id=":gneJ24_w1" function="walkingarea">
+        <lane id=":gneJ24_w1_0" index="0" allow="pedestrian" speed="1.00" length="61.33" width="2.40" shape="121.21,100.44 123.19,99.09 87.54,49.12 85.62,50.55"/>
+    </edge>
+    <edge id=":gneJ25_w0" function="walkingarea">
+        <lane id=":gneJ25_w0_0" index="0" allow="pedestrian" speed="1.00" length="29.24" width="2.40" shape="218.05,290.20 216.07,291.55 242.22,273.74 240.23,275.09"/>
+    </edge>
+    <edge id=":gneJ26_0" function="internal">
+        <lane id=":gneJ26_0_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="12.30" width="4.00" shape="-42.38,-93.71 -50.06,-103.35"/>
+        <lane id=":gneJ26_0_1" index="1" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="12.30" width="3.75" shape="-38.54,-96.41 -46.06,-106.13"/>
+        <lane id=":gneJ26_0_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="12.30" width="3.75" shape="-35.47,-98.57 -42.98,-108.27"/>
+    </edge>
+    <edge id=":gneJ26_3" function="internal">
+        <lane id=":gneJ26_3_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="12.27" width="2.00" shape="-30.35,-117.05 -22.57,-107.65"/>
+        <lane id=":gneJ26_3_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="12.27" width="2.00" shape="-30.35,-117.05 -24.21,-106.49"/>
+        <lane id=":gneJ26_3_2" index="2" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="12.27" width="3.00" shape="-34.21,-114.37 -26.92,-104.58"/>
+        <lane id=":gneJ26_3_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="12.27" width="3.00" shape="-37.29,-112.23 -35.07,-109.35 -33.34,-107.54 -31.61,-105.73 -29.38,-102.86"/>
+        <lane id=":gneJ26_3_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="12.27" width="3.00" shape="-37.29,-112.23 -35.45,-109.06 -34.57,-106.67 -33.69,-104.28 -31.83,-101.13"/>
+    </edge>
+    <edge id=":gneJ26_w0" function="walkingarea">
+        <lane id=":gneJ26_w0_0" index="0" allow="pedestrian" speed="1.00" length="12.35" width="2.40" shape="-51.70,-102.21 -53.67,-100.84 -45.97,-91.17 -44.01,-92.56"/>
+    </edge>
+    <edge id=":gneJ26_w1" function="walkingarea">
+        <lane id=":gneJ26_w1_0" index="0" allow="pedestrian" speed="1.00" length="12.15" width="2.40" shape="-21.76,-108.22 -19.79,-109.60 -26.74,-119.56 -28.71,-118.19"/>
+    </edge>
+    <edge id=":gneJ27_w0" function="walkingarea">
+        <lane id=":gneJ27_w0_0" index="0" allow="pedestrian" speed="1.00" length="30.38" width="2.40" shape="-129.18,-275.49 -127.14,-276.77 -154.94,-259.40 -152.90,-260.67"/>
+    </edge>
+
+    <edge id="CAED" from="gneJ20" to="gneJ19" priority="-1" spreadType="center" shape="163.19,-122.79 297.60,-205.28">
+        <lane id="CAED_0" index="0" allow="pedestrian" speed="22.22" length="157.59" width="1.80" shape="157.81,-131.56 292.12,-213.99"/>
+        <lane id="CAED_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="157.59" width="3.75" shape="159.26,-129.19 293.57,-211.62"/>
+        <lane id="CAED_2" index="2" disallow="all" speed="22.22" length="157.59" width="0.82" shape="160.46,-127.24 294.77,-209.67"/>
+        <lane id="CAED_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.59" width="3.75" shape="161.65,-125.30 295.96,-207.72"/>
+        <lane id="CAED_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.59" width="3.75" shape="163.61,-122.10 297.92,-204.53"/>
+        <lane id="CAED_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.59" width="3.75" shape="165.58,-118.90 299.88,-201.33"/>
+        <lane id="CAED_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.59" width="3.75" shape="167.54,-115.71 301.84,-198.13"/>
+        <lane id="CAED_7" index="7" disallow="all" speed="22.22" length="157.59" width="1.00" shape="168.78,-113.68 303.08,-196.11"/>
+    </edge>
+    <edge id="CAEE" from="gneJ20" to="ITLS" priority="-1" spreadType="center" shape="139.85,-78.52 53.79,-15.08">
+        <lane id="CAEE_0" index="0" allow="pedestrian" speed="22.22" length="106.92" width="3.00" shape="146.84,-69.03 60.78,-5.59"/>
+        <lane id="CAEE_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="106.92" width="3.75" shape="144.84,-71.75 58.78,-8.31"/>
+        <lane id="CAEE_2" index="2" disallow="all" speed="22.22" length="106.92" width="0.82" shape="143.48,-73.59 57.42,-10.15"/>
+        <lane id="CAEE_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="142.35,-75.13 56.29,-11.69"/>
+        <lane id="CAEE_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="140.57,-77.54 54.51,-14.10"/>
+        <lane id="CAEE_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="138.79,-79.96 52.73,-16.52"/>
+        <lane id="CAEE_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="137.01,-82.37 50.95,-18.93"/>
+        <lane id="CAEE_7" index="7" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="135.23,-84.79 49.17,-21.35"/>
+        <lane id="CAEE_8" index="8" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.92" width="3.00" shape="133.45,-87.20 47.39,-23.76"/>
+        <lane id="CAEE_9" index="9" disallow="all" speed="22.22" length="106.92" width="1.00" shape="132.26,-88.81 46.20,-25.37"/>
+    </edge>
+    <edge id="CAEU" from="gneJ19" to="gneJ20" priority="-1" spreadType="center" shape="308.61,-185.72 174.91,-103.90">
+        <lane id="CAEU_0" index="0" allow="pedestrian" speed="22.22" length="157.57" width="2.00" shape="314.46,-177.54 180.07,-95.29"/>
+        <lane id="CAEU_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="157.57" width="7.00" shape="312.11,-181.37 177.71,-99.13"/>
+        <lane id="CAEU_2" index="2" disallow="all" speed="22.22" length="157.57" width="0.82" shape="310.07,-184.71 175.67,-102.46"/>
+        <lane id="CAEU_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.57" width="3.75" shape="308.88,-186.66 174.47,-104.41"/>
+        <lane id="CAEU_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.57" width="3.75" shape="306.92,-189.85 172.51,-107.60"/>
+        <lane id="CAEU_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="157.57" width="3.75" shape="304.96,-193.05 170.55,-110.80"/>
+        <lane id="CAEU_6" index="6" disallow="all" speed="22.22" length="157.57" width="1.00" shape="303.71,-195.08 169.31,-112.82"/>
+    </edge>
+    <edge id="CAEX" from="ITLS" to="gneJ20" priority="-1" spreadType="center" shape="39.25,-34.81 124.84,-98.00">
+        <lane id="CAEX_0" index="0" allow="pedestrian" speed="22.22" length="106.91" width="2.00" shape="33.22,-42.98 119.23,-106.49"/>
+        <lane id="CAEX_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="106.91" width="3.50" shape="34.85,-40.77 120.86,-104.28"/>
+        <lane id="CAEX_2" index="2" disallow="all" speed="22.22" length="106.91" width="0.82" shape="36.13,-39.03 122.15,-102.54"/>
+        <lane id="CAEX_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.91" width="3.75" shape="37.49,-37.20 123.50,-100.70"/>
+        <lane id="CAEX_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.91" width="3.75" shape="39.72,-34.18 125.73,-97.68"/>
+        <lane id="CAEX_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.91" width="3.75" shape="41.94,-31.16 127.95,-94.66"/>
+        <lane id="CAEX_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="106.91" width="3.75" shape="44.17,-28.14 130.18,-91.64"/>
+        <lane id="CAEX_7" index="7" disallow="all" speed="22.22" length="106.91" width="1.00" shape="45.58,-26.23 131.59,-89.73"/>
+    </edge>
+    <edge id="CAWD" from="gneJ22" to="gneJ23" priority="-1" spreadType="center" shape="-87.42,106.28 -147.68,156.88 -260.09,257.17">
+        <lane id="CAWD_0" index="0" allow="pedestrian" speed="22.22" length="243.61" width="1.80" shape="-82.78,115.49 -141.11,164.47 -265.84,275.75"/>
+        <lane id="CAWD_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="243.61" width="3.25" shape="-84.41,113.56 -142.76,162.56 -267.52,273.87"/>
+        <lane id="CAWD_2" index="2" disallow="all" speed="22.22" length="243.61" width="0.82" shape="-85.72,112.00 -144.10,161.02 -268.88,272.35"/>
+        <lane id="CAWD_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="243.61" width="3.75" shape="-87.19,110.25 -145.59,159.29 -270.40,270.64"/>
+        <lane id="CAWD_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="243.61" width="3.75" shape="-89.60,107.38 -148.05,156.46 -272.89,267.84"/>
+        <lane id="CAWD_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="243.61" width="3.75" shape="-92.01,104.51 -150.50,153.62 -275.39,265.04"/>
+        <lane id="CAWD_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="243.61" width="3.75" shape="-94.42,101.63 -152.96,150.79 -277.89,262.25"/>
+        <lane id="CAWD_7" index="7" disallow="all" speed="22.22" length="243.61" width="1.00" shape="-95.95,99.81 -154.51,148.99 -279.47,260.47"/>
+    </edge>
+    <edge id="CAWE" from="gneJ22" to="ITLS" priority="-1" spreadType="center" shape="-98.84,87.67 -0.57,4.44">
+        <lane id="CAWE_0" index="0" allow="pedestrian" speed="22.22" length="126.61" width="1.80" shape="-103.66,78.27 -7.05,-3.55"/>
+        <lane id="CAWE_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="126.61" width="3.75" shape="-101.86,80.39 -5.26,-1.43"/>
+        <lane id="CAWE_2" index="2" disallow="all" speed="22.22" length="126.61" width="0.82" shape="-100.39,82.13 -3.78,0.31"/>
+        <lane id="CAWE_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="126.61" width="3.00" shape="-99.15,83.59 -2.54,1.77"/>
+        <lane id="CAWE_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="126.61" width="3.00" shape="-97.21,85.88 -0.60,4.05"/>
+        <lane id="CAWE_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="126.61" width="3.00" shape="-95.28,88.17 1.34,6.34"/>
+        <lane id="CAWE_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="126.61" width="3.00" shape="-93.34,90.46 3.29,8.62"/>
+        <lane id="CAWE_7" index="7" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="126.61" width="3.00" shape="-91.40,92.75 5.23,10.91"/>
+        <lane id="CAWE_8" index="8" disallow="all" speed="22.22" length="126.61" width="1.00" shape="-90.11,94.27 6.52,12.44"/>
+    </edge>
+    <edge id="CAWU" from="gneJ23" to="gneJ22" priority="5" spreadType="center" shape="-274.70,240.68 -162.09,140.26 -101.52,89.37">
+        <lane id="CAWU_0" index="0" allow="pedestrian" speed="22.22" length="244.26" width="1.80" shape="-293.85,244.35 -168.64,132.70 -109.83,83.29"/>
+        <lane id="CAWU_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="244.26" endOffset="0.25" width="3.50" shape="-292.08,246.33 -166.90,134.70 -108.31,85.48"/>
+        <lane id="CAWU_2" index="2" disallow="all" speed="22.22" length="244.26" width="0.50" shape="-290.75,247.82 -165.59,136.21 -106.84,86.85"/>
+        <lane id="CAWU_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="244.26" width="3.75" shape="-289.34,249.41 -164.20,137.82 -105.47,88.48"/>
+        <lane id="CAWU_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="244.26" width="3.75" shape="-286.84,252.21 -161.75,140.66 -103.06,91.35"/>
+        <lane id="CAWU_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="244.26" width="3.75" shape="-284.34,255.01 -159.29,143.49 -100.65,94.22"/>
+        <lane id="CAWU_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="22.22" length="244.26" width="3.75" shape="-281.85,257.81 -156.84,146.33 -98.23,97.09"/>
+        <lane id="CAWU_7" index="7" disallow="all" speed="22.22" length="244.26" width="1.00" shape="-280.27,259.58 -155.28,148.12 -96.71,98.91"/>
+    </edge>
+    <edge id="CAWX" from="ITLS" to="gneJ22" priority="-1" spreadType="center" shape="13.61,20.78 -84.60,104.20">
+        <lane id="CAWX_0" index="0" allow="pedestrian" speed="22.22" length="126.64" width="1.80" shape="19.78,28.05 -76.75,110.04"/>
+        <lane id="CAWX_1" index="1" allow="motorcycle moped bicycle" speed="22.22" length="126.64" width="3.75" shape="17.99,25.93 -78.54,107.93"/>
+        <lane id="CAWX_2" index="2" disallow="all" speed="22.22" length="126.64" width="0.82" shape="16.51,24.19 -80.02,106.18"/>
+        <lane id="CAWX_3" index="3" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="126.64" width="3.75" shape="15.03,22.45 -81.50,104.44"/>
+        <lane id="CAWX_4" index="4" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="126.64" width="3.25" shape="12.76,19.78 -83.76,101.77"/>
+        <lane id="CAWX_5" index="5" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="126.64" width="3.25" shape="10.66,17.30 -85.86,99.29"/>
+        <lane id="CAWX_6" index="6" disallow="pedestrian motorcycle moped rail_fast" speed="22.22" length="126.64" width="3.25" shape="8.55,14.83 -87.96,96.81"/>
+        <lane id="CAWX_7" index="7" disallow="all" speed="22.22" length="126.64" width="1.00" shape="7.18,13.21 -89.33,95.19"/>
+    </edge>
+    <edge id="JSND" from="gneJ24" to="gneJ25" priority="-1" spreadType="center" shape="116.70,103.52 150.49,153.00 232.23,273.04">
+        <lane id="JSND_0" index="0" allow="pedestrian" speed="11.11" length="211.34" width="2.40" shape="122.20,99.76 155.99,149.25 241.22,274.42"/>
+        <lane id="JSND_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="211.34" width="3.50" shape="119.76,101.43 153.56,150.91 238.79,276.08"/>
+        <lane id="JSND_2" index="2" disallow="all" speed="11.11" length="211.34" width="0.82" shape="117.98,102.65 151.77,152.13 237.00,277.29"/>
+        <lane id="JSND_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="211.34" width="3.75" shape="116.09,103.93 149.88,153.41 235.11,278.58"/>
+        <lane id="JSND_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="211.34" width="3.75" shape="113.00,106.05 146.78,155.53 232.01,280.69"/>
+        <lane id="JSND_5" index="5" disallow="all" speed="11.11" length="211.34" width="1.50" shape="110.83,107.53 144.62,157.01 229.84,282.17"/>
+    </edge>
+    <edge id="JSNE" from="gneJ24" to="ITLS" priority="-1" spreadType="center" shape="68.50,63.70 46.38,34.86">
+        <lane id="JSNE_0" index="0" allow="pedestrian" speed="11.11" length="41.60" width="2.40" shape="62.46,68.33 37.09,35.25"/>
+        <lane id="JSNE_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="41.60" width="2.00" shape="64.21,66.99 38.85,33.93"/>
+        <lane id="JSNE_2" index="2" allow="motorcycle moped bicycle" speed="11.11" length="41.60" width="2.00" shape="65.79,65.78 40.45,32.73"/>
+        <lane id="JSNE_3" index="3" disallow="all" speed="11.11" length="41.60" width="0.82" shape="66.91,64.92 41.58,31.89"/>
+        <lane id="JSNE_4" index="4" disallow="pedestrian rail_fast" speed="11.11" length="41.60" width="3.30" shape="68.55,63.66 43.23,30.65"/>
+        <lane id="JSNE_5" index="5" disallow="pedestrian rail_fast" speed="11.11" length="41.60" width="3.30" shape="71.17,61.66 45.87,28.68"/>
+        <lane id="JSNE_6" index="6" disallow="pedestrian rail_fast" speed="11.11" length="41.60" width="3.30" shape="73.78,59.65 48.51,26.70"/>
+        <lane id="JSNE_7" index="7" disallow="all" speed="11.11" length="41.60" width="0.50" shape="75.29,58.49 50.03,25.56"/>
+    </edge>
+    <edge id="JSNU" from="gneJ25" to="gneJ24" priority="-1" spreadType="center" shape="219.08,282.01 137.41,162.11 103.52,112.55">
+        <lane id="JSNU_0" index="0" allow="pedestrian" speed="11.11" length="211.32" width="2.40" shape="217.06,290.87 131.91,165.86 98.01,116.29"/>
+        <lane id="JSNU_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="211.32" width="4.00" shape="219.70,289.07 134.55,164.06 100.65,114.48"/>
+        <lane id="JSNU_2" index="2" disallow="all" speed="11.11" length="211.32" width="0.82" shape="221.70,287.71 136.54,162.70 102.64,113.12"/>
+        <lane id="JSNU_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="211.32" width="3.50" shape="223.48,286.50 138.33,161.48 104.42,111.90"/>
+        <lane id="JSNU_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="211.32" width="3.50" shape="226.37,284.53 141.22,159.51 107.31,109.93"/>
+        <lane id="JSNU_5" index="5" disallow="all" speed="11.11" length="211.32" width="1.50" shape="228.44,283.12 143.28,158.10 109.38,108.52"/>
+    </edge>
+    <edge id="JSNX" from="ITLS" to="gneJ24" priority="1" spreadType="center" shape="56.67,20.59 81.80,54.15">
+        <lane id="JSNX_0" index="0" allow="pedestrian" speed="11.11" length="41.42" width="2.40" shape="61.80,16.75 86.58,49.84"/>
+        <lane id="JSNX_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="41.42" width="4.00" shape="59.24,18.67 84.04,51.78"/>
+        <lane id="JSNX_2" index="2" disallow="all" speed="11.11" length="41.42" width="0.82" shape="57.31,20.11 82.13,53.25"/>
+        <lane id="JSNX_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="41.42" width="3.75" shape="55.48,21.48 80.31,54.64"/>
+        <lane id="JSNX_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="41.42" width="3.75" shape="52.48,23.73 77.34,56.92"/>
+        <lane id="JSNX_5" index="5" disallow="all" speed="11.11" length="41.42" width="0.50" shape="50.78,25.00 75.65,58.22"/>
+    </edge>
+    <edge id="JSSD" from="gneJ26" to="gneJ27" priority="1" spreadType="center" shape="-46.94,-105.52 -68.39,-136.37 -147.23,-262.54">
+        <lane id="JSSD_0" index="0" allow="pedestrian" speed="11.11" length="187.76" width="2.40" shape="-52.69,-101.52 -74.24,-132.51 -153.92,-260.03"/>
+        <lane id="JSSD_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="187.76" width="4.00" shape="-50.06,-103.35 -71.56,-134.28 -151.20,-261.73"/>
+        <lane id="JSSD_2" index="2" disallow="all" speed="11.11" length="187.76" width="1.00" shape="-48.01,-104.78 -69.48,-135.65 -149.08,-263.05"/>
+        <lane id="JSSD_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="187.76" width="3.75" shape="-46.06,-106.13 -67.49,-136.96 -147.07,-264.31"/>
+        <lane id="JSSD_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="187.76" width="3.75" shape="-42.98,-108.27 -64.36,-139.03 -143.89,-266.30"/>
+        <lane id="JSSD_5" index="5" disallow="all" speed="11.11" length="187.76" width="1.50" shape="-40.82,-109.77 -62.17,-140.47 -141.66,-267.69"/>
+    </edge>
+    <edge id="JSSE" from="gneJ26" to="ITLS" priority="-1" spreadType="center" shape="-26.63,-104.79 17.97,-41.43">
+        <lane id="JSSE_0" index="0" allow="pedestrian" speed="11.11" length="77.55" width="2.40" shape="-20.78,-108.91 23.86,-45.50"/>
+        <lane id="JSSE_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="77.55" width="2.00" shape="-22.57,-107.65 22.06,-44.24"/>
+        <lane id="JSSE_2" index="2" allow="motorcycle moped bicycle" speed="11.11" length="77.55" width="2.00" shape="-24.21,-106.49 20.43,-43.08"/>
+        <lane id="JSSE_3" index="3" disallow="all" speed="11.11" length="77.55" width="0.82" shape="-25.36,-105.68 19.27,-42.27"/>
+        <lane id="JSSE_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="77.55" width="3.00" shape="-26.92,-104.58 17.71,-41.17"/>
+        <lane id="JSSE_5" index="5" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="77.55" width="3.00" shape="-29.38,-102.86 15.26,-39.44"/>
+        <lane id="JSSE_6" index="6" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="77.55" width="3.00" shape="-31.83,-101.13 12.81,-37.72"/>
+        <lane id="JSSE_7" index="7" disallow="all" speed="11.11" length="77.55" width="0.50" shape="-33.26,-100.12 11.37,-36.71"/>
+    </edge>
+    <edge id="JSSU" from="gneJ27" to="gneJ26" priority="-1" spreadType="center" shape="-133.60,-271.80 -54.74,-145.62 -26.50,-105.01">
+        <lane id="JSSU_0" index="0" allow="pedestrian" speed="11.11" length="186.97" width="2.40" shape="-128.16,-276.13 -48.97,-149.43 -27.73,-118.88"/>
+        <lane id="JSSU_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="186.97" width="4.00" shape="-130.87,-274.43 -51.64,-147.66 -30.35,-117.05"/>
+        <lane id="JSSU_2" index="2" disallow="all" speed="11.11" length="186.97" width="0.82" shape="-132.92,-273.16 -53.65,-146.34 -32.33,-115.68"/>
+        <lane id="JSSU_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="186.97" width="3.75" shape="-134.85,-271.95 -55.56,-145.08 -34.21,-114.37"/>
+        <lane id="JSSU_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="186.97" width="3.75" shape="-138.03,-269.96 -58.69,-143.01 -37.29,-112.23"/>
+        <lane id="JSSU_5" index="5" disallow="all" speed="11.11" length="186.97" width="1.50" shape="-140.26,-268.57 -60.89,-141.57 -39.44,-110.73"/>
+    </edge>
+    <edge id="JSSX" from="ITLS" to="gneJ26" priority="-1" spreadType="center" shape="4.90,-32.15 -39.60,-95.34">
+        <lane id="JSSX_0" index="0" allow="pedestrian" speed="11.11" length="77.55" width="2.40" shape="-0.34,-28.46 -44.99,-91.86"/>
+        <lane id="JSSX_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="77.55" width="4.00" shape="2.28,-30.30 -42.38,-93.71"/>
+        <lane id="JSSX_2" index="2" disallow="all" speed="11.11" length="77.55" width="0.82" shape="4.25,-31.69 -40.40,-95.09"/>
+        <lane id="JSSX_3" index="3" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="77.55" width="3.75" shape="6.11,-33.01 -38.54,-96.41"/>
+        <lane id="JSSX_4" index="4" disallow="pedestrian motorcycle moped bicycle rail_fast" speed="11.11" length="77.55" width="3.75" shape="9.18,-35.16 -35.47,-98.57"/>
+        <lane id="JSSX_5" index="5" disallow="all" speed="11.11" length="77.55" width="0.50" shape="10.92,-36.39 -33.73,-99.79"/>
+    </edge>
+
+    <tlLogic id="ITLS" type="static" programID="0" offset="0">
+        <phase duration="24" state="rrrrrrrgGggGGGGrrrrrrrrrgGggGGGGrrGrGr"/>
+        <phase duration="5"  state="rrrrrrrgGggGGGGrrrrrrrrrgGggGGGGrrrrrr"/>
+        <phase duration="5"  state="rrrrrrryyyyyyyyrrrrrrrrryyyyyyyyrrrrrr"/>
+        <phase duration="6"  state="rrrrrrrrrrrrrrrGGrrrrrrrrrrrrrrrGGrrrr"/>
+        <phase duration="5"  state="rrrrrrrrrrrrrrryyrrrrrrrrrrrrrrryyrrrr"/>
+        <phase duration="24" state="gGggGGgrrrrrrrrrrgGggGGgrrrrrrrrrrrGrG"/>
+        <phase duration="5"  state="gGggGGgrrrrrrrrrrgGggGGgrrrrrrrrrrrrrr"/>
+        <phase duration="5"  state="yyyyyygrrrrrrrrrryyyyyygrrrrrrrrrrrrrr"/>
+        <phase duration="6"  state="rrrrrrGrrrrrrrrrrrrrrrrGrrrrrrrrrrrrrr"/>
+        <phase duration="5"  state="rrrrrryrrrrrrrrrrrrrrrryrrrrrrrrrrrrrr"/>
+    </tlLogic>
+
+    <junction id="ITLS" type="traffic_light" x="30.62" y="-7.45" incLanes="JSNE_0 JSNE_1 JSNE_2 JSNE_3 JSNE_4 JSNE_5 JSNE_6 JSNE_7 CAEE_0 CAEE_1 CAEE_2 CAEE_3 CAEE_4 CAEE_5 CAEE_6 CAEE_7 CAEE_8 CAEE_9 JSSE_0 JSSE_1 JSSE_2 JSSE_3 JSSE_4 JSSE_5 JSSE_6 JSSE_7 CAWE_0 CAWE_1 CAWE_2 CAWE_3 CAWE_4 CAWE_5 CAWE_6 CAWE_7 CAWE_8 :ITLS_w1_0 :ITLS_w2_0 :ITLS_w3_0 :ITLS_w0_0" intLanes=":ITLS_34_0 :ITLS_1_0 :ITLS_35_0 :ITLS_36_0 :ITLS_4_0 :ITLS_4_1 :ITLS_37_0 :ITLS_38_0 :ITLS_8_0 :ITLS_39_0 :ITLS_40_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_41_0 :ITLS_42_0 :ITLS_43_0 :ITLS_18_0 :ITLS_44_0 :ITLS_45_0 :ITLS_21_0 :ITLS_21_1 :ITLS_46_0 :ITLS_47_0 :ITLS_25_0 :ITLS_48_0 :ITLS_49_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_50_0 :ITLS_51_0 :ITLS_c0_0 :ITLS_c1_0 :ITLS_c2_0 :ITLS_c3_0" shape="36.13,35.97 62.76,16.03 59.89,11.66 58.09,7.68 57.38,4.08 57.74,0.87 59.18,-1.96 61.70,-4.40 32.62,-43.79 29.98,-42.74 28.67,-42.91 27.38,-43.54 26.11,-44.64 24.84,-46.19 -1.32,-27.77 0.73,-23.95 1.54,-20.09 1.11,-16.19 -0.56,-12.24 -3.48,-8.26 -7.64,-4.23 20.37,28.73 22.52,27.48 24.87,27.20 27.40,27.92 30.12,29.62 33.03,32.30" radius="2.00">
+        <request index="0"  response="10010000000000000000000000000100000000" foes="10010000000000000010000000000100000000" cont="1"/>
+        <request index="1"  response="01011111111111000000000111101100000000" foes="01011111111111100010000111101100001000" cont="0"/>
+        <request index="2"  response="00111111110110011101111111101100110000" foes="00111111110110011101111111101100111000" cont="1"/>
+        <request index="3"  response="10010000000000000000000111100100000110" foes="10010000000000100010000111100100000110" cont="1"/>
+        <request index="4"  response="01011111111110000000011111101100000000" foes="01011111111110100010011111101100000100" cont="0"/>
+        <request index="5"  response="01011111111110000000011111101100000000" foes="01011111111110100010011111101100000100" cont="0"/>
+        <request index="6"  response="00111111110100011101011111101100000000" foes="00111111110100011101011111101100000000" cont="1"/>
+        <request index="7"  response="00110000000000000000000000000000000000" foes="00110000000100000001000000000000000000" cont="1"/>
+        <request index="8"  response="10100000000000000010000000000001001101" foes="10101100000100011011000000010001111111" cont="0"/>
+        <request index="9"  response="01100011111011100010000111100001000100" foes="01100011111011111011000111110001110110" cont="1"/>
+        <request index="10" response="00110000000000000000000000001100000000" foes="00111100000100011001000000001100000000" cont="1"/>
+        <request index="11" response="10100000000000100010000000000001001100" foes="10101100000100111011000000001001111110" cont="0"/>
+        <request index="12" response="10100000000000100010000000000001001100" foes="10101100000100111011000000001001111110" cont="0"/>
+        <request index="13" response="10100000000000100010000000000001001100" foes="10101100000100111011000000001001111110" cont="0"/>
+        <request index="14" response="10100000000000100010000000000001001100" foes="10101100000100111011000000001001111110" cont="0"/>
+        <request index="15" response="01100011111010100010000000000001000100" foes="01100011111010111011000000000001110100" cont="1"/>
+        <request index="16" response="01100011111010100010000000000001000100" foes="01100011111010111011000000000001110100" cont="1"/>
+        <request index="17" response="01100000000010000000000000000000000000" foes="01100000000010000000000000000000000100" cont="1"/>
+        <request index="18" response="01010011110110000000011111111110000000" foes="01010011110110000100011111111111000100" cont="0"/>
+        <request index="19" response="11001111110110011000011111101100111011" foes="11001111110110011100011111101100111011" cont="1"/>
+        <request index="20" response="01100011110010000011000000000000000000" foes="01100011110010000011000000000001000100" cont="1"/>
+        <request index="21" response="01011111110110000000011111111100000000" foes="01011111110110000010011111111101000100" cont="0"/>
+        <request index="22" response="01011111110110000000011111111100000000" foes="01011111110110000010011111111101000100" cont="0"/>
+        <request index="23" response="11001111110110000000011111101000111010" foes="11001111110110000000011111101000111010" cont="1"/>
+        <request index="24" response="11000000000000000000000000000000000000" foes="11000000000000000000000000001000000010" cont="1"/>
+        <request index="25" response="10100000000000100110100000000000000100" foes="10100000001000111111111000001000110110" cont="0"/>
+        <request index="26" response="10010011110000100010000111110111000100" foes="10010011111000111011000111110111110110" cont="1"/>
+        <request index="27" response="11000000000110000000000000000000000000" foes="11000000000110000000011000001000110010" cont="1"/>
+        <request index="28" response="10100000000000100110000000000001000100" foes="10100000000100111111011000001001110110" cont="0"/>
+        <request index="29" response="10100000000000100110000000000001000100" foes="10100000000100111111011000001001110110" cont="0"/>
+        <request index="30" response="10100000000000100110000000000001000100" foes="10100000000100111111011000001001110110" cont="0"/>
+        <request index="31" response="10100000000000100110000000000001000100" foes="10100000000100111111011000001001110110" cont="0"/>
+        <request index="32" response="10010000000000100010000111110101000100" foes="10010000000000111010000111110101110110" cont="1"/>
+        <request index="33" response="10010000000000100010000111110101000100" foes="10010000000000111010000111110101110110" cont="1"/>
+        <request index="34" response="00000000000000000000000000000000000000" foes="00001100000100011001000000010011111111" cont="0"/>
+        <request index="35" response="00000000000000000000000000000000000000" foes="00000011110010000100111111111111000100" cont="0"/>
+        <request index="36" response="00000000000000000000000000000000000000" foes="00000000001001111111111000001000110010" cont="0"/>
+        <request index="37" response="00000000000000000000000000000000000000" foes="00001111111111100010000111100100001001" cont="0"/>
+    </junction>
+    <junction id="gneJ19" type="dead_end" x="304.17" y="-194.36" incLanes="CAED_0 CAED_1 CAED_2 CAED_3 CAED_4 CAED_5 CAED_6 CAED_7" intLanes="" shape="303.99,-194.66 314.99,-176.68 291.65,-214.75"/>
+    <junction id="gneJ20" type="priority" x="133.65" y="-90.23" incLanes="CAEU_0 CAEU_1 CAEU_2 CAEU_3 CAEU_4 CAEU_5 CAEU_6 CAEX_0 CAEX_1 CAEX_2 CAEX_3 CAEX_4 CAEX_5 CAEX_6 CAEX_7" intLanes=":gneJ20_0_0 :gneJ20_0_1 :gneJ20_0_2 :gneJ20_0_3 :gneJ20_0_4 :gneJ20_0_5 :gneJ20_0_6 :gneJ20_7_0 :gneJ20_7_1 :gneJ20_7_2 :gneJ20_7_3 :gneJ20_7_4" shape="180.59,-94.44 157.34,-132.32 118.64,-107.29 147.73,-67.83">
+        <request index="0"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="1"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="2"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="3"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="4"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="5"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="6"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="7"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="8"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="9"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="10" response="000000000000" foes="000000000000" cont="0"/>
+        <request index="11" response="000000000000" foes="000000000000" cont="0"/>
+    </junction>
+    <junction id="gneJ22" type="priority" x="-100.26" y="102.19" incLanes="CAWX_0 CAWX_1 CAWX_2 CAWX_3 CAWX_4 CAWX_5 CAWX_6 CAWX_7 CAWU_0 CAWU_1 CAWU_2 CAWU_3 CAWU_4 CAWU_5 CAWU_6 CAWU_7" intLanes=":gneJ22_0_0 :gneJ22_0_1 :gneJ22_0_2 :gneJ22_0_3 :gneJ22_0_4 :gneJ22_5_0 :gneJ22_5_1 :gneJ22_5_2 :gneJ22_5_3 :gneJ22_5_4 :gneJ22_5_5" shape="-76.17,110.73 -104.24,77.59 -110.40,82.60 -82.21,116.18">
+        <request index="0"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="1"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="2"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="3"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="4"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="5"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="6"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="7"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="8"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="9"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="10" response="00000000000" foes="00000000000" cont="0"/>
+    </junction>
+    <junction id="gneJ23" type="dead_end" x="-281.08" y="258.67" incLanes="CAWD_0 CAWD_1 CAWD_2 CAWD_3 CAWD_4 CAWD_5 CAWD_6 CAWD_7" intLanes="" shape="-280.60,259.21 -294.44,243.68 -265.24,276.42"/>
+    <junction id="gneJ24" type="priority" x="93.45" y="84.00" incLanes="JSNU_0 JSNU_1 JSNU_2 JSNU_3 JSNU_4 JSNU_5 JSNX_0 JSNX_1 JSNX_2 JSNX_3 JSNX_4 JSNX_5" intLanes=":gneJ24_0_0 :gneJ24_0_1 :gneJ24_0_2 :gneJ24_0_3 :gneJ24_0_4 :gneJ24_5_0 :gneJ24_5_1 :gneJ24_5_2" shape="97.02,116.96 123.19,99.09 87.53,49.10 61.51,69.06">
+        <request index="0" response="00000000" foes="00000000" cont="0"/>
+        <request index="1" response="00000000" foes="00000000" cont="0"/>
+        <request index="2" response="00000000" foes="00000000" cont="0"/>
+        <request index="3" response="00000000" foes="00000000" cont="0"/>
+        <request index="4" response="00000000" foes="00000000" cont="0"/>
+        <request index="5" response="00000000" foes="00000000" cont="0"/>
+        <request index="6" response="00000000" foes="00000000" cont="0"/>
+        <request index="7" response="00000000" foes="00000000" cont="0"/>
+    </junction>
+    <junction id="gneJ25" type="dead_end" x="229.38" y="282.48" incLanes="JSND_0 JSND_1 JSND_2 JSND_3 JSND_4 JSND_5" intLanes="" shape="227.82,283.54 216.07,291.55 242.22,273.74"/>
+    <junction id="gneJ26" type="priority" x="-36.49" y="-104.98" incLanes="JSSX_0 JSSX_1 JSSX_2 JSSX_3 JSSX_4 JSSX_5 JSSU_0 JSSU_1 JSSU_2 JSSU_3 JSSU_4 JSSU_5" intLanes=":gneJ26_0_0 :gneJ26_0_1 :gneJ26_0_2 :gneJ26_3_0 :gneJ26_3_1 :gneJ26_3_2 :gneJ26_3_3 :gneJ26_3_4" shape="-45.97,-91.17 -19.79,-109.60 -26.74,-119.56 -53.67,-100.84">
+        <request index="0" response="00000000" foes="00000000" cont="0"/>
+        <request index="1" response="00000000" foes="00000000" cont="0"/>
+        <request index="2" response="00000000" foes="00000000" cont="0"/>
+        <request index="3" response="00000000" foes="00000000" cont="0"/>
+        <request index="4" response="00000000" foes="00000000" cont="0"/>
+        <request index="5" response="00000000" foes="00000000" cont="0"/>
+        <request index="6" response="00000000" foes="00000000" cont="0"/>
+        <request index="7" response="00000000" foes="00000000" cont="0"/>
+    </junction>
+    <junction id="gneJ27" type="dead_end" x="-141.28" y="-267.93" incLanes="JSSD_0 JSSD_1 JSSD_2 JSSD_3 JSSD_4 JSSD_5" intLanes="" shape="-139.62,-268.97 -127.14,-276.77 -154.94,-259.40"/>
+
+    <junction id=":ITLS_34_0" type="internal" x="21.66" y="24.08" incLanes=":ITLS_0_0" intLanes=":ITLS_8_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_19_0 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_35_0" type="internal" x="33.44" y="-4.89" incLanes=":ITLS_2_0 JSSE_1 JSSE_4 JSSE_5" intLanes=":ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_33_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_36_0" type="internal" x="32.54" y="20.99" incLanes=":ITLS_3_0 JSNE_1" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_8_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_19_0 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_37_0" type="internal" x="44.44" y="13.77" incLanes=":ITLS_6_0 JSSE_1 JSSE_4 JSSE_5" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_20_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_33_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_38_0" type="internal" x="57.17" y="15.22" incLanes=":ITLS_7_0" intLanes=":ITLS_18_0 :ITLS_21_0 :ITLS_21_1 :ITLS_26_0 :ITLS_32_0 :ITLS_33_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_39_0" type="internal" x="30.60" y="-14.81" incLanes=":ITLS_9_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_40_0" type="internal" x="49.43" y="-2.91" incLanes=":ITLS_10_0 CAEE_1" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_18_0 :ITLS_21_0 :ITLS_21_1 :ITLS_26_0 :ITLS_32_0 :ITLS_33_0 :ITLS_c0_0 :ITLS_c1_0"/>
+    <junction id=":ITLS_41_0" type="internal" x="31.80" y="-15.77" incLanes=":ITLS_15_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_42_0" type="internal" x="35.85" y="-19.04" incLanes=":ITLS_16_0 CAWE_1 CAWE_3 CAWE_4 CAWE_5" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_27_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_43_0" type="internal" x="31.11" y="-39.10" incLanes=":ITLS_17_0" intLanes=":ITLS_2_0 :ITLS_6_0 :ITLS_25_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_44_0" type="internal" x="23.33" y="-14.25" incLanes=":ITLS_19_0 JSNE_1 JSNE_4 JSNE_5" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_21_0 :ITLS_21_1 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_33_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_45_0" type="internal" x="25.28" y="-34.86" incLanes=":ITLS_20_0 JSSE_1" intLanes=":ITLS_2_0 :ITLS_6_0 :ITLS_18_0 :ITLS_19_0 :ITLS_25_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c1_0 :ITLS_c2_0"/>
+    <junction id=":ITLS_46_0" type="internal" x="14.62" y="-29.84" incLanes=":ITLS_23_0 JSNE_1 JSNE_4 JSNE_5" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_3_0 :ITLS_4_0 :ITLS_4_1 :ITLS_8_0 :ITLS_9_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_15_0 :ITLS_16_0 :ITLS_25_0 :ITLS_26_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_32_0 :ITLS_33_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_47_0" type="internal" x="3.97" y="-26.60" incLanes=":ITLS_24_0" intLanes=":ITLS_1_0 :ITLS_4_0 :ITLS_4_1 :ITLS_9_0 :ITLS_15_0 :ITLS_16_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_48_0" type="internal" x="21.42" y="2.51" incLanes=":ITLS_26_0 CAEE_1 CAEE_3 CAEE_4 CAEE_5 CAEE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_28_0 :ITLS_28_1 :ITLS_28_2 :ITLS_28_3 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_49_0" type="internal" x="8.37" y="-12.35" incLanes=":ITLS_27_0 CAWE_1" intLanes=":ITLS_1_0 :ITLS_4_0 :ITLS_4_1 :ITLS_9_0 :ITLS_15_0 :ITLS_16_0 :ITLS_25_0 :ITLS_26_0 :ITLS_c2_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_50_0" type="internal" x="23.35" y="0.97" incLanes=":ITLS_32_0 CAEE_1 CAEE_3 CAEE_4 CAEE_5 CAEE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
+    <junction id=":ITLS_51_0" type="internal" x="19.06" y="4.39" incLanes=":ITLS_33_0 CAEE_1 CAEE_3 CAEE_4 CAEE_5 CAEE_6" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_10_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_11_3 :ITLS_18_0 :ITLS_19_0 :ITLS_21_0 :ITLS_21_1 :ITLS_23_0 :ITLS_c0_0 :ITLS_c3_0"/>
+
+    <connection from="CAEE" to="JSNX" fromLane="1" toLane="1" via=":ITLS_7_0" tl="ITLS" linkIndex="7" dir="r" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="1" toLane="1" via=":ITLS_8_0" tl="ITLS" linkIndex="8" dir="s" state="o"/>
+    <connection from="CAEE" to="JSSX" fromLane="1" toLane="1" via=":ITLS_9_0" tl="ITLS" linkIndex="9" dir="l" state="o"/>
+    <connection from="CAEE" to="JSNX" fromLane="3" toLane="3" via=":ITLS_10_0" tl="ITLS" linkIndex="10" dir="r" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="4" toLane="3" via=":ITLS_11_0" tl="ITLS" linkIndex="11" dir="s" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="4" toLane="4" via=":ITLS_11_1" tl="ITLS" linkIndex="12" dir="s" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="5" toLane="5" via=":ITLS_11_2" tl="ITLS" linkIndex="13" dir="s" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="6" toLane="6" via=":ITLS_11_3" tl="ITLS" linkIndex="14" dir="s" state="o"/>
+    <connection from="CAEE" to="JSSX" fromLane="7" toLane="3" via=":ITLS_15_0" tl="ITLS" linkIndex="15" dir="l" state="o"/>
+    <connection from="CAEE" to="JSSX" fromLane="8" toLane="4" via=":ITLS_16_0" tl="ITLS" linkIndex="16" dir="l" state="o"/>
+    <connection from="CAEU" to="CAEE" fromLane="1" toLane="1" via=":gneJ20_0_0" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="3" toLane="3" via=":gneJ20_0_1" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="4" toLane="4" via=":gneJ20_0_2" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="5" toLane="5" via=":gneJ20_0_3" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="5" toLane="6" via=":gneJ20_0_4" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="5" toLane="7" via=":gneJ20_0_5" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="5" toLane="8" via=":gneJ20_0_6" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="1" toLane="1" via=":gneJ20_7_0" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="3" toLane="3" via=":gneJ20_7_1" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="4" toLane="4" via=":gneJ20_7_2" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="5" toLane="5" via=":gneJ20_7_3" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="6" toLane="6" via=":gneJ20_7_4" dir="s" state="M"/>
+    <connection from="CAWE" to="JSSX" fromLane="1" toLane="1" via=":ITLS_24_0" tl="ITLS" linkIndex="24" dir="r" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="1" toLane="1" via=":ITLS_25_0" tl="ITLS" linkIndex="25" dir="s" state="o"/>
+    <connection from="CAWE" to="JSNX" fromLane="1" toLane="1" via=":ITLS_26_0" tl="ITLS" linkIndex="26" dir="l" state="o"/>
+    <connection from="CAWE" to="JSSX" fromLane="3" toLane="3" via=":ITLS_27_0" tl="ITLS" linkIndex="27" dir="r" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="3" toLane="3" via=":ITLS_28_0" tl="ITLS" linkIndex="28" dir="s" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="3" toLane="4" via=":ITLS_28_1" tl="ITLS" linkIndex="29" dir="s" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="4" toLane="5" via=":ITLS_28_2" tl="ITLS" linkIndex="30" dir="s" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="5" toLane="6" via=":ITLS_28_3" tl="ITLS" linkIndex="31" dir="s" state="o"/>
+    <connection from="CAWE" to="JSNX" fromLane="6" toLane="3" via=":ITLS_32_0" tl="ITLS" linkIndex="32" dir="l" state="o"/>
+    <connection from="CAWE" to="JSNX" fromLane="7" toLane="4" via=":ITLS_33_0" tl="ITLS" linkIndex="33" dir="l" state="o"/>
+    <connection from="CAWU" to="CAWE" fromLane="1" toLane="1" via=":gneJ22_5_0" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="3" toLane="3" via=":gneJ22_5_1" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="4" toLane="4" via=":gneJ22_5_2" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="5" toLane="5" via=":gneJ22_5_3" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="6" toLane="6" via=":gneJ22_5_4" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="6" toLane="7" via=":gneJ22_5_5" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="1" toLane="1" via=":gneJ22_0_0" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="3" toLane="3" via=":gneJ22_0_1" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="4" toLane="4" via=":gneJ22_0_2" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="5" toLane="5" via=":gneJ22_0_3" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="6" toLane="6" via=":gneJ22_0_4" dir="s" state="M"/>
+    <connection from="JSNE" to="CAWX" fromLane="1" toLane="1" via=":ITLS_0_0" tl="ITLS" linkIndex="0" dir="r" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="1" toLane="1" via=":ITLS_1_0" tl="ITLS" linkIndex="1" dir="s" state="o"/>
+    <connection from="JSNE" to="CAEX" fromLane="2" toLane="1" via=":ITLS_2_0" tl="ITLS" linkIndex="2" dir="l" state="o"/>
+    <connection from="JSNE" to="CAWX" fromLane="4" toLane="3" via=":ITLS_3_0" tl="ITLS" linkIndex="3" dir="r" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="4" toLane="3" via=":ITLS_4_0" tl="ITLS" linkIndex="4" dir="s" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="5" toLane="4" via=":ITLS_4_1" tl="ITLS" linkIndex="5" dir="s" state="o"/>
+    <connection from="JSNE" to="CAEX" fromLane="6" toLane="6" via=":ITLS_6_0" tl="ITLS" linkIndex="6" dir="l" state="o"/>
+    <connection from="JSNU" to="JSNE" fromLane="1" toLane="1" via=":gneJ24_0_0" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="1" toLane="2" via=":gneJ24_0_1" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="3" toLane="4" via=":gneJ24_0_2" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="4" toLane="5" via=":gneJ24_0_3" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="4" toLane="6" via=":gneJ24_0_4" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="1" toLane="1" via=":gneJ24_5_0" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="3" toLane="3" via=":gneJ24_5_1" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="4" toLane="4" via=":gneJ24_5_2" dir="s" state="M"/>
+    <connection from="JSSE" to="CAEX" fromLane="1" toLane="1" via=":ITLS_17_0" tl="ITLS" linkIndex="17" dir="r" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="1" toLane="1" via=":ITLS_18_0" tl="ITLS" linkIndex="18" dir="s" state="o"/>
+    <connection from="JSSE" to="CAWX" fromLane="2" toLane="1" via=":ITLS_19_0" tl="ITLS" linkIndex="19" dir="l" state="o"/>
+    <connection from="JSSE" to="CAEX" fromLane="4" toLane="3" via=":ITLS_20_0" tl="ITLS" linkIndex="20" dir="r" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="4" toLane="3" via=":ITLS_21_0" tl="ITLS" linkIndex="21" dir="s" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="5" toLane="4" via=":ITLS_21_1" tl="ITLS" linkIndex="22" dir="s" state="o"/>
+    <connection from="JSSE" to="CAWX" fromLane="6" toLane="6" via=":ITLS_23_0" tl="ITLS" linkIndex="23" dir="l" state="o"/>
+    <connection from="JSSU" to="JSSE" fromLane="1" toLane="1" via=":gneJ26_3_0" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="1" toLane="2" via=":gneJ26_3_1" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="3" toLane="4" via=":gneJ26_3_2" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="4" toLane="5" via=":gneJ26_3_3" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="4" toLane="6" via=":gneJ26_3_4" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="1" toLane="1" via=":gneJ26_0_0" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="3" toLane="3" via=":gneJ26_0_1" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="4" toLane="4" via=":gneJ26_0_2" dir="s" state="M"/>
+
+    <connection from=":ITLS_0" to="CAWX" fromLane="0" toLane="1" via=":ITLS_34_0" dir="r" state="m"/>
+    <connection from=":ITLS_34" to="CAWX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_1" to="JSSX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_2" to="CAEX" fromLane="0" toLane="1" via=":ITLS_35_0" dir="l" state="m"/>
+    <connection from=":ITLS_35" to="CAEX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_3" to="CAWX" fromLane="0" toLane="3" via=":ITLS_36_0" dir="r" state="m"/>
+    <connection from=":ITLS_36" to="CAWX" fromLane="0" toLane="3" dir="r" state="M"/>
+    <connection from=":ITLS_4" to="JSSX" fromLane="0" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_4" to="JSSX" fromLane="1" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_6" to="CAEX" fromLane="0" toLane="6" via=":ITLS_37_0" dir="l" state="m"/>
+    <connection from=":ITLS_37" to="CAEX" fromLane="0" toLane="6" dir="l" state="M"/>
+    <connection from=":ITLS_7" to="JSNX" fromLane="0" toLane="1" via=":ITLS_38_0" dir="r" state="m"/>
+    <connection from=":ITLS_38" to="JSNX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_8" to="CAWX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_9" to="JSSX" fromLane="0" toLane="1" via=":ITLS_39_0" dir="l" state="m"/>
+    <connection from=":ITLS_39" to="JSSX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_10" to="JSNX" fromLane="0" toLane="3" via=":ITLS_40_0" dir="r" state="m"/>
+    <connection from=":ITLS_40" to="JSNX" fromLane="0" toLane="3" dir="r" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="0" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="1" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="2" toLane="5" dir="s" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="3" toLane="6" dir="s" state="M"/>
+    <connection from=":ITLS_15" to="JSSX" fromLane="0" toLane="3" via=":ITLS_41_0" dir="l" state="m"/>
+    <connection from=":ITLS_41" to="JSSX" fromLane="0" toLane="3" dir="l" state="M"/>
+    <connection from=":ITLS_16" to="JSSX" fromLane="0" toLane="4" via=":ITLS_42_0" dir="l" state="m"/>
+    <connection from=":ITLS_42" to="JSSX" fromLane="0" toLane="4" dir="l" state="M"/>
+    <connection from=":ITLS_17" to="CAEX" fromLane="0" toLane="1" via=":ITLS_43_0" dir="r" state="m"/>
+    <connection from=":ITLS_43" to="CAEX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_18" to="JSNX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_19" to="CAWX" fromLane="0" toLane="1" via=":ITLS_44_0" dir="l" state="m"/>
+    <connection from=":ITLS_44" to="CAWX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_20" to="CAEX" fromLane="0" toLane="3" via=":ITLS_45_0" dir="r" state="m"/>
+    <connection from=":ITLS_45" to="CAEX" fromLane="0" toLane="3" dir="r" state="M"/>
+    <connection from=":ITLS_21" to="JSNX" fromLane="0" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_21" to="JSNX" fromLane="1" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_23" to="CAWX" fromLane="0" toLane="6" via=":ITLS_46_0" dir="l" state="m"/>
+    <connection from=":ITLS_46" to="CAWX" fromLane="0" toLane="6" dir="l" state="M"/>
+    <connection from=":ITLS_24" to="JSSX" fromLane="0" toLane="1" via=":ITLS_47_0" dir="r" state="m"/>
+    <connection from=":ITLS_47" to="JSSX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_25" to="CAEX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_26" to="JSNX" fromLane="0" toLane="1" via=":ITLS_48_0" dir="l" state="m"/>
+    <connection from=":ITLS_48" to="JSNX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_27" to="JSSX" fromLane="0" toLane="3" via=":ITLS_49_0" dir="r" state="m"/>
+    <connection from=":ITLS_49" to="JSSX" fromLane="0" toLane="3" dir="r" state="M"/>
+    <connection from=":ITLS_28" to="CAEX" fromLane="0" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_28" to="CAEX" fromLane="1" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_28" to="CAEX" fromLane="2" toLane="5" dir="s" state="M"/>
+    <connection from=":ITLS_28" to="CAEX" fromLane="3" toLane="6" dir="s" state="M"/>
+    <connection from=":ITLS_32" to="JSNX" fromLane="0" toLane="3" via=":ITLS_50_0" dir="l" state="m"/>
+    <connection from=":ITLS_50" to="JSNX" fromLane="0" toLane="3" dir="l" state="M"/>
+    <connection from=":ITLS_33" to="JSNX" fromLane="0" toLane="4" via=":ITLS_51_0" dir="l" state="m"/>
+    <connection from=":ITLS_51" to="JSNX" fromLane="0" toLane="4" dir="l" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="4" toLane="6" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="5" toLane="7" dir="s" state="M"/>
+    <connection from=":gneJ20_0" to="CAEE" fromLane="6" toLane="8" dir="s" state="M"/>
+    <connection from=":gneJ20_7" to="CAED" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ20_7" to="CAED" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ20_7" to="CAED" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ20_7" to="CAED" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ20_7" to="CAED" fromLane="4" toLane="6" dir="s" state="M"/>
+    <connection from=":gneJ22_0" to="CAWD" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ22_0" to="CAWD" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ22_0" to="CAWD" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ22_0" to="CAWD" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ22_0" to="CAWD" fromLane="4" toLane="6" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="4" toLane="6" dir="s" state="M"/>
+    <connection from=":gneJ22_5" to="CAWE" fromLane="5" toLane="7" dir="s" state="M"/>
+    <connection from=":gneJ24_0" to="JSNE" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ24_0" to="JSNE" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":gneJ24_0" to="JSNE" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ24_0" to="JSNE" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ24_0" to="JSNE" fromLane="4" toLane="6" dir="s" state="M"/>
+    <connection from=":gneJ24_5" to="JSND" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ24_5" to="JSND" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ24_5" to="JSND" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ26_0" to="JSSD" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ26_0" to="JSSD" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":gneJ26_0" to="JSSD" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ26_3" to="JSSE" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":gneJ26_3" to="JSSE" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":gneJ26_3" to="JSSE" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":gneJ26_3" to="JSSE" fromLane="3" toLane="5" dir="s" state="M"/>
+    <connection from=":gneJ26_3" to="JSSE" fromLane="4" toLane="6" dir="s" state="M"/>
+
+    <connection from=":ITLS_c0" to=":ITLS_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_c1" to=":ITLS_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_c2" to=":ITLS_w2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_c3" to=":ITLS_w3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_w0" to=":ITLS_c3" fromLane="0" toLane="0" tl="ITLS" linkIndex="37" dir="s" state="M"/>
+    <connection from=":ITLS_w0" to="CAWX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSNE" to=":ITLS_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_w1" to=":ITLS_c0" fromLane="0" toLane="0" tl="ITLS" linkIndex="34" dir="s" state="M"/>
+    <connection from=":ITLS_w1" to="JSNX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAEE" to=":ITLS_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_w2" to=":ITLS_c1" fromLane="0" toLane="0" tl="ITLS" linkIndex="35" dir="s" state="M"/>
+    <connection from=":ITLS_w2" to="CAEX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSSE" to=":ITLS_w2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_w3" to=":ITLS_c2" fromLane="0" toLane="0" tl="ITLS" linkIndex="36" dir="s" state="M"/>
+    <connection from=":ITLS_w3" to="JSSX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAWE" to=":ITLS_w3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ19_w0" to="CAEU" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAED" to=":gneJ19_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ20_w0" to="CAEE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAEU" to=":gneJ20_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ20_w1" to="CAED" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAEX" to=":gneJ20_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ22_w0" to="CAWD" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAWX" to=":gneJ22_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ22_w1" to="CAWE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAWU" to=":gneJ22_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ23_w0" to="CAWU" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="CAWD" to=":gneJ23_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ24_w0" to="JSNE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSNU" to=":gneJ24_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ24_w1" to="JSND" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSNX" to=":gneJ24_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ25_w0" to="JSNU" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSND" to=":gneJ25_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ26_w0" to="JSSD" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSSX" to=":gneJ26_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ26_w1" to="JSSE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSSU" to=":gneJ26_w1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":gneJ27_w0" to="JSSU" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from="JSSD" to=":gneJ27_w0" fromLane="0" toLane="0" dir="s" state="M"/>
+</net>

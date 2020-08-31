@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 07/21/20 23:14:32 by Eclipse SUMO netedit Version 1.6.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.naive.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="D:\data\Intellectual-Traffic-Light-System\project\ITLS.naive.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.5"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<net version="1.6" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="-339.56,-146.48,285.32,323.40" origBoundary="-10000000000.00,-10000000000.00,10000000000.00,10000000000.00" projParameter="!"/>
+
+    <edge id=":EFlared_0" function="internal">
+        <lane id=":EFlared_0_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="57.17" width="3.25" shape="209.26,99.30 152.13,101.29"/>
+        <lane id=":EFlared_0_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,94.05 152.14,98.04"/>
+        <lane id=":EFlared_0_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,94.05 152.15,94.79"/>
+        <lane id=":EFlared_0_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,90.55 152.16,91.54"/>
+        <lane id=":EFlared_0_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,87.05 152.18,88.29"/>
+        <lane id=":EFlared_0_5" index="5" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,87.05 152.19,85.04"/>
+        <lane id=":EFlared_0_6" index="6" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.17" width="3.25" shape="209.26,87.05 195.93,86.24 183.97,84.46 170.39,82.66 152.20,81.79"/>
+    </edge>
+    <edge id=":EFlared_7" function="internal">
+        <lane id=":EFlared_7_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="57.02" width="3.50" shape="152.27,64.46 209.26,64.52"/>
+        <lane id=":EFlared_7_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.02" width="3.50" shape="152.25,67.96 209.26,68.02"/>
+        <lane id=":EFlared_7_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.02" width="3.50" shape="152.24,71.46 209.26,71.52"/>
+        <lane id=":EFlared_7_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.02" width="3.50" shape="152.23,74.96 209.26,75.02"/>
+        <lane id=":EFlared_7_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="57.02" width="3.50" shape="152.21,78.46 209.26,78.52"/>
+    </edge>
+    <edge id=":ITLS_0" function="internal">
+        <lane id=":ITLS_0_0" index="0" allow="motorcycle moped bicycle" speed="15.74" length="57.77" width="3.50" shape="31.26,135.10 29.10,118.72 22.68,107.01 12.01,99.99 -2.93,97.64"/>
+    </edge>
+    <edge id=":ITLS_1" function="internal">
+        <lane id=":ITLS_1_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="105.32" width="3.75" shape="31.26,135.10 36.40,29.91"/>
+    </edge>
+    <edge id=":ITLS_2" function="internal">
+        <lane id=":ITLS_2_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="103.87" width="3.50" shape="34.51,135.09 38.07,104.14 48.89,82.04 66.96,68.79 92.28,64.40"/>
+    </edge>
+    <edge id=":ITLS_3" function="internal">
+        <lane id=":ITLS_3_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="20.21" width="3.50" shape="37.76,135.09 35.19,117.18 34.10,115.36"/>
+    </edge>
+    <edge id=":ITLS_4" function="internal">
+        <lane id=":ITLS_4_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="105.21" width="3.75" shape="37.76,135.09 40.15,29.90"/>
+        <lane id=":ITLS_4_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="105.21" width="3.75" shape="41.01,135.08 43.90,29.90"/>
+    </edge>
+    <edge id=":ITLS_6" function="internal">
+        <lane id=":ITLS_6_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="84.59" width="3.50" shape="44.26,135.08 47.22,110.26 56.21,92.54 71.23,81.92 92.27,78.40"/>
+    </edge>
+    <edge id=":ITLS_33" function="internal">
+        <lane id=":ITLS_33_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="45.58" width="3.50" shape="34.10,115.36 27.55,104.39 14.85,96.71 -2.93,94.14"/>
+    </edge>
+    <edge id=":ITLS_7" function="internal">
+        <lane id=":ITLS_7_0" index="0" allow="motorcycle moped bicycle" speed="15.63" length="57.33" width="3.75" shape="92.25,101.06 76.04,103.13 64.48,109.49 57.55,120.13 55.26,135.06"/>
+    </edge>
+    <edge id=":ITLS_8" function="internal">
+        <lane id=":ITLS_8_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="95.23" width="3.50" shape="92.25,101.06 -2.93,97.64"/>
+    </edge>
+    <edge id=":ITLS_9" function="internal">
+        <lane id=":ITLS_9_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="102.62" width="3.75" shape="92.25,101.06 67.82,96.53 50.38,83.17 39.90,60.96 36.40,29.91"/>
+    </edge>
+    <edge id=":ITLS_10" function="internal">
+        <lane id=":ITLS_10_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.37" length="9.27" width="3.75" shape="92.25,97.81 83.06,98.98"/>
+    </edge>
+    <edge id=":ITLS_11" function="internal">
+        <lane id=":ITLS_11_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="95.27" width="3.50" shape="92.25,94.56 -2.92,90.64"/>
+        <lane id=":ITLS_11_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="95.27" width="3.50" shape="92.26,91.31 -2.92,87.14"/>
+        <lane id=":ITLS_11_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="95.27" width="3.50" shape="92.26,88.06 -2.92,83.64"/>
+    </edge>
+    <edge id=":ITLS_14" function="internal">
+        <lane id=":ITLS_14_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="86.23" width="3.75" shape="92.26,84.81 69.47,81.31 53.19,70.99 43.42,53.85 40.15,29.90"/>
+    </edge>
+    <edge id=":ITLS_15" function="internal">
+        <lane id=":ITLS_15_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="80.60" width="3.75" shape="92.27,81.56 71.11,78.26 56.00,68.55 46.93,52.43 43.90,29.90"/>
+    </edge>
+    <edge id=":ITLS_34" function="internal">
+        <lane id=":ITLS_34_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.37" length="53.73" width="3.75" shape="83.06,98.98 74.40,100.08 61.66,107.05 54.03,118.71 51.51,135.06"/>
+    </edge>
+    <edge id=":ITLS_16" function="internal">
+        <lane id=":ITLS_16_0" index="0" allow="motorcycle moped bicycle" speed="15.25" length="54.72" width="3.50" shape="58.90,29.90 60.99,44.98 67.25,55.75 77.68,62.23 92.28,64.40"/>
+    </edge>
+    <edge id=":ITLS_17" function="internal">
+        <lane id=":ITLS_17_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="105.22" width="3.75" shape="58.90,29.90 55.26,135.06"/>
+    </edge>
+    <edge id=":ITLS_18" function="internal">
+        <lane id=":ITLS_18_0" index="0" allow="motorcycle moped bicycle" speed="16.66" length="103.16" width="3.50" shape="57.15,29.90 53.40,59.54 42.14,80.72 23.36,93.42 -2.93,97.64"/>
+    </edge>
+    <edge id=":ITLS_19" function="internal">
+        <lane id=":ITLS_19_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.18" length="14.27" width="3.50" shape="54.52,29.90 56.54,44.02"/>
+    </edge>
+    <edge id=":ITLS_20" function="internal">
+        <lane id=":ITLS_20_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="105.21" width="3.75" shape="54.52,29.90 51.51,135.06"/>
+        <lane id=":ITLS_20_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="105.21" width="3.75" shape="51.02,29.90 47.76,135.07"/>
+    </edge>
+    <edge id=":ITLS_22" function="internal">
+        <lane id=":ITLS_22_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.66" length="84.04" width="3.50" shape="47.52,29.90 44.38,53.42 34.92,70.22 19.15,80.29 -2.92,83.64"/>
+    </edge>
+    <edge id=":ITLS_35" function="internal">
+        <lane id=":ITLS_35_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="16.18" length="46.80" width="3.50" shape="56.54,44.02 56.89,46.51 63.97,58.38 75.77,65.51 92.28,67.90"/>
+    </edge>
+    <edge id=":ITLS_23" function="internal">
+        <lane id=":ITLS_23_0" index="0" allow="motorcycle moped bicycle" speed="12.50" length="59.28" width="3.75" shape="-2.92,64.02 14.29,61.89 26.58,55.50 33.95,44.83 36.40,29.91"/>
+    </edge>
+    <edge id=":ITLS_24" function="internal">
+        <lane id=":ITLS_24_0" index="0" allow="motorcycle moped bicycle" speed="18.06" length="95.20" width="3.50" shape="-2.92,64.02 92.28,64.40"/>
+    </edge>
+    <edge id=":ITLS_25" function="internal">
+        <lane id=":ITLS_25_0" index="0" allow="motorcycle moped bicycle" speed="12.50" length="104.35" width="3.75" shape="-2.92,64.02 22.49,68.47 40.65,81.79 51.58,103.98 55.26,135.06"/>
+    </edge>
+    <edge id=":ITLS_26" function="internal">
+        <lane id=":ITLS_26_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="12.50" length="11.85" width="3.75" shape="-2.92,67.27 8.84,65.82"/>
+    </edge>
+    <edge id=":ITLS_27" function="internal">
+        <lane id=":ITLS_27_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="95.25" width="3.50" shape="-2.92,67.27 92.28,67.90"/>
+        <lane id=":ITLS_27_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="95.25" width="3.50" shape="-2.92,70.52 92.28,71.40"/>
+        <lane id=":ITLS_27_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="95.25" width="3.50" shape="-2.92,70.52 92.27,74.90"/>
+        <lane id=":ITLS_27_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="95.25" width="3.50" shape="-2.92,73.77 92.27,78.40"/>
+    </edge>
+    <edge id=":ITLS_31" function="internal">
+        <lane id=":ITLS_31_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="12.50" length="90.67" width="3.75" shape="-2.92,77.02 20.85,80.65 37.85,91.54 48.07,109.68 51.51,135.06"/>
+    </edge>
+    <edge id=":ITLS_32" function="internal">
+        <lane id=":ITLS_32_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="12.50" length="85.04" width="3.75" shape="-2.92,80.27 19.22,83.70 35.04,93.98 44.56,111.10 47.76,135.07"/>
+    </edge>
+    <edge id=":ITLS_36" function="internal">
+        <lane id=":ITLS_36_0" index="0" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="12.50" length="53.09" width="3.75" shape="8.84,65.82 15.93,64.94 29.39,57.93 37.47,46.26 40.15,29.90"/>
+    </edge>
+    <edge id=":NFlared_0" function="internal">
+        <lane id=":NFlared_0_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="24.29" width="3.25" shape="36.61,196.71 35.79,189.51 33.98,184.72 32.17,179.93 31.33,172.73"/>
+        <lane id=":NFlared_0_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="24.29" width="3.25" shape="40.36,196.70 39.97,189.56 39.10,184.71 38.24,179.86 37.83,172.72"/>
+        <lane id=":NFlared_0_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="24.29" width="3.25" shape="44.11,196.70 43.64,189.55 42.60,184.71 41.56,179.86 41.08,172.71"/>
+        <lane id=":NFlared_0_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="24.29" width="3.25" shape="44.11,196.70 44.33,172.70"/>
+    </edge>
+    <edge id=":NFlared_4" function="internal">
+        <lane id=":NFlared_4_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="24.01" width="3.75" shape="55.33,172.68 55.36,196.70"/>
+        <lane id=":NFlared_4_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="24.01" width="3.75" shape="51.58,172.69 51.61,196.70"/>
+        <lane id=":NFlared_4_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="24.01" width="3.75" shape="47.83,172.70 47.86,196.70"/>
+    </edge>
+    <edge id=":SFlared_0" function="internal">
+        <lane id=":SFlared_0_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="30.01" width="3.75" shape="36.38,-38.16 36.38,-68.17"/>
+        <lane id=":SFlared_0_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="30.01" width="3.75" shape="40.13,-38.16 40.13,-68.17"/>
+        <lane id=":SFlared_0_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="30.01" width="3.75" shape="43.88,-38.16 43.88,-68.17"/>
+    </edge>
+    <edge id=":SFlared_3" function="internal">
+        <lane id=":SFlared_3_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="30.05" width="1.75" shape="57.88,-68.16 58.88,-38.16"/>
+        <lane id=":SFlared_3_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="30.05" width="1.75" shape="57.88,-68.16 57.13,-38.16"/>
+        <lane id=":SFlared_3_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="30.05" width="3.50" shape="54.13,-68.16 54.50,-38.16"/>
+        <lane id=":SFlared_3_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="30.05" width="3.50" shape="50.38,-68.17 51.00,-38.16"/>
+        <lane id=":SFlared_3_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="30.05" width="3.50" shape="50.38,-68.17 49.93,-59.27 48.94,-53.19 47.95,-47.10 47.50,-38.16"/>
+    </edge>
+    <edge id=":WFlared_0" function="internal">
+        <lane id=":WFlared_0_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="38.99" width="3.50" shape="-95.25,97.61 -134.23,97.60"/>
+        <lane id=":WFlared_0_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="38.99" width="3.50" shape="-95.24,94.11 -134.23,94.10"/>
+        <lane id=":WFlared_0_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="38.99" width="3.50" shape="-95.24,90.61 -134.24,90.60"/>
+        <lane id=":WFlared_0_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="38.99" width="3.50" shape="-95.24,87.11 -134.24,87.10"/>
+        <lane id=":WFlared_0_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="38.99" width="3.50" shape="-95.24,83.61 -134.24,83.60"/>
+    </edge>
+    <edge id=":WFlared_5" function="internal">
+        <lane id=":WFlared_5_0" index="0" allow="motorcycle moped bicycle" speed="18.06" length="39.02" width="3.25" shape="-134.25,64.09 -95.23,63.99"/>
+        <lane id=":WFlared_5_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="39.02" width="3.25" shape="-134.25,67.59 -95.24,67.24"/>
+        <lane id=":WFlared_5_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="39.02" width="3.25" shape="-134.24,71.09 -95.24,70.49"/>
+        <lane id=":WFlared_5_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="39.02" width="3.25" shape="-134.24,74.59 -95.24,73.74"/>
+        <lane id=":WFlared_5_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="39.02" width="3.25" shape="-134.24,78.09 -95.24,76.99"/>
+        <lane id=":WFlared_5_5" index="5" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="18.06" length="39.02" width="3.25" shape="-134.24,78.09 -95.24,80.24"/>
+    </edge>
+
+    <edge id="CAED" from="EFlared" to="EEnd" priority="-1" shape="174.25,80.27 273.45,80.27">
+        <lane id="CAED_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="76.06" width="3.50" shape="209.26,64.52 285.32,64.52"/>
+        <lane id="CAED_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="209.26,68.02 285.32,68.02"/>
+        <lane id="CAED_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="209.26,71.52 285.32,71.52"/>
+        <lane id="CAED_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="209.26,75.02 285.32,75.02"/>
+        <lane id="CAED_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="209.26,78.52 285.32,78.52"/>
+    </edge>
+    <edge id="CAEE" from="EFlared" to="ITLS" priority="-1" shape="187.27,80.30 67.02,79.84">
+        <lane id="CAEE_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="59.91" width="3.25" shape="152.13,101.29 92.25,101.06"/>
+        <lane id="CAEE_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.14,98.04 92.25,97.81"/>
+        <lane id="CAEE_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.15,94.79 92.25,94.56"/>
+        <lane id="CAEE_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.16,91.54 92.26,91.31"/>
+        <lane id="CAEE_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.18,88.29 92.26,88.06"/>
+        <lane id="CAEE_5" index="5" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.19,85.04 92.26,84.81"/>
+        <lane id="CAEE_6" index="6" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.91" width="3.25" shape="152.20,81.79 92.27,81.56"/>
+    </edge>
+    <edge id="CAEU" from="EEnd" to="EFlared" priority="-1" shape="269.68,85.29 187.39,85.30">
+        <lane id="CAEU_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="76.06" width="7.00" shape="285.32,99.29 209.26,99.30"/>
+        <lane id="CAEU_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="285.32,94.04 209.26,94.05"/>
+        <lane id="CAEU_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="285.32,90.54 209.26,90.55"/>
+        <lane id="CAEU_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="76.06" width="3.50" shape="285.32,87.04 209.26,87.05"/>
+    </edge>
+    <edge id="CAEX" from="ITLS" to="EFlared" priority="-1" shape="66.67,80.12 187.24,80.24">
+        <lane id="CAEX_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="59.97" width="3.50" shape="92.28,64.40 152.27,64.46"/>
+        <lane id="CAEX_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.97" width="3.50" shape="92.28,67.90 152.25,67.96"/>
+        <lane id="CAEX_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.97" width="3.50" shape="92.28,71.40 152.24,71.46"/>
+        <lane id="CAEX_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.97" width="3.50" shape="92.27,74.90 152.23,74.96"/>
+        <lane id="CAEX_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="59.97" width="3.50" shape="92.27,78.40 152.21,78.46"/>
+    </edge>
+    <edge id="CAWD" from="WFlared" to="WEnd" priority="-1" shape="-128.16,81.85 -339.56,81.94">
+        <lane id="CAWD_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="205.32" width="3.50" shape="-134.23,97.60 -339.55,97.69"/>
+        <lane id="CAWD_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.32" width="3.50" shape="-134.23,94.10 -339.55,94.19"/>
+        <lane id="CAWD_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.32" width="3.50" shape="-134.24,90.60 -339.56,90.69"/>
+        <lane id="CAWD_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.32" width="3.50" shape="-134.24,87.10 -339.56,87.19"/>
+        <lane id="CAWD_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.32" width="3.50" shape="-134.24,83.60 -339.56,83.69"/>
+    </edge>
+    <edge id="CAWE" from="WFlared" to="ITLS" priority="-1">
+        <lane id="CAWE_0" index="0" allow="motorcycle moped bicycle" speed="13.89" length="92.32" width="3.25" shape="-95.23,63.99 -2.92,64.02"/>
+        <lane id="CAWE_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="13.89" length="92.32" width="3.25" shape="-95.24,67.24 -2.92,67.27"/>
+        <lane id="CAWE_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="13.89" length="92.32" width="3.25" shape="-95.24,70.49 -2.92,70.52"/>
+        <lane id="CAWE_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="13.89" length="92.32" width="3.25" shape="-95.24,73.74 -2.92,73.77"/>
+        <lane id="CAWE_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="13.89" length="92.32" width="3.25" shape="-95.24,76.99 -2.92,77.02"/>
+        <lane id="CAWE_5" index="5" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="13.89" length="92.32" width="3.25" shape="-95.24,80.24 -2.92,80.27"/>
+    </edge>
+    <edge id="CAWU" from="WEnd" to="WFlared" priority="-1" shape="-327.06,79.78 -122.37,79.84">
+        <lane id="CAWU_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="205.31" width="3.50" shape="-339.55,64.03 -134.25,64.09"/>
+        <lane id="CAWU_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.31" width="3.50" shape="-339.55,67.53 -134.25,67.59"/>
+        <lane id="CAWU_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.31" width="3.50" shape="-339.55,71.03 -134.24,71.09"/>
+        <lane id="CAWU_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.31" width="3.50" shape="-339.55,74.53 -134.24,74.59"/>
+        <lane id="CAWU_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="205.31" width="3.50" shape="-339.55,78.03 -134.24,78.09"/>
+    </edge>
+    <edge id="CAWX" from="ITLS" to="WFlared" priority="-1">
+        <lane id="CAWX_0" index="0" allow="motorcycle moped bicycle" speed="22.22" length="92.32" width="3.50" shape="-2.93,97.64 -95.25,97.61"/>
+        <lane id="CAWX_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="92.32" width="3.50" shape="-2.93,94.14 -95.24,94.11"/>
+        <lane id="CAWX_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="92.32" width="3.50" shape="-2.92,90.64 -95.24,90.61"/>
+        <lane id="CAWX_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="92.32" width="3.50" shape="-2.92,87.14 -95.24,87.11"/>
+        <lane id="CAWX_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="22.22" length="92.32" width="3.50" shape="-2.92,83.64 -95.24,83.61"/>
+    </edge>
+    <edge id="JSND" from="NFlared" to="NEnd" priority="-1">
+        <lane id="JSND_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="126.70" width="3.75" shape="55.36,196.70 55.41,323.40"/>
+        <lane id="JSND_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="126.70" width="3.75" shape="51.61,196.70 51.66,323.40"/>
+        <lane id="JSND_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="126.70" width="3.75" shape="47.86,196.70 47.91,323.40"/>
+    </edge>
+    <edge id="JSNE" from="NFlared" to="ITLS" priority="-1">
+        <lane id="JSNE_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="37.63" width="3.25" shape="31.33,172.73 31.26,135.10"/>
+        <lane id="JSNE_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="37.63" width="3.25" shape="34.58,172.72 34.51,135.09"/>
+        <lane id="JSNE_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="37.63" width="3.25" shape="37.83,172.72 37.76,135.09"/>
+        <lane id="JSNE_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="37.63" width="3.25" shape="41.08,172.71 41.01,135.08"/>
+        <lane id="JSNE_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="37.63" width="3.25" shape="44.33,172.70 44.26,135.08"/>
+    </edge>
+    <edge id="JSNU" from="NEnd" to="NFlared" priority="-1">
+        <lane id="JSNU_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="126.70" width="3.75" shape="36.67,323.40 36.61,196.71"/>
+        <lane id="JSNU_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="126.70" width="3.75" shape="40.42,323.40 40.36,196.70"/>
+        <lane id="JSNU_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="126.70" width="3.75" shape="44.17,323.40 44.11,196.70"/>
+    </edge>
+    <edge id="JSNX" from="ITLS" to="NFlared" priority="-1">
+        <lane id="JSNX_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="37.63" width="3.75" shape="55.26,135.06 55.33,172.68"/>
+        <lane id="JSNX_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="37.63" width="3.75" shape="51.51,135.06 51.58,172.69"/>
+        <lane id="JSNX_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="37.63" width="3.75" shape="47.76,135.07 47.83,172.70"/>
+    </edge>
+    <edge id="JSSD" from="SFlared" to="SEnd" priority="-1">
+        <lane id="JSSD_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="78.31" width="3.75" shape="36.38,-68.17 36.41,-146.48"/>
+        <lane id="JSSD_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="78.31" width="3.75" shape="40.13,-68.17 40.16,-146.48"/>
+        <lane id="JSSD_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="78.31" width="3.75" shape="43.88,-68.17 43.91,-146.48"/>
+    </edge>
+    <edge id="JSSE" from="SFlared" to="ITLS" priority="-1" shape="45.75,-53.16 45.78,46.61">
+        <lane id="JSSE_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="68.06" width="1.75" shape="58.88,-38.16 58.90,29.90"/>
+        <lane id="JSSE_1" index="1" allow="motorcycle moped bicycle" speed="11.11" length="68.06" width="1.75" shape="57.13,-38.16 57.15,29.90"/>
+        <lane id="JSSE_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="68.06" width="3.50" shape="54.50,-38.16 54.52,29.90"/>
+        <lane id="JSSE_3" index="3" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="68.06" width="3.50" shape="51.00,-38.16 51.02,29.90"/>
+        <lane id="JSSE_4" index="4" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="68.06" width="3.50" shape="47.50,-38.16 47.52,29.90"/>
+    </edge>
+    <edge id="JSSU" from="SEnd" to="SFlared" priority="-1" shape="48.49,-139.69 48.51,-38.08">
+        <lane id="JSSU_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="78.32" width="3.75" shape="57.86,-146.48 57.88,-68.16"/>
+        <lane id="JSSU_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="78.32" width="3.75" shape="54.11,-146.48 54.13,-68.16"/>
+        <lane id="JSSU_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="78.32" width="3.75" shape="50.36,-146.48 50.38,-68.17"/>
+    </edge>
+    <edge id="JSSX" from="ITLS" to="SFlared" priority="-1" shape="45.78,37.69 45.75,-53.16">
+        <lane id="JSSX_0" index="0" allow="motorcycle moped bicycle" speed="11.11" length="68.06" width="3.75" shape="36.40,29.91 36.38,-38.16"/>
+        <lane id="JSSX_1" index="1" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="68.06" width="3.75" shape="40.15,29.90 40.13,-38.16"/>
+        <lane id="JSSX_2" index="2" allow="private emergency authority vip passenger hov taxi bus coach delivery truck trailer evehicle custom1 custom2" speed="11.11" length="68.06" width="3.75" shape="43.90,29.90 43.88,-38.16"/>
+    </edge>
+
+    <tlLogic id="ITLS" type="static" programID="0" offset="0">
+        <phase duration="35" state="grrgrrrgGrgGGGrrgrrgrrrgGrgGGGGrr"/>
+        <phase duration="3"  state="grrgrrrgyrgyyyrrgrrgrrrgyrgyyyyrr"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="25" state="grrgrrrgrGgrrrGGgrrgrrrgrGgrrrrGG"/>
+        <phase duration="3"  state="grrgrrrgrygrrryygrrgrrrgrygrrrryy"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="21" state="grGgrrGgrrgrrrrrgrGgrrGgrrgrrrrrr"/>
+        <phase duration="3"  state="grGgrrGgrrgrrrrrgrygrrygrrgrrrrrr"/>
+        <phase duration="2"  state="grGgrrGgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="25" state="gGGgGGGgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="3"  state="gGygGGygrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="2"  state="gGrgGGrgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+        <phase duration="44" state="gGrgGGrgrrgrrrrrgGrgGGrgrrgrrrrrr"/>
+        <phase duration="3"  state="gyrgyyrgrrgrrrrrgyrgyyrgrrgrrrrrr"/>
+        <phase duration="2"  state="grrgrrrgrrgrrrrrgrrgrrrgrrgrrrrrr"/>
+    </tlLogic>
+
+    <junction id="EEnd" type="dead_end" x="285.32" y="81.09" incLanes="CAED_0 CAED_1 CAED_2 CAED_3 CAED_4" intLanes="" shape="285.32,85.29 285.32,102.79 285.32,62.77"/>
+    <junction id="EFlared" type="priority" x="217.39" y="83.21" incLanes="CAEU_0 CAEU_1 CAEU_2 CAEU_3 CAEX_0 CAEX_1 CAEX_2 CAEX_3 CAEX_4" intLanes=":EFlared_0_0 :EFlared_0_1 :EFlared_0_2 :EFlared_0_3 :EFlared_0_4 :EFlared_0_5 :EFlared_0_6 :EFlared_7_0 :EFlared_7_1 :EFlared_7_2 :EFlared_7_3 :EFlared_7_4" shape="209.26,102.80 209.26,62.77 152.27,62.71 152.12,102.92" radius="28.50">
+        <request index="0"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="1"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="2"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="3"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="4"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="5"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="6"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="7"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="8"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="9"  response="000000000000" foes="000000000000" cont="0"/>
+        <request index="10" response="000000000000" foes="000000000000" cont="0"/>
+        <request index="11" response="000000000000" foes="000000000000" cont="0"/>
+    </junction>
+    <junction id="ITLS" type="traffic_light" x="45.79" y="81.91" incLanes="JSNE_0 JSNE_1 JSNE_2 JSNE_3 JSNE_4 CAEE_0 CAEE_1 CAEE_2 CAEE_3 CAEE_4 CAEE_5 CAEE_6 JSSE_0 JSSE_1 JSSE_2 JSSE_3 JSSE_4 CAWE_0 CAWE_1 CAWE_2 CAWE_3 CAWE_4 CAWE_5" intLanes=":ITLS_0_0 :ITLS_1_0 :ITLS_2_0 :ITLS_33_0 :ITLS_4_0 :ITLS_4_1 :ITLS_6_0 :ITLS_7_0 :ITLS_8_0 :ITLS_9_0 :ITLS_34_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_14_0 :ITLS_15_0 :ITLS_16_0 :ITLS_17_0 :ITLS_18_0 :ITLS_35_0 :ITLS_20_0 :ITLS_20_1 :ITLS_22_0 :ITLS_23_0 :ITLS_24_0 :ITLS_25_0 :ITLS_36_0 :ITLS_27_0 :ITLS_27_1 :ITLS_27_2 :ITLS_27_3 :ITLS_31_0 :ITLS_32_0" shape="29.64,135.10 57.14,135.05 58.10,125.13 61.01,117.01 65.88,110.71 72.71,106.22 81.50,103.55 92.24,102.69 92.28,62.65 82.35,61.73 74.23,58.99 67.91,54.44 63.39,48.08 60.68,39.90 59.77,29.90 34.53,29.91 33.49,39.84 30.37,47.96 25.17,54.28 17.89,58.79 8.53,61.49 -2.92,62.39 -2.93,99.39 7.00,100.39 15.14,103.37 21.46,108.33 25.99,115.27 28.72,124.19" radius="32.50">
+        <request index="0"  response="000000000000000000000000100000000" foes="000000000000001000000000100000000" cont="0"/>
+        <request index="1"  response="111111111100000000011101100000000" foes="111111111110001000011101100001000" cont="0"/>
+        <request index="2"  response="111111011001110111111101100110000" foes="111111011001110111111101100111000" cont="0"/>
+        <request index="3"  response="000000000000000000011100100000110" foes="000000000010001000011100100000110" cont="1"/>
+        <request index="4"  response="111111111000000001111101100000000" foes="111111111010001001111101100000100" cont="0"/>
+        <request index="5"  response="111111111000000001111101100000000" foes="111111111010001001111101100000100" cont="0"/>
+        <request index="6"  response="111111010001110101111101100000000" foes="111111010001110101111101100000000" cont="0"/>
+        <request index="7"  response="000000000000000000000000000000000" foes="000000010000000100000000000000000" cont="0"/>
+        <request index="8"  response="000000000000000000000000000001000" foes="110000010001101100000010001111111" cont="0"/>
+        <request index="9"  response="001111101100000000011100000000000" foes="001111101111101100011110001110110" cont="0"/>
+        <request index="10" response="000000000000000000000001100000000" foes="110000010001100100000001100000000" cont="1"/>
+        <request index="11" response="000000000000000000000000000001000" foes="110000010011101100000001001111110" cont="0"/>
+        <request index="12" response="000000000000000000000000000001000" foes="110000010011101100000001001111110" cont="0"/>
+        <request index="13" response="000000000000000000000000000001000" foes="110000010011101100000001001111110" cont="0"/>
+        <request index="14" response="001111101000000000000000000000000" foes="001111101011101100000000001110100" cont="0"/>
+        <request index="15" response="001111101000000000000000000000000" foes="001111101011101100000000001110100" cont="0"/>
+        <request index="16" response="000000001000000000000000000000000" foes="000000001000000000000000000000100" cont="0"/>
+        <request index="17" response="001111011000000001111111110000000" foes="001111011000010001111111111000100" cont="0"/>
+        <request index="18" response="111111011001100001111101100111011" foes="111111011001110001111101100111011" cont="0"/>
+        <request index="19" response="001111001000001100000000000000000" foes="001111001000001100000000001000100" cont="1"/>
+        <request index="20" response="111111011000000001111111100000000" foes="111111011000001001111111101000100" cont="0"/>
+        <request index="21" response="111111011000000001111111100000000" foes="111111011000001001111111101000100" cont="0"/>
+        <request index="22" response="111111011000000001111101000111010" foes="111111011000000001111101000111010" cont="0"/>
+        <request index="23" response="000000000000000000000000000000000" foes="000000000000000000000001000000010" cont="0"/>
+        <request index="24" response="000000000000010000000000000000000" foes="000000100011111111100001000110110" cont="0"/>
+        <request index="25" response="001111000000000000011110110000000" foes="001111100011101100011110111110110" cont="0"/>
+        <request index="26" response="000000011000000000000000000000000" foes="000000011000000001100001000110010" cont="1"/>
+        <request index="27" response="000000000000010000000000000000000" foes="000000010011111101100001001110110" cont="0"/>
+        <request index="28" response="000000000000010000000000000000000" foes="000000010011111101100001001110110" cont="0"/>
+        <request index="29" response="000000000000010000000000000000000" foes="000000010011111101100001001110110" cont="0"/>
+        <request index="30" response="000000000000010000000000000000000" foes="000000010011111101100001001110110" cont="0"/>
+        <request index="31" response="000000000000000000011110100000000" foes="000000000011101000011110101110110" cont="0"/>
+        <request index="32" response="000000000000000000011110100000000" foes="000000000011101000011110101110110" cont="0"/>
+    </junction>
+    <junction id="NEnd" type="dead_end" x="46.04" y="323.40" incLanes="JSND_0 JSND_1 JSND_2" intLanes="" shape="46.04,323.40 57.29,323.40 46.04,323.40"/>
+    <junction id="NFlared" type="priority" x="45.98" y="184.70" incLanes="JSNU_0 JSNU_1 JSNU_2 JSNX_0 JSNX_1 JSNX_2" intLanes=":NFlared_0_0 :NFlared_0_1 :NFlared_0_2 :NFlared_0_3 :NFlared_4_0 :NFlared_4_1 :NFlared_4_2" shape="34.74,196.71 57.24,196.70 57.21,172.68 29.71,172.73 30.09,177.91 31.02,181.67 33.43,187.77 34.36,191.53" radius="12.00">
+        <request index="0" response="0000000" foes="0000000" cont="0"/>
+        <request index="1" response="0000000" foes="0000000" cont="0"/>
+        <request index="2" response="0000000" foes="0000000" cont="0"/>
+        <request index="3" response="0000000" foes="0000000" cont="0"/>
+        <request index="4" response="0000000" foes="0000000" cont="0"/>
+        <request index="5" response="0000000" foes="0000000" cont="0"/>
+        <request index="6" response="0000000" foes="0000000" cont="0"/>
+    </junction>
+    <junction id="SEnd" type="dead_end" x="45.78" y="-146.48" incLanes="JSSD_0 JSSD_1 JSSD_2" intLanes="" shape="59.74,-146.48 34.53,-146.48 45.78,-146.48"/>
+    <junction id="SFlared" type="priority" x="45.75" y="-53.16" incLanes="JSSX_0 JSSX_1 JSSX_2 JSSU_0 JSSU_1 JSSU_2" intLanes=":SFlared_0_0 :SFlared_0_1 :SFlared_0_2 :SFlared_3_0 :SFlared_3_1 :SFlared_3_2 :SFlared_3_3 :SFlared_3_4" shape="34.50,-38.16 59.75,-38.16 59.75,-68.16 34.50,-68.17" radius="15.00">
+        <request index="0" response="00000000" foes="00000000" cont="0"/>
+        <request index="1" response="00000000" foes="00000000" cont="0"/>
+        <request index="2" response="00000000" foes="00000000" cont="0"/>
+        <request index="3" response="00000000" foes="00000000" cont="0"/>
+        <request index="4" response="00000000" foes="00000000" cont="0"/>
+        <request index="5" response="00000000" foes="00000000" cont="0"/>
+        <request index="6" response="00000000" foes="00000000" cont="0"/>
+        <request index="7" response="00000000" foes="00000000" cont="0"/>
+    </junction>
+    <junction id="WEnd" type="dead_end" x="-339.56" y="81.94" incLanes="CAWD_0 CAWD_1 CAWD_2 CAWD_3 CAWD_4" intLanes="" shape="-339.55,62.28 -339.55,99.44 -339.56,81.94"/>
+    <junction id="WFlared" type="priority" x="-101.32" y="81.86" incLanes="CAWX_0 CAWX_1 CAWX_2 CAWX_3 CAWX_4 CAWU_0 CAWU_1 CAWU_2 CAWU_3 CAWU_4" intLanes=":WFlared_0_0 :WFlared_0_1 :WFlared_0_2 :WFlared_0_3 :WFlared_0_4 :WFlared_5_0 :WFlared_5_1 :WFlared_5_2 :WFlared_5_3 :WFlared_5_4 :WFlared_5_5" shape="-95.25,99.36 -95.23,62.36 -134.25,62.34 -134.23,99.35" radius="19.50">
+        <request index="0"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="1"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="2"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="3"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="4"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="5"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="6"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="7"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="8"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="9"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="10" response="00000000000" foes="00000000000" cont="0"/>
+    </junction>
+
+    <junction id=":ITLS_33_0" type="internal" x="34.10" y="115.36" incLanes=":ITLS_3_0 JSNE_0" intLanes=":ITLS_1_0 :ITLS_2_0 :ITLS_8_0 :ITLS_11_0 :ITLS_11_1 :ITLS_11_2 :ITLS_18_0 :ITLS_22_0"/>
+    <junction id=":ITLS_34_0" type="internal" x="83.06" y="98.98" incLanes=":ITLS_10_0 CAEE_0" intLanes=":ITLS_8_0 :ITLS_9_0 :ITLS_17_0 :ITLS_20_0 :ITLS_20_1 :ITLS_25_0 :ITLS_31_0 :ITLS_32_0"/>
+    <junction id=":ITLS_35_0" type="internal" x="56.54" y="44.02" incLanes=":ITLS_19_0 JSSE_0" intLanes=":ITLS_2_0 :ITLS_6_0 :ITLS_17_0 :ITLS_18_0 :ITLS_24_0 :ITLS_27_0 :ITLS_27_1 :ITLS_27_2 :ITLS_27_3"/>
+    <junction id=":ITLS_36_0" type="internal" x="8.84" y="65.82" incLanes=":ITLS_26_0 CAWE_0" intLanes=":ITLS_1_0 :ITLS_4_0 :ITLS_4_1 :ITLS_9_0 :ITLS_14_0 :ITLS_15_0 :ITLS_24_0 :ITLS_25_0"/>
+
+    <connection from="CAEE" to="JSNX" fromLane="0" toLane="0" via=":ITLS_7_0" tl="ITLS" linkIndex="7" dir="r" state="O"/>
+    <connection from="CAEE" to="CAWX" fromLane="0" toLane="0" via=":ITLS_8_0" tl="ITLS" linkIndex="8" dir="s" state="O"/>
+    <connection from="CAEE" to="JSSX" fromLane="0" toLane="0" via=":ITLS_9_0" tl="ITLS" linkIndex="9" dir="l" state="o"/>
+    <connection from="CAEE" to="JSNX" fromLane="1" toLane="1" via=":ITLS_10_0" tl="ITLS" linkIndex="10" dir="r" state="o"/>
+    <connection from="CAEE" to="CAWX" fromLane="2" toLane="2" via=":ITLS_11_0" tl="ITLS" linkIndex="11" dir="s" state="O"/>
+    <connection from="CAEE" to="CAWX" fromLane="3" toLane="3" via=":ITLS_11_1" tl="ITLS" linkIndex="12" dir="s" state="O"/>
+    <connection from="CAEE" to="CAWX" fromLane="4" toLane="4" via=":ITLS_11_2" tl="ITLS" linkIndex="13" dir="s" state="O"/>
+    <connection from="CAEE" to="JSSX" fromLane="5" toLane="1" via=":ITLS_14_0" tl="ITLS" linkIndex="14" dir="l" state="o"/>
+    <connection from="CAEE" to="JSSX" fromLane="6" toLane="2" via=":ITLS_15_0" tl="ITLS" linkIndex="15" dir="l" state="o"/>
+    <connection from="CAEU" to="CAEE" fromLane="0" toLane="0" via=":EFlared_0_0" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="1" toLane="1" via=":EFlared_0_1" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="1" toLane="2" via=":EFlared_0_2" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="2" toLane="3" via=":EFlared_0_3" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="3" toLane="4" via=":EFlared_0_4" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="3" toLane="5" via=":EFlared_0_5" dir="s" state="M"/>
+    <connection from="CAEU" to="CAEE" fromLane="3" toLane="6" via=":EFlared_0_6" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="0" toLane="0" via=":EFlared_7_0" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="1" toLane="1" via=":EFlared_7_1" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="2" toLane="2" via=":EFlared_7_2" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="3" toLane="3" via=":EFlared_7_3" dir="s" state="M"/>
+    <connection from="CAEX" to="CAED" fromLane="4" toLane="4" via=":EFlared_7_4" dir="s" state="M"/>
+    <connection from="CAWE" to="JSSX" fromLane="0" toLane="0" via=":ITLS_23_0" tl="ITLS" linkIndex="23" dir="r" state="O"/>
+    <connection from="CAWE" to="CAEX" fromLane="0" toLane="0" via=":ITLS_24_0" tl="ITLS" linkIndex="24" dir="s" state="O"/>
+    <connection from="CAWE" to="JSNX" fromLane="0" toLane="0" via=":ITLS_25_0" tl="ITLS" linkIndex="25" dir="l" state="o"/>
+    <connection from="CAWE" to="JSSX" fromLane="1" toLane="1" via=":ITLS_26_0" tl="ITLS" linkIndex="26" dir="r" state="o"/>
+    <connection from="CAWE" to="CAEX" fromLane="1" toLane="1" via=":ITLS_27_0" tl="ITLS" linkIndex="27" dir="s" state="O"/>
+    <connection from="CAWE" to="CAEX" fromLane="2" toLane="2" via=":ITLS_27_1" tl="ITLS" linkIndex="28" dir="s" state="O"/>
+    <connection from="CAWE" to="CAEX" fromLane="2" toLane="3" via=":ITLS_27_2" tl="ITLS" linkIndex="29" dir="s" state="O"/>
+    <connection from="CAWE" to="CAEX" fromLane="3" toLane="4" via=":ITLS_27_3" tl="ITLS" linkIndex="30" dir="s" state="O"/>
+    <connection from="CAWE" to="JSNX" fromLane="4" toLane="1" via=":ITLS_31_0" tl="ITLS" linkIndex="31" dir="l" state="o"/>
+    <connection from="CAWE" to="JSNX" fromLane="5" toLane="2" via=":ITLS_32_0" tl="ITLS" linkIndex="32" dir="l" state="o"/>
+    <connection from="CAWU" to="CAWE" fromLane="0" toLane="0" via=":WFlared_5_0" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="1" toLane="1" via=":WFlared_5_1" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="2" toLane="2" via=":WFlared_5_2" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="3" toLane="3" via=":WFlared_5_3" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="4" toLane="4" via=":WFlared_5_4" dir="s" state="M"/>
+    <connection from="CAWU" to="CAWE" fromLane="4" toLane="5" via=":WFlared_5_5" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="0" toLane="0" via=":WFlared_0_0" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="1" toLane="1" via=":WFlared_0_1" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="2" toLane="2" via=":WFlared_0_2" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="3" toLane="3" via=":WFlared_0_3" dir="s" state="M"/>
+    <connection from="CAWX" to="CAWD" fromLane="4" toLane="4" via=":WFlared_0_4" dir="s" state="M"/>
+    <connection from="JSNE" to="CAWX" fromLane="0" toLane="0" via=":ITLS_0_0" tl="ITLS" linkIndex="0" dir="r" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="0" toLane="0" via=":ITLS_1_0" tl="ITLS" linkIndex="1" dir="s" state="o"/>
+    <connection from="JSNE" to="CAEX" fromLane="1" toLane="0" via=":ITLS_2_0" tl="ITLS" linkIndex="2" dir="l" state="o"/>
+    <connection from="JSNE" to="CAWX" fromLane="2" toLane="1" via=":ITLS_3_0" tl="ITLS" linkIndex="3" dir="r" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="2" toLane="1" via=":ITLS_4_0" tl="ITLS" linkIndex="4" dir="s" state="o"/>
+    <connection from="JSNE" to="JSSX" fromLane="3" toLane="2" via=":ITLS_4_1" tl="ITLS" linkIndex="5" dir="s" state="o"/>
+    <connection from="JSNE" to="CAEX" fromLane="4" toLane="4" via=":ITLS_6_0" tl="ITLS" linkIndex="6" dir="l" state="o"/>
+    <connection from="JSNU" to="JSNE" fromLane="0" toLane="0" via=":NFlared_0_0" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="1" toLane="2" via=":NFlared_0_1" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="2" toLane="3" via=":NFlared_0_2" dir="s" state="M"/>
+    <connection from="JSNU" to="JSNE" fromLane="2" toLane="4" via=":NFlared_0_3" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="0" toLane="0" via=":NFlared_4_0" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="1" toLane="1" via=":NFlared_4_1" dir="s" state="M"/>
+    <connection from="JSNX" to="JSND" fromLane="2" toLane="2" via=":NFlared_4_2" dir="s" state="M"/>
+    <connection from="JSSE" to="CAEX" fromLane="0" toLane="0" via=":ITLS_16_0" tl="ITLS" linkIndex="16" dir="r" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="0" toLane="0" via=":ITLS_17_0" tl="ITLS" linkIndex="17" dir="s" state="o"/>
+    <connection from="JSSE" to="CAWX" fromLane="1" toLane="0" via=":ITLS_18_0" tl="ITLS" linkIndex="18" dir="l" state="o"/>
+    <connection from="JSSE" to="CAEX" fromLane="2" toLane="1" via=":ITLS_19_0" tl="ITLS" linkIndex="19" dir="r" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="2" toLane="1" via=":ITLS_20_0" tl="ITLS" linkIndex="20" dir="s" state="o"/>
+    <connection from="JSSE" to="JSNX" fromLane="3" toLane="2" via=":ITLS_20_1" tl="ITLS" linkIndex="21" dir="s" state="o"/>
+    <connection from="JSSE" to="CAWX" fromLane="4" toLane="4" via=":ITLS_22_0" tl="ITLS" linkIndex="22" dir="l" state="o"/>
+    <connection from="JSSU" to="JSSE" fromLane="0" toLane="0" via=":SFlared_3_0" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="0" toLane="1" via=":SFlared_3_1" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="1" toLane="2" via=":SFlared_3_2" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="2" toLane="3" via=":SFlared_3_3" dir="s" state="M"/>
+    <connection from="JSSU" to="JSSE" fromLane="2" toLane="4" via=":SFlared_3_4" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="0" toLane="0" via=":SFlared_0_0" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="1" toLane="1" via=":SFlared_0_1" dir="s" state="M"/>
+    <connection from="JSSX" to="JSSD" fromLane="2" toLane="2" via=":SFlared_0_2" dir="s" state="M"/>
+
+    <connection from=":EFlared_0" to="CAEE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="4" toLane="4" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="5" toLane="5" dir="s" state="M"/>
+    <connection from=":EFlared_0" to="CAEE" fromLane="6" toLane="6" dir="s" state="M"/>
+    <connection from=":EFlared_7" to="CAED" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":EFlared_7" to="CAED" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":EFlared_7" to="CAED" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":EFlared_7" to="CAED" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":EFlared_7" to="CAED" fromLane="4" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_0" to="CAWX" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":ITLS_1" to="JSSX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_2" to="CAEX" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":ITLS_3" to="CAWX" fromLane="0" toLane="1" via=":ITLS_33_0" dir="r" state="m"/>
+    <connection from=":ITLS_33" to="CAWX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_4" to="JSSX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_4" to="JSSX" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":ITLS_6" to="CAEX" fromLane="0" toLane="4" dir="l" state="M"/>
+    <connection from=":ITLS_7" to="JSNX" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":ITLS_8" to="CAWX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_9" to="JSSX" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":ITLS_10" to="JSNX" fromLane="0" toLane="1" via=":ITLS_34_0" dir="r" state="m"/>
+    <connection from=":ITLS_34" to="JSNX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="0" toLane="2" dir="s" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="1" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_11" to="CAWX" fromLane="2" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_14" to="JSSX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_15" to="JSSX" fromLane="0" toLane="2" dir="l" state="M"/>
+    <connection from=":ITLS_16" to="CAEX" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":ITLS_17" to="JSNX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_18" to="CAWX" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":ITLS_19" to="CAEX" fromLane="0" toLane="1" via=":ITLS_35_0" dir="r" state="m"/>
+    <connection from=":ITLS_35" to="CAEX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_20" to="JSNX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_20" to="JSNX" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":ITLS_22" to="CAWX" fromLane="0" toLane="4" dir="l" state="M"/>
+    <connection from=":ITLS_23" to="JSSX" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":ITLS_24" to="CAEX" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":ITLS_25" to="JSNX" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":ITLS_26" to="JSSX" fromLane="0" toLane="1" via=":ITLS_36_0" dir="r" state="m"/>
+    <connection from=":ITLS_36" to="JSSX" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":ITLS_27" to="CAEX" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":ITLS_27" to="CAEX" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":ITLS_27" to="CAEX" fromLane="2" toLane="3" dir="s" state="M"/>
+    <connection from=":ITLS_27" to="CAEX" fromLane="3" toLane="4" dir="s" state="M"/>
+    <connection from=":ITLS_31" to="JSNX" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":ITLS_32" to="JSNX" fromLane="0" toLane="2" dir="l" state="M"/>
+    <connection from=":NFlared_0" to="JSNE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":NFlared_0" to="JSNE" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":NFlared_0" to="JSNE" fromLane="2" toLane="3" dir="s" state="M"/>
+    <connection from=":NFlared_0" to="JSNE" fromLane="3" toLane="4" dir="s" state="M"/>
+    <connection from=":NFlared_4" to="JSND" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":NFlared_4" to="JSND" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":NFlared_4" to="JSND" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":SFlared_0" to="JSSD" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":SFlared_0" to="JSSD" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":SFlared_0" to="JSSD" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":SFlared_3" to="JSSE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":SFlared_3" to="JSSE" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":SFlared_3" to="JSSE" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":SFlared_3" to="JSSE" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":SFlared_3" to="JSSE" fromLane="4" toLane="4" dir="s" state="M"/>
+    <connection from=":WFlared_0" to="CAWD" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":WFlared_0" to="CAWD" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":WFlared_0" to="CAWD" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":WFlared_0" to="CAWD" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":WFlared_0" to="CAWD" fromLane="4" toLane="4" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="4" toLane="4" dir="s" state="M"/>
+    <connection from=":WFlared_5" to="CAWE" fromLane="5" toLane="5" dir="s" state="M"/>
+
+</net>

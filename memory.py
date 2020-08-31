@@ -3,9 +3,8 @@
 import numpy as np
 
 class ReplayBuffer(object):
-    r"""A basic replay buffer class which stores (s, a, r, s_) for reinforcement 
-    learning. See more at "https://www.youtube.com/watch?v=5fHngyN8Qhw&t=94s".
-
+    r"""基础的强化学习回放单元
+    A rudimentary replay buffer class for reinforcement learning. 
     The main api of this buffer are:
         :store_trasition - store transition tuple after every step.
         :sample - sample batches for training.
@@ -16,19 +15,11 @@ class ReplayBuffer(object):
         #exp size
         self.mem_size = memory_size
         # self.discrete = discrete
-        if isinstance(input_shape, int):
-            self.state_memory = np.zeros([self.mem_size, input_shape])
-            self.next_state_memory =  np.zeros([self.mem_size, input_shape])
-        else:
-            state_shape=[self.mem_size]
-            for size in input_shape:
-                state_shape.append(size)
-            self.state_memory = np.zeros(state_shape)
-            self.next_state_memory = np.zeros(state_shape)
-        self.action_memory = np.zeros([self.mem_size, n_actions])
-        self.reward_memory = np.zeros(self.mem_size)
-        #whether a task is finished
-        self.terminal_memory =  np.zeros(self.mem_size, dtype=np.float32)
+        self.state_memory = np.zeros((self.mem_size, *input_shape), dtype=np.float32)
+        self.next_state_memory = np.zeros((self.mem_size, *input_shape), dtype=np.float32)
+        self.action_memory = np.zeros(self.mem_size, dtype=np.int64)
+        self.reward_memory = np.zeros(self.mem_size, dtype=np.float32)
+        self.terminal_memory = np.zeros(self.mem_size, dtype=np.bool)
 
     def add(self, s, a, r, s_, done):
         """Main function to store experience.
@@ -43,7 +34,7 @@ class ReplayBuffer(object):
         self.state_memory[index] = s
         self.next_state_memory[index] = s_
         self.reward_memory[index] = r
-        self.terminal_memory[index] =  1 - int(done)  # if not done, continue.
+        self.terminal_memory[index] =  done
         self.action_memory[index] = a
         self.mem_cntr += 1
 
@@ -67,3 +58,6 @@ class ReplayBuffer(object):
         terminals = self.terminal_memory[batch]
         return states, actions, rewards, states_, terminals
 
+class PrioritizedReplayBuffer(object):
+    def __init__(self):
+        pass

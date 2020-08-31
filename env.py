@@ -1,5 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import os, sys
 # Check sumo env
 if 'SUMO_HOME' in os.environ:
@@ -8,37 +9,39 @@ if 'SUMO_HOME' in os.environ:
 else:
      sys.exit("please declare environment variable 'SUMO_HOME'")
 import numpy as np
-
 import seeding
 import gym
 import traci
 
 
-class TrafficLight_v0(gym.Env):
+class TrafficLight_v1(gym.Env):
     r"""The sumo interactive environment based on openai gym. By default, 
     the reward range for RL training is set to [-inf,+inf]. It can be changed 
-    accordingly. """
+    accordingly."""
 
     def __init__(self, config):
-        super(TrafficLight_v0, self).__init__()
+        super(TrafficLight_v1, self).__init__()
         if isinstance(config.frameskip, int):
             self.frameskip = config.frameskip
         else:
             self.frameskip = np.random.randint(config.frameskip[0], config.frameskip[1])
-        self.warm_up_time = config.warm_up_dur
-        self.total_time = config.total_dur
         self.actions = config.actions
-        self.observation_space = [config.width, config.height, int(self.frameskip/5)]
-        self.action_size = len(config.actions)
+        self.action_size = len(self.actions)
+        self.downsample = config.downsample
+        self.observation_space = [int(self.frameskip/5), int(config.height/self.downsample), int(config.width/self.downsample)]
         if config.reward_range:
             self.reward_range = config.reward_range
+        self.total_time = config.total_dur
+        self.warm_up_time = config.warm_up_dur
         # Sumo params
         self.binary = config.sumo_binary
         self.cfg = config.sumo_config
-        self.edges = config.edges
-        self.ents = config.ent_lanes
         self.convs = config.conversions
+        self.edges = config.edges
+        self.ents = config.ent_edges
+        self.exts = config.ext_edges
         self.id = config.TLid
+        self.lnarea = config.lanearea
 
     # Seeding
     def seed(self, seed=None):
@@ -51,7 +54,7 @@ class TrafficLight_v0(gym.Env):
 
     # Simulation functions
     def warmUp(self):
-        """ Before training, we need to make sure there's enough vehicles 
+        """Before training, we need to make sure there's enough vehicles 
         on the given lanes. Hence, a warm up sequence is required for 
         filling the scenario. """
         while traci.simulation.getTime() <= self.warm_up_time:
@@ -75,44 +78,60 @@ class TrafficLight_v0(gym.Env):
             return np.round((x-np.min(x)) / (np.max(x)-np.min(x)) *
                             (range_list[1]-range_list[0]) + range_list[0])
 
-        state = np.zeros([self.observation_space[0],self.observation_space[1]])
+        state = np.zeros([self.observation_space[1], self.observation_space[2]])
         for edge in self.edges:
             current_veh = traci.edge.getLastStepVehicleIDs(edge)
             for veh in current_veh:
                 pos = traci.vehicle.getPosition(veh)
                 for vehtype in self.convs.keys():
                     if vehtype in veh:
-                        x = round(pos[1] + 55)
-                        y = round(pos[0] + 30)
+                        # x and y have to minus offsets of left and down boundaries, respectively.
+                        x = round((pos[1] + 110)/self.downsample)
+                        y = round((pos[0] + 10)/self.downsample)
                         if x in range(state.shape[0]) and y in range(state.shape[1]):
                             state[x][y] += self.convs[vehtype]
         return state
 
     def isEpisode(self):
-        """Justify if a scenario is finished
+        """Justify if a scenario is finished.
 
         Return:
             done (bool)
         """
         if traci.simulation.getTime() >= self.total_time:
             print('********Scenario Finished!********')
-            self.scenario.close()
+            #self.scenario.close()
+            traci.close()
             return True
         return False
 
     def getReward(self):
         """ Get reward value after every action was taken.
-        The reward function is by default designed as a 
-        combination of queue length and travel time.
+        The reward function is by default designed as a linear 
+        function wrt queue length, delay and through volume.
 
         Return:
             reward (float): the reward value of action.
         """
-        ql, tt = 0.0, 0.0
+        delay = dict.fromkeys(self.ents, 0)
+        ql = dict.fromkeys(['W', 'E', 'S', 'N'], 0)
+        vol = 0
+        # get queue length
+        for lanearea in self.lnarea:
+            _dir = lanearea[0]
+            ql[_dir] += traci.lanearea.getJamLengthMeters(lanearea)
+        # get delay
         for edge in self.ents:
-            ql += traci.edge.getLastStepHaltingNumber(edge)
-            tt += traci.edge.getTraveltime(edge)
-        reward = -.4 * ql - .1 * tt
+            d = 0
+            for indx in range(1, traci.edge.getLaneNumber(edge)):
+                lane = edge + '_' + str(indx)
+                d += 1 - (traci.lane.getLastStepMeanSpeed(lane)/traci.lane.getMaxSpeed(lane))
+            delay[edge] += d * 0.2 / (traci.edge.getLaneNumber(edge) - 1)
+        # get through volume
+        for ext in self.exts:
+            vol += traci.edge.getLastStepVehicleNumber(ext)
+        reward = 0.1 * vol - np.sum(list(delay.values())) - 10 * np.std(list(delay.values())) \
+            - 0.005 * np.sum(list(ql.values())) - 0.01 * np.std(list(ql.values()))
         return reward
 
     # Main fuctions of gym
@@ -127,7 +146,7 @@ class TrafficLight_v0(gym.Env):
         fp = list(self.actions.values())[action]
 
         def phase_transition(phase_o, phase_d):
-            """A transition phase is required between different phases. 
+            """Generate requisite transition between different phases. 
 
             Params:
                 phase_o (string): current phase of traffic light controller.
@@ -156,6 +175,7 @@ class TrafficLight_v0(gym.Env):
         if fp:
             # Ignore None action for no change.
             cp = traci.trafficlight.getRedYellowGreenState(self.id)
+            # Phase transition
             if cp != fp:
                 yp, rp = phase_transition(cp, fp)
                 traci.trafficlight.setRedYellowGreenState(self.id, yp)
@@ -165,6 +185,8 @@ class TrafficLight_v0(gym.Env):
                 for _ in range(10):
                     traci.simulationStep()
             traci.trafficlight.setRedYellowGreenState(self.id, fp)
+        
+        # Observe
         for i in range(self.frameskip):
             traci.simulationStep()
             if i % 5 == 0:
@@ -172,6 +194,7 @@ class TrafficLight_v0(gym.Env):
                 state_list.append(state)
                 reward += self.getReward()
         observation = np.stack(state_list)
+        observation = np.reshape(observation, self.observation_space)
         done = self.isEpisode()
         return observation, reward, done, {}
 
@@ -193,18 +216,21 @@ class TrafficLight_v0(gym.Env):
         state, _, _, _ = self.step(0)
         return state
 
-
+# main
 if __name__ == "__main__":
     import config
     import matplotlib.pyplot as plt
     config = config.SumoConfigs
-    env = TrafficLight_v0(config)
+    env = TrafficLight_v1(config)
     obs = env.reset()
+    print('observation space:',obs.shape)
     plt.ion()
-    for _ in range(18000):
+    f = False
+    while not f:
         plt.cla()
         plt.imshow(obs[0], cmap='gray', origin='lower')
         action = np.random.randint(0, len(config.actions))
-        obs, _, _, _ = env.step(action)
+        obs, r, f, _ = env.step(action)
+        print("reward:",r)
         plt.pause(0.1)
     plt.ioff()
