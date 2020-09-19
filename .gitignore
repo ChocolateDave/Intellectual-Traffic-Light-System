@@ -1,0 +1,8 @@
+##ignore this file##
+.idea
+.vscode
+runs
+
+/workspace.xml
+*.ipynb
+*/__pycache__/
