@@ -3,3 +3,5 @@
 /.vscode/
 /run/
 *.ipynb
+/.vscode/
+*/__pycache__/
