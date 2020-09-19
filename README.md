@@ -1,13 +1,12 @@
 # Intellectual-Traffic-Light-System
 ## Introduction
-This is a NUIETP sponsored project by Administration of Education, PRC. The main purpose of this project is to construct a robust and intelligent traffic light control system, with state-of-art machine learning techniques.
+This is a NUIETP sponsored project by Administration of Education of China (G201915004). The main idea is to construct a robust and light-weighted traffic light control system, with state-of-art reinforcement learning techniques.
 
 All rights of this project are reserved by college of Transportation Engineering at Tongji University and college of Software Engineering at Tongji University. Special thanks to German Aerospace Centre (DLR) for their generous support on our team.
 
 >
 >### College of Transportation Engineering at Tongji University
 >### College of Software Engineering at Tongji University
->### German Aerospace Centre
 >
 >Website: www.tongji.edu.cn
 >
@@ -22,18 +21,22 @@ All rights of this project are reserved by college of Transportation Engineering
 ## File Structure
 ```
 .
-├── sumo      // Traffic simulation environment based on Sumo (DLR)
-│   ├── ITLS.add.xml
-│   ├── ITLS.net.xml
-│   ├── ITLS.rou.xml
-│   ├── ITLS.sumo.cfg
-│   ├── sumo.log.xml
-│   └── view.settings.xml
-├── brain.py        // Reinforcement learning agent
+├── env      // Traffic simulation environment based on Sumo (DLR)
+│   ├── scenario // Simulation scenario
+│   │    ├── ITLS.add.xml
+│   │    ├── ITLS.net.xml
+│   │    ├── ITLS.rou.xml
+│   │    ├── ITLS.sumo.cfg
+│   │    ├── sumo.log.xml
+│   │    └── view.settings.xml
+│   ├── play.py
+|   ├── utils.py
+|   └── wrapped.py  // Wrapped traffic light envrionment
+├── agent.py        // Reinforcement learning agents
 ├── config.py       // Configurations
-├── core.py         // Main function for training and evaluation 
-├── env.py          // Reinforcement learning environment
-└── memory.py       //  Reinforcement learning memory buffer
+├── main.py         // Main function for training and 
+├── nnet.py         // Neural network structure
+└── memory.py       // Reinforcement learning memory buffer
 ```
 
 ## Project configuration
