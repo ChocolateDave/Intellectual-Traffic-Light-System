@@ -32,11 +32,14 @@ All rights of this project are reserved by college of Transportation Engineering
 │   ├── play.py
 |   ├── utils.py
 |   └── wrapped.py  // Wrapped traffic light envrionment
-├── agent.py        // Reinforcement learning agents
-├── config.py       // Configurations
-├── main.py         // Main function for training and 
-├── nnet.py         // Neural network structure
-└── memory.py       // Reinforcement learning memory buffer
+├── rl      // Reinforcement learning algorithms
+|    ├── agent.py        // Reinforcement learning agents
+|    ├── config.py       // Configurations
+|    ├── memory.py       // Reinforcement learning memory buffer
+|    ├── nnet.py         // Neural network structure
+|    └── summary.py      // Summary writer for network structure
+├── main.py // Main control function
+└── run.sh
 ```
 
 ## Project configuration

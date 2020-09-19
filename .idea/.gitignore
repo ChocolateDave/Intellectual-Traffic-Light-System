@@ -1,7 +1,6 @@
 # Default ignored files
 /workspace.xml
-/.vscode/
-/run/
+.vscode/
+/runs/
 *.ipynb
-/.vscode/
-*/__pycache__/
+__pycache__/
