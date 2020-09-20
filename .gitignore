@@ -4,6 +4,7 @@
 runs
 
 play.py
+*.out
 /workspace.xml
 *.ipynb
 */__pycache__/
