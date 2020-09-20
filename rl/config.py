@@ -9,26 +9,23 @@
 # Configs of reinforcement learning agent, which has significant effcts on 
 # the final result of the training process. Treat them with cautions.
 
-import xml.dom.minidom
-from xml.dom.minidom import parse
-
 class AgentConfigs(object):
     # memory
-    memory_size = 50000
+    memory_size = 500000
     # epsilon-greedy hyperparams
     epsilon_start= 1.0
     epsilon_end= 0.1
     epsilon_frame= 50000
     epsilon_decay = (epsilon_start - epsilon_end)/epsilon_frame
     # network saver
-    checkpoint = 5000
+    checkpoint = 1000
     # training hyperparams
     batch_size = 64
     data_format = 'NCHW'
     gamma = 0.99
-    learn_initial = memory_size
+    learn_initial = 50000
     lr = 0.01
-    sync_tau = 10
+    sync_tau = 1000
     # prioritized replay hyperparams
     prio_alpha = 0.6
     prio_beta = 0.4

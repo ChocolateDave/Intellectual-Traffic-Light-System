@@ -175,7 +175,7 @@ class BaseAgent(object):
 
     @property
     def ckpt_dir(self):
-        return os.path.join('checkpoints', self.model_dir)
+        return os.path.join('./checkpoints', self.model_dir)
 
 class DQNAgent(BaseAgent):
     def __init__(self, config, env):
