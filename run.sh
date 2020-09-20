@@ -1,9 +1,10 @@
 # !/bin/bash
 
-appr = "dqn"
-env_path = $PWD"/env/"
-cur_time = $(date -d "today" +"%Y%m%d_%H%M%S")
+appr="dqn"
+env_path=$PWD"/env/"
+_now=$(date +"%Y-%m-%d-%H%M%S")
+_file="./${appr}_training_${_now}.out"
 
-args = "--appr="$appr",--envpth="$env_path
+args="--appr="$appr" --envpth="$env_path
 
-nohup python main.py $args > $cur_time.out 2>&1 &
+nohup python main.py $args > $_file 2>&1 &

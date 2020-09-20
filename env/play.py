@@ -7,13 +7,16 @@
 # Date: 5 Sep. 2020
 #---------------------------------
 
+import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
-from wrapped_traffic_light import tl_v1
+
+from .wrapped import tl_v1
 
 env = tl_v1()
 obs = env.reset()
-print('observation space:',obs.shape)
+print('observation space:',obs.shape, '\tsize of observation: ', sys.getsizeof(obs))
 plt.ion()
 f = False
 while not f:

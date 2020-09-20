@@ -3,6 +3,7 @@
 .vscode
 runs
 
+play.py
 /workspace.xml
 *.ipynb
 */__pycache__/
