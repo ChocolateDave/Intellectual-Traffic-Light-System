@@ -3,7 +3,7 @@
 .vscode
 runs
 
-play.py
+/env/play.py
 *.out
 /workspace.xml
 *.ipynb

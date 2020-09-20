@@ -29,7 +29,6 @@ All rights of this project are reserved by college of Transportation Engineering
 │   │    ├── ITLS.sumo.cfg
 │   │    ├── sumo.log.xml
 │   │    └── view.settings.xml
-│   ├── play.py
 |   ├── utils.py
 |   └── wrapped.py  // Wrapped traffic light envrionment
 ├── rl      // Reinforcement learning algorithms
