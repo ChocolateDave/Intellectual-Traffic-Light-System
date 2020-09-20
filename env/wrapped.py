@@ -10,11 +10,7 @@
 import os
 import sys
 from xml.dom.minidom import parse
-
 import numpy as np
-
-import traci
-
 from . import utils
 
 if 'SUMO_HOME' in os.environ:
@@ -22,6 +18,7 @@ if 'SUMO_HOME' in os.environ:
      sys.path.append(tools)
 else:
      sys.exit("please declare environment variable 'SUMO_HOME'")
+import traci
 
 # Env Params
 # traffic light

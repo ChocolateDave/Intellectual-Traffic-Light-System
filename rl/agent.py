@@ -17,7 +17,7 @@ import numpy as np
 import torch as T
 import torch.nn as nn
 import torch.optim as optim
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 
 from .memory import ReplayBuffer
 from .nnet import OWM_DQN, RLT, Dueling_DQN, Dummy_Block, Naive_DQN
@@ -68,7 +68,7 @@ class BaseAgent(object):
         self.total_rewards = []
         self.writer = SummaryWriter()
 
-    def choose_action(self, obs) -> int:
+    def choose_action(self, obs):
         r"""智能体动作决策函数，采用贪心算法
         Main function to determine action by ε-greedy algorithm.
         Params:
@@ -186,7 +186,7 @@ class DQNAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USERNAME'], 'tl_v1',\
+        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name, str(int(time.time())))
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
@@ -230,7 +230,7 @@ class DuelingAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USERNAME'], 'tl_v1',\
+        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name, str(int(time.time())))
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
@@ -274,7 +274,7 @@ class RLTAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USERNAME'], 'tl_v1',\
+        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name, str(int(time.time())))
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))

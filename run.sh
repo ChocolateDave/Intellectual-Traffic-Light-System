@@ -7,5 +7,5 @@ _file="./${appr}_training_${_now}.out"
 
 args="--appr="$appr" --envpth="$env_path
 
-echo 90 > /proc/sys/vm/overcommit_ratio
+export SUMO_HOME="/usr/share/sumo/"
 nohup python main.py $args > $_file 2>&1 &
