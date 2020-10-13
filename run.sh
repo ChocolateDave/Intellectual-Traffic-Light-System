@@ -1,6 +1,6 @@
 # !/bin/bash
 
-appr="dqn"
+appr="rlt"
 env_path=$PWD"/env/"
 _now=$(date +"%Y-%m-%d-%H%M%S")
 _file="./${appr}_training_${_now}.out"

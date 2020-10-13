@@ -8,6 +8,7 @@
 # -----------------------
 
 import argparse
+from rl.nnet import OWM_DQN
 from rl.agent import DQNAgent, DuelingAgent, RLTAgent
 from rl.config import AgentConfigs
 from env.wrapped import tl_v1 as Env
@@ -21,14 +22,15 @@ def main(args):
 
     # 第一步：初始化系统 Step1: Initialize system.
     env = Env(path=args.envpth)
-    if args.appr == 'dqn':
-        agent = DQNAgent(AgentConfigs, env)
-    elif args.appr == 'dueling':
+    if args.appr == 'dueling':
         agent = DuelingAgent(AgentConfigs, env)
     elif args.appr == 'owm':
+        agent = None
         pass
     elif args.appr == 'rlt':
         agent = RLTAgent(AgentConfigs, env)
+    else:
+        agent = DQNAgent(AgentConfigs, env)
     # 第二步：循环训练 Step2: Recursively training.
     agent.currentState = env.reset()
     while True:
