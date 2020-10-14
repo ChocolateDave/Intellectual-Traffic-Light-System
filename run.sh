@@ -1,4 +1,4 @@
-# !/bin/bash
+# !/bin/bash bash
 
 appr="rlt"
 env_path=$PWD"/env/"

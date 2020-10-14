@@ -198,8 +198,9 @@ class RLT(nn.Module):
         self.name = 'rlt'
         # Main edifice
         self.in_dim = 256
-        self.conv1 = nn.Conv2d(input_shape[0], 256, 3, 1, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(input_shape[0], 256, 5, 2, padding=3, bias=False)
         self.bn1 = nn.BatchNorm2d(256)
+        self.pool = nn.MaxPool2d(3, stride=2)
         self.res_layers = self._make_layer(block, 256, layers[0])
         res_out_size = self._get_res_out(input_shape)
         self.prj = nn.Linear(res_out_size, 256)

@@ -11,7 +11,7 @@
 
 class AgentConfigs(object):
     # memory
-    memory_size = 500000
+    memory_size = 50000
     # epsilon-greedy hyperparams
     epsilon_start= 1.0
     epsilon_end= 0.1
