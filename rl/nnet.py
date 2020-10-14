@@ -215,7 +215,7 @@ class RLT(nn.Module):
         Return:
             length (int): the size of the flattened vector.
         """
-        _output = self.Swish(self.bn1(self.conv1(T.zeros(1, *shape))))
+        _output = self.Swish(self.bn1(self.pool(self.conv1(T.zeros(1, *shape)))))
         _output = self.res_layers(_output)
         return int(np.prod(_output.size()))
 
@@ -233,7 +233,7 @@ class RLT(nn.Module):
 
     def forward(self, x):
         x = x.float()
-        x = self.Swish(self.bn1(self.conv1(x)))
+        x = self.Swish(self.bn1(self.pool(self.conv1(x))))
         x = self.res_layers(x)
         x = x.view(x.size(0), -1)
         val = self.val(self.Swish(self.prj(x)))
