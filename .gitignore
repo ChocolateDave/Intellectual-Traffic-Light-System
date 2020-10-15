@@ -2,9 +2,10 @@
 .idea
 .vscode
 runs
+*/checkpoints/
+*/__pycache__/
 
 /env/play.py
 *.out
 /workspace.xml
 *.ipynb
-*/__pycache__/
