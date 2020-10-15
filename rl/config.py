@@ -36,7 +36,7 @@ class AgentConfigs(object):
     # owm
     owm_alphas = [[0.001,0.6]]
     # resnet
-    depth = [20,]
+    depth = [19,]
     #record
     SUMMARIES = 'summaries/'
     SAVER = 'output/'

@@ -151,7 +151,7 @@ class BaseAgent(object):
         status = {'timestep': self.timestep, 'eval_net': self.q.state_dict(),
             'tgt_net': self.tgt_q.state_dict(), 'optim': self.optimizer.state_dict()}
         if not os.path.exists(self.ckpt_dir):
-            os.mkdir(self.ckpt_dir)
+            os.makedirs(self.ckpt_dir)
         T.save(status, os.path.join(self.ckpt_dir, 'checkpoint.ckpt'))
 
     def _load(self):
@@ -186,8 +186,8 @@ class DQNAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
-            'pytorch', self.q.name, str(int(time.time())))
+        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
+            'pytorch', self.q.name)
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
         if os.path.exists("./checkpoints"):
@@ -230,8 +230,8 @@ class DuelingAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
-            'pytorch', self.q.name, str(int(time.time())))
+        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
+            'pytorch', self.q.name)
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
         if os.path.exists("./checkpoints"):
@@ -265,6 +265,9 @@ class DuelingAgent(BaseAgent):
         self.writer.add_scalar("Train/loss", loss.item(), self.timestep)
         self.optimizer.step()
 
+class OWMAgent(BaseAgent):
+    pass
+
 class RLTAgent(BaseAgent):
     def __init__(self, config, env):
         super(RLTAgent, self).__init__(config, env)
@@ -274,8 +277,8 @@ class RLTAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
-            'pytorch', self.q.name, str(int(time.time())))
+        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
+            'pytorch', self.q.name)
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
         if os.path.exists("./checkpoints"):

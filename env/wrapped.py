@@ -150,31 +150,20 @@ class tl_v1(object):
 
     def getReward(self):
         """ Get reward value after every action was taken.
-        The reward function is by default designed as a linear 
-        function wrt queue length, delay and through volume.
+        The reward function is designed to encourage a high
+        speed while avoiding collisions.
 
         Return:
             reward (float): the reward value of action.
         """
-        delay = dict.fromkeys(self.ents, 0)
-        ql = dict.fromkeys(['W', 'E', 'S', 'N'], 0)
-        vol = 0
-        # get queue length
+        vdes, vs = [], []
         for lanearea in self.lnarea:
-            _dir = lanearea[0]
-            ql[_dir] += traci.lanearea.getJamLengthMeters(lanearea)
-        # get delay
-        for edge in self.ents:
-            d = 0
-            for indx in range(1, traci.edge.getLaneNumber(edge)):
-                lane = edge + '_' + str(indx)
-                d += 1 - (traci.lane.getLastStepMeanSpeed(lane)/traci.lane.getMaxSpeed(lane))
-            delay[edge] += d * 0.2 / (traci.edge.getLaneNumber(edge) - 1)
-        # get through volume
-        for ext in self.exts:
-            vol += traci.edge.getLastStepVehicleNumber(ext)
-        reward = 0.1 * vol - np.sum(list(delay.values())) - 10 * np.std(list(delay.values())) \
-            - 0.005 * np.sum(list(ql.values())) - 0.01 * np.std(list(ql.values()))
+            vehids = traci.lanearea.getLastStepVehicleIDs(lanearea)
+            for veh in vehids:
+                vdes.append(traci.vehicle.getMaxSpeed(veh))
+                vs.append(traci.vehicle.getSpeed(veh))
+        vdes, vs = np.array(vdes), np.array(vs)
+        reward = max(np.sum(vdes**2)-np.sum((vdes-vs)**2),0)/np.sum(vdes**2)
         return reward
 
     # Main fuctions of gym
@@ -258,3 +247,27 @@ class tl_v1(object):
         self.warmUp()
         state, _, _, _ = self.step(0)
         return state
+
+
+# Reward deprecated
+"""
+delay = dict.fromkeys(self.ents, 0)
+ql = dict.fromkeys(['W', 'E', 'S', 'N'], 0)
+vol = 0
+# get queue length
+for lanearea in self.lnarea:
+    _dir = lanearea[0]
+    ql[_dir] += traci.lanearea.getJamLengthMeters(lanearea)
+# get delay
+for edge in self.ents:
+    d = 0
+    for indx in range(1, traci.edge.getLaneNumber(edge)):
+        lane = edge + '_' + str(indx)
+        d += 1 - (traci.lane.getLastStepMeanSpeed(lane)/traci.lane.getMaxSpeed(lane))
+    delay[edge] += d * 0.2 / (traci.edge.getLaneNumber(edge) - 1)
+# get through volume
+for ext in self.exts:
+    vol += traci.edge.getLastStepVehicleNumber(ext)
+reward = 0.1 * vol - np.sum(list(delay.values())) - 10 * np.std(list(delay.values())) \
+    - 0.005 * np.sum(list(ql.values())) - 0.01 * np.std(list(ql.values()))
+"""
