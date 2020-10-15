@@ -80,6 +80,8 @@ class tl_v1(object):
         self.lnarea = utils.get_add(
             os.path.join(path, "scenario/ITLS.add.xml"))
 
+        self.trans_sec = 0.0  # phase transition penalty
+
         print(
             "Traffic Light Control v1"
             "\nObservation space: ", self.observation_space,
@@ -157,8 +159,8 @@ class tl_v1(object):
             reward (float): the reward value of action.
         """
         vdes, vs = [], []
-        for lanearea in self.lnarea:
-            vehids = traci.lanearea.getLastStepVehicleIDs(lanearea)
+        for edge in self.ents:
+            vehids = traci.edge.getLastStepVehicleIDs(edge)
             for veh in vehids:
                 vdes.append(traci.vehicle.getMaxSpeed(veh))
                 vs.append(traci.vehicle.getSpeed(veh))
@@ -166,18 +168,8 @@ class tl_v1(object):
         reward = max(np.sum(vdes**2)-np.sum((vdes-vs)**2),0)/np.sum(vdes**2)
         return reward
 
-    # Main fuctions of gym
-    def step(self, action):
-        if isinstance(action, np.ndarray):
-            # encode one-hot vector
-            action = np.argmax(action)
-        assert action in range(len(self.actions)), "IndexInvalid!"
-        reward = 0.0
-        state_list = []
-        # Future phase
-        fp = list(self.actions.values())[action]
-
-        def phase_transition(phase_o, phase_d):
+    # return trasistion phases
+    def phase_transition(self, phase_o, phase_d):
             """Generate requisite transition between different phases. 
 
             Params:
@@ -202,6 +194,19 @@ class tl_v1(object):
                     yellow_phase += phase_o[i]
                     red_phase += phase_o[i]
             return yellow_phase, red_phase
+
+    # Main fuctions of gym
+    def step(self, action):
+        if isinstance(action, np.ndarray):
+            # encode one-hot vector
+            action = np.argmax(action)
+        reward = 0.0
+        state_list = []
+        # Future phase
+        if action:
+            fp = list(self.actions.values())[action]
+        else:
+            fp = None
        
         # Current phase
         if fp:
@@ -209,13 +214,18 @@ class tl_v1(object):
             cp = traci.trafficlight.getRedYellowGreenState(self.id)
             # Phase transition
             if cp != fp:
-                yp, rp = phase_transition(cp, fp)
+                yp, rp = self.phase_transition(cp, fp)
                 traci.trafficlight.setRedYellowGreenState(self.id, yp)
                 for _ in range(15):
+                    # 3s amber
                     traci.simulationStep()
                 traci.trafficlight.setRedYellowGreenState(self.id, rp)
                 for _ in range(10):
+                    # 2s full-red
                     traci.simulationStep()
+                # penalty for transition
+                reward -= 5.0 / self.trans_sec
+                self.trans_sec = 0.0
             traci.trafficlight.setRedYellowGreenState(self.id, fp)
         
         # Observe
@@ -225,6 +235,7 @@ class tl_v1(object):
                 state = self.getState()
                 state_list.append(state)
                 reward += self.getReward()
+                self.trans_sec += 1
         observation = np.stack(state_list)
         observation = np.reshape(observation, self.observation_space)
         done = self.isEpisode()

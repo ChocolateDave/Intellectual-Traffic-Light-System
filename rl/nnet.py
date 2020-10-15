@@ -166,26 +166,22 @@ class OWM_DQN(nn.Module):
         return action, h_list, x_list
 
 # ----------------------------------------------------------
-class Dummy_Block(nn.Module):
-    
-    expansion = 1
 
+class Res_Block(nn.Module):    
+    expansion = 1
     def __init__(self, in_dim, o_dim, stride=1):
-        super(Dummy_Block, self).__init__()
+        super(Res_Block, self).__init__()
         self.conv1 = nn.Conv2d(in_dim, o_dim, 3, stride=stride, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(o_dim)
+        self.bn = nn.BatchNorm2d(o_dim)
         self.conv2 = nn.Conv2d(o_dim, o_dim, 3, 1, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm2d(o_dim)
     
     def Swish(self, x):
         return x * T.sigmoid(x)
     
     def forward(self, x):
         residual = x
-
-        out = self.Swish(self.bn1(self.conv1(x)))
-        out = self.bn2(self.conv2(out))
-        
+        out = self.Swish(self.bn(self.conv1(x)))
+        out = self.bn(self.conv2(out))        
         out += residual
         return self.Swish(out)
 
@@ -193,31 +189,21 @@ class RLT(nn.Module):
     r"""智能信号灯系统完整神经网络(基于ResNet理念)
     Neural Network for robust and light-weight traffic light.
     """
-    def __init__(self, input_shape, block, layers, n_action):
+    def __init__(self, input_shape, layers, n_action):
         super(RLT, self).__init__()
         self.name = 'rlt'
         # Main edifice
         self.in_dim = 256
-        self.conv1 = nn.Conv2d(input_shape[0], 256, 5, 2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(input_shape[0], 256, 3, 2, padding=3, bias=False)
         self.bn1 = nn.BatchNorm2d(256)
-        self.pool = nn.MaxPool2d(3, stride=2)
-        self.res_layers = self._make_layer(block, 256, layers[0])
-        res_out_size = self._get_res_out(input_shape)
-        self.prj = nn.Linear(res_out_size, 256)
-        self.val = nn.Linear(256, 1)
-        self.act = nn.Linear(256, n_action) 
-
-    def _get_res_out(self, shape):
-        r"""计算降维后卷积层输出的列向量长度
-        Return the flatten size of convolutional layer output.
-        Params:
-            shape (list): shape of input matrix for conv-layers.
-        Return:
-            length (int): the size of the flattened vector.
-        """
-        _output = self.Swish(self.bn1(self.pool(self.conv1(T.zeros(1, *shape)))))
-        _output = self.res_layers(_output)
-        return int(np.prod(_output.size()))
+        self.res_layers = self._make_layer(Res_Block, 256, layers[0])
+        self.conv2 = nn.Conv2d(256, 2, 1, 1, bias=False)
+        self.conv3 = nn.Conv2d(256, 1, 1, 1, bias=False)
+        self.fc1 = nn.Linear(1440, 256)
+        self.fc2 = nn.Linear(256, 1)
+        self.fc3 = nn.Linear(720, n_action)
+        self.bn2 = nn.BatchNorm2d(2)
+        self.bn3 = nn.BatchNorm2d(1)
 
     def _make_layer(self, block, o_dim, blocks, stride=1):
         layers = []
@@ -225,7 +211,6 @@ class RLT(nn.Module):
         self.in_dim = o_dim * block.expansion
         for i in range(1, blocks):
             layers.append(block(self.in_dim, o_dim))
-        
         return nn.Sequential(*layers)
 
     def Swish(self, x):
@@ -233,10 +218,13 @@ class RLT(nn.Module):
 
     def forward(self, x):
         x = x.float()
-        x = self.Swish(self.bn1(self.pool(self.conv1(x))))
+        x = self.Swish(self.bn1(self.conv1(x)))
         x = self.res_layers(x)
-        x = x.view(x.size(0), -1)
-        val = self.val(self.Swish(self.prj(x)))
-        adv = self.act(self.Swish(self.prj(x)))
+
+        x_val = self.Swish(self.bn2(self.conv2(x)))
+        x_adv = self.Swish(self.bn3(self.conv3(x)))
+
+        val = self.fc2(self.Swish(self.fc1(x_val.view(x_val.size(0), -1))))
+        adv = self.fc3(x_adv.view(x_adv.size(0), -1))
         return val + adv - adv.mean()
 

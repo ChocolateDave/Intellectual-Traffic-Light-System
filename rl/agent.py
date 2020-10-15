@@ -20,7 +20,7 @@ import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
 from .memory import ReplayBuffer
-from .nnet import OWM_DQN, RLT, Dueling_DQN, Dummy_Block, Naive_DQN
+from .nnet import OWM_DQN, RLT, Dueling_DQN, Naive_DQN
 from .summary import summary
 
 sys.path.append("./project/")
@@ -273,11 +273,11 @@ class RLTAgent(BaseAgent):
         super(RLTAgent, self).__init__(config, env)
         # Build nn
         self.device = T.device('cuda' if T.cuda.is_available() else 'cpu')
-        self.q = RLT(self.state_dim, Dummy_Block, config.depth, self.action_space).to(self.device)
+        self.q = RLT(self.state_dim, config.depth, self.action_space).to(self.device)
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
+        self.model_dir = "%s-%s-%s-%s/" % ('CHOCODAVE', 'tl_v1',\
             'pytorch', self.q.name)
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
