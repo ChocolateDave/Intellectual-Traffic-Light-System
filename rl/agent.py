@@ -277,7 +277,7 @@ class RLTAgent(BaseAgent):
         self.tgt_q = deepcopy(self.q)
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-        self.model_dir = "%s-%s-%s-%s/" % ('CHOCODAVE', 'tl_v1',\
+        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name)
         self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
         self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
