@@ -73,7 +73,7 @@ class tl_v1(object):
         self.warm_up_time = warm_up_dur
 
         self.binary = "sumo-gui" if evals else "sumo"
-        self.cfg = os.path.join(path, "scenario/ITLS.sumo.cfg")
+        self.cfg = os.path.join(path, "scenario/ITLS.sumocfg")
         self.convs = conversions
         self.edges, self.ents, self.exts, self.id = \
             utils.get_net(os.path.join(path, "scenario/ITLS.net.xml"))
@@ -223,9 +223,9 @@ class tl_v1(object):
                 for _ in range(10):
                     # 2s full-red
                     traci.simulationStep()
-                # penalty for transition
-                reward -= 5.0 / self.trans_sec
-                self.trans_sec = 0.0
+                # penalty for transition (deprecated? Oct.28th,2020)
+#                reward -= 5.0 / self.trans_sec
+#                self.trans_sec = 0.0
             traci.trafficlight.setRedYellowGreenState(self.id, fp)
         
         # Observe
@@ -260,7 +260,7 @@ class tl_v1(object):
         return state
 
 
-# Reward deprecated
+# Deprecated Reward function 1
 """
 delay = dict.fromkeys(self.ents, 0)
 ql = dict.fromkeys(['W', 'E', 'S', 'N'], 0)

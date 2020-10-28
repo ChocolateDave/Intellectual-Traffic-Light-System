@@ -1,10 +1,11 @@
 <routes>
-    <vType id="LT" vClass="trailer" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>  
-    <vType id="MT" vClass="truck" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>
-    <vType id="ST" vClass="delivery" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>
-    <vType id="LP" vClass="coach" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>
-    <vType id="MP" vClass="hov" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>
-    <vType id="SP" vClass="passenger" carFollowModel="IDM" minGap="1.5622" delta="3.8" tau="1.1" speedFactor="normc(0.7,0.1,0.25,2)"/>
+    <!--normc(mean, dev, min, max)-->
+    <vType id="LT" vClass="trailer" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>  
+    <vType id="MT" vClass="truck" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>
+    <vType id="ST" vClass="delivery" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>
+    <vType id="LP" vClass="coach" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>
+    <vType id="MP" vClass="hov" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>
+    <vType id="SP" vClass="passenger" carFollowModel="IDM" delta="3.8" tau="1.1" speedFactor="normc(0.6,0.001,0.5,2)"/>
     <!--vType id="PED" vClass="pedestrian" speedFactor="normc(1,0.1,0.2,2)"/-->
     <vTypeDistribution id="NMV">
         <vType id="MOTOR" vClass="motorcycle" minGap="0.25" probability="0.04"/>
