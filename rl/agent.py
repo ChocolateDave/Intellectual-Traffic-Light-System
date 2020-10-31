@@ -20,7 +20,7 @@ import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
 from .memory import ReplayBuffer
-from .nnet import OWM_DQN, RLT, Dueling_DQN, Naive_DQN
+from .nnet import ReITA, RLT, Dueling_DQN, Naive_DQN
 from .summary import summary
 
 sys.path.append("./project/")
@@ -177,6 +177,8 @@ class BaseAgent(object):
     def ckpt_dir(self):
         return os.path.join('./checkpoints', self.model_dir)
 
+# ----------------------------------------------------------
+
 class DQNAgent(BaseAgent):
     def __init__(self, config, env):
         super(DQNAgent, self).__init__(config, env)
@@ -220,6 +222,8 @@ class DQNAgent(BaseAgent):
         loss.backward()
         self.writer.add_scalar("Train/loss", loss.item(), self.timestep)
         self.optimizer.step()
+
+# ----------------------------------------------------------
 
 class DuelingAgent(BaseAgent):
     def __init__(self, config, env):
@@ -265,24 +269,28 @@ class DuelingAgent(BaseAgent):
         self.writer.add_scalar("Train/loss", loss.item(), self.timestep)
         self.optimizer.step()
 
-class OWMAgent(BaseAgent):
-    pass
+# ----------------------------------------------------------
 
 class RLTAgent(BaseAgent):
     def __init__(self, config, env):
         super(RLTAgent, self).__init__(config, env)
         # Build nn
         self.device = T.device('cuda' if T.cuda.is_available() else 'cpu')
-        self.q = RLT(self.state_dim, config.depth, self.action_space).to(self.device)
-        self.tgt_q = deepcopy(self.q)
-        print("Network initialized! Status reporting ...")
-        summary(self.q, tuple(self.state_dim), device=self.device)
         self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name)
-        self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr)
-        self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
+        
+        self.q = RLT(self.state_dim, config.depth, config.h_features, self.action_space).to(self.device)
         if os.path.exists("./checkpoints"):
             self._load()
+        self.q.train()
+        self.tgt_q = deepcopy(self.q)
+        for param in self.tgt_q.parameters():
+            param.requires_grad = False
+        print("Network initialized! Status reporting ...")
+        summary(self.q, tuple(self.state_dim), device=self.device)
+        
+        self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr, eps=config.optm_eps)
+        self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
 
     def choose_action(self, obs):
         if np.random.random() > self.eps:
@@ -300,6 +308,63 @@ class RLTAgent(BaseAgent):
         # synchronize target network
         if self.timestep % self.tau == 0:
             self.sync()
+        s, a, r, s_, dones = self.sample_exp()
+        # calculate Q values and corresponding loss
+        q_pred = self.q.forward(s).gather(-1, a.unsqueeze(-1)).squeeze(-1)
+        q_next = self.tgt_q.forward(s_).max(1)[0]
+        q_next[dones] = 0.0
+        q_target = r + self.gamma*q_next.detach()
+        self.optimizer.zero_grad()
+        loss = self.loss_func(q_pred, q_target).to(self.device)
+        loss.backward()
+        self.writer.add_scalar("Train/loss", loss.item(), self.timestep)
+        self.optimizer.step()
+
+# ----------------------------------------------------------
+
+class ReitAgent(BaseAgent):
+    def __init__(self, config, env):
+        super(RLTAgent, self).__init__(config, env)
+        # Build nn
+        self.device = T.device('cuda' if T.cuda.is_available() else 'cpu')
+        self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
+            'pytorch', self.q.name)
+        
+        self.q = ReITA(
+            self.state_dim, config.depth, config.atoms, config.h_features, config.noise_std, self.action_space
+            ).to(self.device)
+        if os.path.exists("./checkpoints"):
+            self._load()
+        self.q.train()
+        self.tgt_q = deepcopy(self.q)
+        for param in self.tgt_q.parameters():
+            param.requires_grad = False
+        print("Network initialized! Status reporting ...")
+        summary(self.q, tuple(self.state_dim), device=self.device)
+
+        # Training params
+        self.support = T.linspace(config.vmin, config.vmax, config.atoms).to(self.device)
+        self.delta_o = (config.vmax - config.vmin) / (config.atoms - 1)
+        self.n = config.multi_step
+        self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr, eps=config.optm_eps)
+        self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
+                
+    def choose_action(self, obs):
+        with T.no_grad():
+            action = (self.q(obs.unsqueeze(0)) * self.support).sum(2).argmax(1).item()
+        return action
+    
+    def reset_noise(self):
+        self.q.reset_noise()
+
+    def train(self):
+        # check if satisfy minimum batches
+        if self.mem.mem_cntr < self.batch_size:
+            return
+        # synchronize target network
+        if self.timestep % self.tau == 0:
+            self.sync()
+        # Sample transistions
         s, a, r, s_, dones = self.sample_exp()
         # calculate Q values and corresponding loss
         q_pred = self.q.forward(s).gather(-1, a.unsqueeze(-1)).squeeze(-1)

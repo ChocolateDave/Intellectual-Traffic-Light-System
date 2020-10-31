@@ -25,18 +25,22 @@ class AgentConfigs(object):
     gamma = 0.99
     learn_initial = 50000
     lr = 0.01
+    multi_step = 1
+    optm_eps = 1e-8
     sync_tau = 1000
     # prioritized replay hyperparams
     prio_alpha = 0.6
     prio_beta = 0.4
     prio_frame = 50000
     # model params
+    atoms = 51
     double = False
+    h_features = 1000
+    noise_std = 0.1
     prioritized = False
-    # owm
-    owm_alphas = [[0.001,0.6]]
+    vmin, vmax = 0, 100
     # resnet
-    depth = [19,]
+    depth = [3, 4, 6, 3]
     #record
     SUMMARIES = 'summaries/'
     SAVER = 'output/'
