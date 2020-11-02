@@ -26,7 +26,7 @@ class AgentConfigs(object):
     learn_initial = 50000
     lr = 0.01
     multi_step = 1
-    optm_eps = 1e-8
+    optm_eps = 1.5e-4
     sync_tau = 1000
     # prioritized replay hyperparams
     prio_alpha = 0.6
@@ -38,7 +38,7 @@ class AgentConfigs(object):
     h_features = 1000
     noise_std = 0.1
     prioritized = False
-    vmin, vmax = 0, 100
+    vmin, vmax = -10, 10
     # resnet
     depth = [3, 4, 6, 3]
     #record

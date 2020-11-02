@@ -188,7 +188,7 @@ class NoisyLinear(nn.Module):
     exploration with a form of self-annealing, according to 
     "Rainbow: Combining Improvements in Deep Reinforcement Learning"
     """
-    def __init__(self, in_dim: int, o_dim: int, std_init: float = 0.5):
+    def __init__(self, in_dim: int, o_dim: int, std_init: float = 0.1):
         super(NoisyLinear, self).__init__()
         self.in_features = in_dim
         self.out_features = o_dim

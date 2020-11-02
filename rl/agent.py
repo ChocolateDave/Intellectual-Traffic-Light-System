@@ -7,9 +7,10 @@
 # Date: 5 Sep. 2020
 # -----------------------
 
+import bz2
 import os
+import pickle
 import sys
-import time
 from copy import deepcopy
 from inspect import getmembers
 
@@ -19,8 +20,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.tensorboard import SummaryWriter
 
-from .memory import ReplayBuffer
-from .nnet import ReITA, RLT, Dueling_DQN, Naive_DQN
+from .memory import PrioritizedReplayBuffer, ReplayBuffer
+from .nnet import RLT, Dueling_DQN, Naive_DQN, ReITA
 from .summary import summary
 
 sys.path.append("./project/")
@@ -58,11 +59,8 @@ class BaseAgent(object):
         self.learn_init = config.learn_initial
         self.lr = config.lr
         self.loss_func = nn.MSELoss()
-        if config.prioritized:
-            pass
-        else:
-            self.mem = ReplayBuffer(
-                self.state_dim, self.action_space, config.memory_size)
+        self.mem = ReplayBuffer(
+            self.state_dim, self.action_space, config.memory_size)
         self.tau = config.sync_tau
         self.timestep = 0
         self.total_rewards = []
@@ -101,12 +99,15 @@ class BaseAgent(object):
             self.total_rewards.append(reward)
             self.writer.add_scalar("Interaction/step_reward",
                         reward, self.timestep)
-            self.writer.add_scalar("Interaction/smoothed_reward",
-                        np.mean(self.total_rewards[-100:]), self.timestep)
+            if done:
+                self.writer.add_scalar("Interaction/cumulative_reward",
+                        np.sum(self.total_rewards), self.timestep)
+                self.total_rewards.clear()
             if self.timestep % self.ckpt == 0:
                 self._save()
+                self._save_mem()
         if done:
-            state = self.env.reset()
+            state, done = self.env.reset(), False
         self.currentState = state
         self.timestep += 1
 
@@ -173,6 +174,24 @@ class BaseAgent(object):
         self.optimizer.load_state_dict(ckpt['optim'])
         self.timestep = ckpt['timestep'] + 1
 
+    def _save_mem(self, disable_bzip=False):
+        mem_pth = os.path.join(self.ckpt_dir, 'mem.p')
+        if disable_bzip:
+            with open(mem_pth, 'wb') as _pickle:
+                pickle.dump(self.mem, _pickle)
+        else:
+            with bz2.open(mem_pth, 'rb') as zipped_pickle:
+                pickle.dump(self.mem, zipped_pickle)
+
+    def _load_mem(self, disable_bzip=False):
+        mem_pth = os.path.join(self.ckpt_dir, 'mem.p')
+        if disable_bzip:
+            with open(mem_pth, 'rb') as _pickle:
+                self.mem = pickle.load(_pickle)
+        else:
+            with bz2.open(mem_pth, 'rb') as zipped_pickle:
+                self.mem = pickle.load(zipped_pickle)
+    
     @property
     def ckpt_dir(self):
         return os.path.join('./checkpoints', self.model_dir)
@@ -282,6 +301,7 @@ class RLTAgent(BaseAgent):
         self.q = RLT(self.state_dim, config.depth, config.h_features, self.action_space).to(self.device)
         if os.path.exists("./checkpoints"):
             self._load()
+            self._load_mem()
         self.q.train()
         self.tgt_q = deepcopy(self.q)
         for param in self.tgt_q.parameters():
@@ -325,29 +345,37 @@ class RLTAgent(BaseAgent):
 class ReitAgent(BaseAgent):
     def __init__(self, config, env):
         super(RLTAgent, self).__init__(config, env)
+
+        # Training params
+        self.beta_increase = (1-config.prio_beta) / config.prio_frame
+        self.discount = config.gamma
+        self.vmin, self.vmax = config.vmin, config.vmax
+        self.mem = PrioritizedReplayBuffer(config.prio_alpha, config.prio_beta, 
+                self.device, self.discount, self.state_dim, config.memory_size, config.multi_step)
+        self.support = T.linspace(self.vmin, self.vmax, config.atoms).to(self.device)
+        self.delta_o = (config.vmax - config.vmin) / (config.atoms - 1)
+        self.n = config.multi_step
+        self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr, eps=config.optm_eps)
+        self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
+
         # Build nn
+        self.atoms = config.atoms
         self.device = T.device('cuda' if T.cuda.is_available() else 'cpu')
         self.model_dir = "%s-%s-%s-%s/" % (os.environ['USER'], 'tl_v1',\
             'pytorch', self.q.name)
         
         self.q = ReITA(
-            self.state_dim, config.depth, config.atoms, config.h_features, config.noise_std, self.action_space
+            self.state_dim, config.depth, self.atoms, config.h_features, config.noise_std, self.action_space
             ).to(self.device)
         if os.path.exists("./checkpoints"):
             self._load()
+            self._load_mem()
         self.q.train()
         self.tgt_q = deepcopy(self.q)
         for param in self.tgt_q.parameters():
             param.requires_grad = False
         print("Network initialized! Status reporting ...")
         summary(self.q, tuple(self.state_dim), device=self.device)
-
-        # Training params
-        self.support = T.linspace(config.vmin, config.vmax, config.atoms).to(self.device)
-        self.delta_o = (config.vmax - config.vmin) / (config.atoms - 1)
-        self.n = config.multi_step
-        self.optimizer = optim.Adam(self.q.parameters(), lr=self.lr, eps=config.optm_eps)
-        self.writer.add_graph(self.q, T.zeros(1, *self.state_dim).to(self.device))
                 
     def choose_action(self, obs):
         with T.no_grad():
@@ -364,15 +392,46 @@ class ReitAgent(BaseAgent):
         # synchronize target network
         if self.timestep % self.tau == 0:
             self.sync()
-        # Sample transistions
-        s, a, r, s_, dones = self.sample_exp()
-        # calculate Q values and corresponding loss
-        q_pred = self.q.forward(s).gather(-1, a.unsqueeze(-1)).squeeze(-1)
-        q_next = self.tgt_q.forward(s_).max(1)[0]
-        q_next[dones] = 0.0
-        q_target = r + self.gamma*q_next.detach()
-        self.optimizer.zero_grad()
-        loss = self.loss_func(q_pred, q_target).to(self.device)
-        loss.backward()
-        self.writer.add_scalar("Train/loss", loss.item(), self.timestep)
+        # annal importance sampling weight
+        self.mem.beta = min(self.mem.beta+self.beta_increase, 1)
+        # draw new set of noisy weights
+        self.q.reset_noise()
+        # sample transistions
+        idxs, s, a, r, s_, notdone, w = self.mem.sample(self.batch_size)
+        # calculate current state probabilities
+        log_ps = self.q.forward(s, log=True)
+        log_ps_a = log_ps[range(self.batch_size), a]
+        
+        with T.no_grad():
+            # calculate nth next state probabilities
+            pns = self.q.forward(s_)
+            dns = self.support.expand_as(pns) * pns
+            argmax_indices_ns = dns.sum(2).argmax(1)
+            self.tgt_q.reset_noise()
+            pns = self.tgt_q.forward(s_)
+            pns_a = pns[range(self.batch_size), argmax_indices_ns]
+
+            # calculate Tz (Bellman operator T applied to z)
+            Tz = r.unsqueeze(1) + notdone * (self.discount ** self.n) * self.support.unsqueeze(0)
+            Tz = Tz.clamp(min=self.vmin, max=self.vmax)
+            # calculate l2 projection of Tz on to fixed support z
+            b = (Tz - self.vmin) / self.delta_o
+            l, u = b.floor().to(T.int64), b.ceil.to(T.int64)
+            # fix disappearing probability mass when l = b = u
+            l[(u>0) & (l==u)] -= 1
+            u[(l<(self.atoms-1)) & (l==u)] += 1
+
+            # distribute probability of Tz
+            m = s.new_zeros(self.batch_size, self.atoms)
+            offset = T.linspace(0, ((self.batch_size-1) * self.atoms), self.batch_size).unsqueeze(1).expand(self.batch_size, self.atoms).to(a)
+            m.view(-1).index_add_(0, (l+offset).view(-1), (pns_a*(u.float()-b)).view(-1))
+            m.view(-1).index_add_(0, (u+offset).view(-1), (pns_a*(b-l.float())).view(-1))
+        
+        # define kl-loss
+        loss = -T.sum(m*log_ps_a, 1)
+        self.q.zero_grad()
+        (w*loss).mean().backward()
+        # TODO: clip gradient.
         self.optimizer.step()
+        # update priorities of sampled transitions with kl-loss (instead of TD-loss)
+        self.mem.update(idxs, loss.detach().cpu().numpy()) 

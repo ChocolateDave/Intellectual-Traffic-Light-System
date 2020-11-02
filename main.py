@@ -8,8 +8,7 @@
 # -----------------------
 
 import argparse
-from rl.nnet import OWM_DQN
-from rl.agent import DQNAgent, DuelingAgent, RLTAgent
+from rl.agent import DQNAgent, DuelingAgent, RLTAgent, ReitAgent
 from rl.config import AgentConfigs
 from env.wrapped import tl_v1 as Env
 
@@ -24,9 +23,8 @@ def main(args):
     env = Env(path=args.envpth)
     if args.appr == 'dueling':
         agent = DuelingAgent(AgentConfigs, env)
-    elif args.appr == 'owm':
-        agent = None
-        pass
+    elif args.appr == 'retia':
+        agent = ReitAgent(AgentConfigs, env)
     elif args.appr == 'rlt':
         agent = RLTAgent(AgentConfigs, env)
     else:
