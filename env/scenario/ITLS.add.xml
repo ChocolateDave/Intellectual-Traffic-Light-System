@@ -1,28 +1,28 @@
 <additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
 
     <!--West Entrance-->
-    <laneAreaDetector id="W.01" lanes="CAWU_1 CAWE_1" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="W.02" lanes="CAWU_2 CAWE_2" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="W.03" lanes="CAWU_3 CAWE_3" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="W.04" lanes="CAWU_4 CAWE_4" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="W.05" lanes="CAWU_4 CAWE_5" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="W.01" lanes="CAWU_0 CAWE_0" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="W.02" lanes="CAWU_1 CAWE_1" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="W.03" lanes="CAWU_2 CAWE_2" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="W.04" lanes="CAWU_3 CAWE_3" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="W.05" lanes="CAWU_3 CAWE_4" pos="120" endPos="91.53" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
 
     <!--East Entrance-->
-    <laneAreaDetector id="E.01" lanes="CAEU_1 CAEE_1" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="E.02" lanes="CAEU_2 CAEE_2" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="E.03" lanes="CAEU_3 CAEE_3" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="E.04" lanes="CAEU_3 CAEE_4" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="E.05" lanes="CAEU_3 CAEE_5" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="E.06" lanes="CAEU_3 CAEE_6" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.01" lanes="CAEU_0 CAEE_0" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.02" lanes="CAEU_0 CAEE_1" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.03" lanes="CAEU_1 CAEE_2" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.04" lanes="CAEU_2 CAEE_3" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.05" lanes="CAEU_2 CAEE_4" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="E.06" lanes="CAEU_2 CAEE_5" pos="19.09" endPos="64.70" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
 
     <!--South Entrance-->
-    <laneAreaDetector id="S.01" lanes="JSSU_1 JSSE_2" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="S.02" lanes="JSSU_2 JSSE_3" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="S.03" lanes="JSSU_2 JSSE_4" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="S.01" lanes="JSSU_0 JSSE_0" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="S.02" lanes="JSSU_1 JSSE_1" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="S.03" lanes="JSSU_1 JSSE_2" pos="38.18" endPos="66.98" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
 
     <!--North Entrance-->
-    <laneAreaDetector id="N.01" lanes="JSNU_1 JSNE_2" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="N.02" lanes="JSNU_2 JSNE_3" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
-    <laneAreaDetector id="N.03" lanes="JSNU_2 JSNE_4" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="N.01" lanes="JSNU_0 JSNE_0" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="N.02" lanes="JSNU_1 JSNE_1" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
+    <laneAreaDetector id="N.03" lanes="JSNU_1 JSNE_2" pos="129.81" endPos="37.84" friendlyPos="true" file="./output/lanearea_det.xml" freq="15"/>
 
 </additional>
